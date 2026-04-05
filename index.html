@@ -13,33 +13,12 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --border: #e0e0e0;
-            --card-bg: #fafafa;
-            --placeholder-bg: #f0f0f0;
-        }
-
-        [data-theme="dark"] {
-            --bg: #0a0a0a;
-            --text: #ffffff;
-            --text-secondary: #aaa;
-            --text-tertiary: #666;
-            --border: #2a2a2a;
-            --card-bg: #141414;
-            --placeholder-bg: #1a1a1a;
-        }
-
         body {
-            background: var(--bg);
-            color: var(--text);
+            background: #fafafa;
+            color: #1a1a1a;
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            transition: background 0.3s, color 0.3s;
         }
 
         /* Navigation */
@@ -49,18 +28,13 @@
             left: 0;
             right: 0;
             padding: 2rem 4rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(250, 250, 250, 0.8);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
-        }
-
-        [data-theme="dark"] nav {
-            background: rgba(10, 10, 10, 0.8);
         }
 
         nav .logo {
@@ -77,12 +51,6 @@
             object-fit: contain;
         }
 
-        nav .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
         nav ul {
             list-style: none;
             display: flex;
@@ -90,7 +58,7 @@
         }
 
         nav a {
-            color: var(--text);
+            color: #1a1a1a;
             text-decoration: none;
             font-weight: 400;
             font-size: 0.85rem;
@@ -100,40 +68,6 @@
 
         nav a:hover {
             opacity: 0.5;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: var(--border);
-            border: none;
-            width: 50px;
-            height: 26px;
-            border-radius: 13px;
-            cursor: pointer;
-            position: relative;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--bg);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-
-        [data-theme="dark"] .theme-toggle {
-            background: #4a4a4a;
-        }
-
-        [data-theme="dark"] .theme-toggle::after {
-            transform: translateX(24px);
-            background: var(--bg);
         }
 
         /* Hero Section */
@@ -158,14 +92,14 @@
 
         .hero-content .subtitle {
             font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: var(--text-secondary);
+            color: #666;
             font-weight: 400;
             margin-bottom: 1rem;
             line-height: 1.5;
         }
 
         .hero-content .location {
-            color: var(--text-tertiary);
+            color: #999;
             font-size: clamp(0.85rem, 1.5vw, 0.95rem);
             margin-bottom: 3rem;
         }
@@ -185,8 +119,8 @@
         }
 
         .hero-content .cta .primary {
-            background: var(--text);
-            color: var(--bg);
+            background: #1a1a1a;
+            color: #fff;
         }
 
         .hero-content .cta .primary:hover {
@@ -194,12 +128,12 @@
         }
 
         .hero-content .cta .secondary {
-            border: 1px solid var(--border);
-            color: var(--text);
+            border: 1px solid #e0e0e0;
+            color: #1a1a1a;
         }
 
         .hero-content .cta .secondary:hover {
-            border-color: var(--text);
+            border-color: #1a1a1a;
         }
 
         /* Hero Image */
@@ -213,13 +147,13 @@
             width: 100%;
             max-width: 450px;
             aspect-ratio: 3/4;
-            background: var(--placeholder-bg);
-            border: 1px solid var(--border);
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            color: var(--text-tertiary);
+            color: #999;
             position: relative;
             overflow: hidden;
         }
@@ -231,26 +165,12 @@
             object-position: center;
         }
 
-        /* File Upload Instructions */
-        .upload-info {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .upload-info code {
-            background: var(--card-bg);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
         /* About Section */
         .about-section {
             padding: 6rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e0e0e0;
         }
 
         .about-layout {
@@ -263,7 +183,7 @@
             font-size: 1rem;
             font-weight: 500;
             letter-spacing: 1px;
-            color: var(--text-tertiary);
+            color: #999;
         }
 
         .about-content {
@@ -275,14 +195,14 @@
 
         .about-text p {
             font-size: 1.05rem;
-            color: var(--text-secondary);
+            color: #666;
             margin-bottom: 1.5rem;
             line-height: 1.8;
             font-weight: 300;
         }
 
         .about-text strong {
-            color: var(--text);
+            color: #1a1a1a;
             font-weight: 500;
         }
 
@@ -294,8 +214,8 @@
 
         .stat-box {
             padding: 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+            background: #fff;
+            border: 1px solid #e0e0e0;
             transition: all 0.3s;
         }
 
@@ -306,13 +226,13 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 400;
-            color: var(--text);
+            color: #1a1a1a;
             line-height: 1;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: var(--text-tertiary);
+            color: #999;
             font-size: 0.8rem;
             letter-spacing: 0.5px;
         }
@@ -322,7 +242,7 @@
             padding: 6rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e0e0e0;
         }
 
         .work-layout {
@@ -340,8 +260,8 @@
         .work-item {
             position: relative;
             aspect-ratio: 4/3;
-            background: var(--placeholder-bg);
-            border: 1px solid var(--border);
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s;
@@ -369,7 +289,7 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            color: var(--text-tertiary);
+            color: #999;
         }
 
         .work-placeholder .icon {
@@ -381,7 +301,7 @@
             font-size: 0.9rem;
             font-weight: 500;
             margin-bottom: 0.3rem;
-            color: var(--text);
+            color: #1a1a1a;
         }
 
         .work-placeholder .subtitle {
@@ -416,6 +336,31 @@
             font-weight: 300;
         }
 
+        .view-project-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.8rem 2rem;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .work-item:hover .view-project-btn {
+            opacity: 1;
+        }
+
+        .view-project-btn:hover {
+            background: #000;
+        }
+
         /* See More Button */
         .see-more {
             margin-top: 2rem;
@@ -425,8 +370,8 @@
         .see-more button {
             padding: 0.9rem 2.5rem;
             background: none;
-            border: 1px solid var(--border);
-            color: var(--text);
+            border: 1px solid #e0e0e0;
+            color: #1a1a1a;
             font-size: 0.9rem;
             font-weight: 400;
             letter-spacing: 0.3px;
@@ -435,9 +380,9 @@
         }
 
         .see-more button:hover {
-            border-color: var(--text);
-            background: var(--text);
-            color: var(--bg);
+            border-color: #1a1a1a;
+            background: #1a1a1a;
+            color: #fff;
         }
 
         /* Hidden items */
@@ -445,12 +390,99 @@
             display: none;
         }
 
-        /* Skills & Clients - Single Row Compact */
+        /* PDF Modal */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        .pdf-modal.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .pdf-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: #000;
+            border-bottom: 1px solid #333;
+        }
+
+        .pdf-modal-title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .pdf-modal-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .pdf-modal-controls button {
+            background: none;
+            border: 1px solid #666;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pdf-modal-controls button:hover {
+            border-color: #fff;
+            background: #222;
+        }
+
+        .close-modal {
+            background: #fff !important;
+            color: #000 !important;
+            border: none !important;
+            font-weight: 500;
+        }
+
+        .close-modal:hover {
+            background: #f0f0f0 !important;
+        }
+
+        .pdf-viewer-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            padding: 2rem;
+        }
+
+        .pdf-viewer-container iframe {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            border: none;
+            background: #fff;
+        }
+
+        /* Skills & Clients */
         .info-section {
             padding: 4rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e0e0e0;
         }
 
         .info-layout {
@@ -476,7 +508,7 @@
             margin-bottom: 1rem;
             font-weight: 500;
             letter-spacing: 0.5px;
-            color: var(--text-tertiary);
+            color: #999;
         }
 
         .info-box ul {
@@ -488,7 +520,7 @@
 
         .info-box li {
             padding: 0.4rem 0;
-            color: var(--text-secondary);
+            color: #666;
             font-size: 0.85rem;
             font-weight: 300;
         }
@@ -501,25 +533,25 @@
 
         .client-badge {
             padding: 0.8rem 0.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+            background: #fff;
+            border: 1px solid #e0e0e0;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: #666;
             text-align: center;
             transition: all 0.3s;
         }
 
         .client-badge:hover {
-            border-color: var(--text);
-            color: var(--text);
+            border-color: #1a1a1a;
+            color: #1a1a1a;
         }
 
-        /* Contact Section - Compact Single Row */
+        /* Contact Section */
         .contact-section {
             padding: 4rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e0e0e0;
         }
 
         .contact-layout {
@@ -536,7 +568,7 @@
 
         .contact-item h4 {
             font-size: 0.75rem;
-            color: var(--text-tertiary);
+            color: #999;
             margin-bottom: 0.6rem;
             letter-spacing: 0.5px;
             font-weight: 500;
@@ -544,7 +576,7 @@
 
         .contact-item a,
         .contact-item span {
-            color: var(--text);
+            color: #1a1a1a;
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 400;
@@ -559,10 +591,10 @@
         footer {
             padding: 3rem 4rem;
             text-align: center;
-            color: var(--text-tertiary);
+            color: #999;
             font-size: 0.85rem;
             font-weight: 300;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #e0e0e0;
         }
 
         /* Responsive */
@@ -604,19 +636,11 @@
             .clients-row {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
             nav {
                 padding: 1.5rem 2rem;
-            }
-
-            nav .nav-right {
-                gap: 1.5rem;
             }
 
             nav ul {
@@ -635,11 +659,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .hero-content .cta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
             .hero-content h1 {
                 font-size: 3rem;
             }
@@ -653,6 +672,15 @@
             }
 
             .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content .cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -676,15 +704,12 @@
         <div class="logo">
             <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/logo1.png" alt="Anish Logo">
         </div>
-        <div class="nav-right">
-            <ul>
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#work">WORK</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
-        </div>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#work">WORK</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
     </nav>
 
     <!-- Hero -->
@@ -743,11 +768,10 @@
                 <div class="work-grid" id="workGrid">
                     <!-- First 6 items visible by default (2 rows x 3 columns) -->
                     <div class="work-item">
-                        <!-- Replace with: <img src="project1.jpg" alt="Project"> -->
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Tourism Capital</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Event Branding</div>
                         </div>
                         <div class="work-info">
                             <h3>Tourism Capital of Nepal</h3>
@@ -759,7 +783,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Visit Year 2025</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Campaign Design</div>
                         </div>
                         <div class="work-info">
                             <h3>Pokhara Visit Year 2025</h3>
@@ -771,7 +795,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">PATA Summit</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Event Branding</div>
                         </div>
                         <div class="work-info">
                             <h3>PATA Annual Summit</h3>
@@ -783,7 +807,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Airport</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Event Identity</div>
                         </div>
                         <div class="work-info">
                             <h3>Airport Inauguration</h3>
@@ -795,7 +819,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Tiger Cup</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Sports Branding</div>
                         </div>
                         <div class="work-info">
                             <h3>Tiger Cup Volleyball</h3>
@@ -807,7 +831,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Dragon Boat</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Event Design</div>
                         </div>
                         <div class="work-info">
                             <h3>Dragon Boat Race</h3>
@@ -820,7 +844,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Street Festival</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Event Branding</div>
                         </div>
                         <div class="work-info">
                             <h3>Pokhara Street Festival</h3>
@@ -832,7 +856,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">NISA Conference</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Corporate Event</div>
                         </div>
                         <div class="work-info">
                             <h3>NISA Hydropower Conference</h3>
@@ -844,7 +868,7 @@
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Embassy Events</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Diplomatic Branding</div>
                         </div>
                         <div class="work-info">
                             <h3>Embassy Events</h3>
@@ -865,13 +889,13 @@
             <div class="section-label">BRAND IDENTITIES</div>
             <div>
                 <div class="work-grid" id="brandGrid">
-                    <!-- First 6 items (2 rows x 3 columns) -->
                     <div class="work-item">
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Lumino Technology</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Brand Identity</div>
                         </div>
+                        <button class="view-project-btn" onclick="openPDF('Lumino Technology', 'https://github.com/anish252525/portfolio-assets/raw/main/your-file.pdf')">View Project</button>
                         <div class="work-info">
                             <h3>Lumino Technology</h3>
                             <p>Brand Identity</p>
@@ -879,33 +903,30 @@
                     </div>
                     
                     <div class="work-item">
-                        <a href="https://github.com/anish252525/portfolio-assets/raw/main/Sajilo_Care_Brand_Guide_V1.00.pdf" target="_blank">
-                            <div class="work-placeholder">
-                                <div class="icon">📄</div>
-                                <div class="title">Sajilo Care</div>
-                                <div class="subtitle">Click to view PDF</div>
-                            </div>
-                            <div class="work-info">
-                                <h3>Sajilo Care</h3>
-                                <p>Complete Identity</p>
-                            </div>
-                        </a>
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Sajilo Care</div>
+                            <div class="subtitle">Complete Identity</div>
+                        </div>
+                        <button class="view-project-btn" onclick="openPDF('Sajilo Care - Brand Guidelines', 'https://github.com/anish252525/portfolio-assets/raw/main/Sajilo_Care_Brand_Guide_V1.00.pdf')">View Project</button>
+                        <div class="work-info">
+                            <h3>Sajilo Care</h3>
+                            <p>Complete Identity</p>
+                        </div>
                     </div>
                     
                     <div class="work-item">
                         <div class="work-placeholder">
                             <div class="icon">📄</div>
                             <div class="title">Akala Tech</div>
-                            <div class="subtitle">Add image or PDF</div>
+                            <div class="subtitle">Visual System</div>
                         </div>
+                        <button class="view-project-btn" onclick="openPDF('Akala Tech', 'https://github.com/anish252525/portfolio-assets/raw/main/your-file.pdf')">View Project</button>
                         <div class="work-info">
                             <h3>Akala Tech</h3>
                             <p>Visual System</p>
                         </div>
                     </div>
-                </div>
-                <div class="see-more">
-                    <button id="seeBrandsBtn" style="display: none;">See More Brands</button>
                 </div>
             </div>
         </div>
@@ -983,21 +1004,20 @@
         <p>© 2026 ANISH — Graphic Designer</p>
     </footer>
 
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', currentTheme);
-        
-        themeToggle.addEventListener('click', () => {
-            const theme = html.getAttribute('data-theme');
-            const newTheme = theme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
+    <!-- PDF Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-header">
+            <div class="pdf-modal-title" id="pdfTitle">Project Name</div>
+            <div class="pdf-modal-controls">
+                <button onclick="closePDF()" class="close-modal">Close</button>
+            </div>
+        </div>
+        <div class="pdf-viewer-container">
+            <iframe id="pdfViewer" src=""></iframe>
+        </div>
+    </div>
 
+    <script>
         // See More Functionality
         const seeMoreBtn = document.getElementById('seeMoreBtn');
         const workGrid = document.getElementById('workGrid');
@@ -1014,8 +1034,35 @@
                 hiddenItems.forEach(item => item.classList.add('hidden'));
                 seeMoreBtn.textContent = 'See More Work';
                 workExpanded = false;
-                // Scroll to work section
                 document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // PDF Modal Functions
+        function openPDF(title, pdfUrl) {
+            const modal = document.getElementById('pdfModal');
+            const pdfTitle = document.getElementById('pdfTitle');
+            const pdfViewer = document.getElementById('pdfViewer');
+            
+            pdfTitle.textContent = title;
+            pdfViewer.src = pdfUrl;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePDF() {
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+            
+            modal.classList.remove('active');
+            pdfViewer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePDF();
             }
         });
 
