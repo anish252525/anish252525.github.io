@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANISH — Graphic Designer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --border: #e0e0e0;
+            --card-bg: #fafafa;
+            --placeholder-bg: #f0f0f0;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-secondary: #aaa;
+            --text-tertiary: #666;
+            --border: #2a2a2a;
+            --card-bg: #141414;
+            --placeholder-bg: #1a1a1a;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        nav .logo {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--border);
+            border: none;
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg);
+            transition: transform 0.3s;
+        }
+
+        [data-theme="dark"] .theme-toggle::after {
+            transform: translateX(24px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            padding: 10rem 4rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            line-height: 0.9;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .hero-content .location {
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content .cta {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-content .cta a {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+        }
+
+        .hero-content .cta .primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .hero-content .cta .primary:hover {
+            opacity: 0.8;
+        }
+
+        .hero-content .cta .secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .hero-content .cta .secondary:hover {
+            border-color: var(--text);
+        }
+
+        /* Hero Image */
+        .hero-image {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 3/4;
+            background: var(--placeholder-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* File Upload Instructions */
+        .upload-info {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .upload-info code {
+            background: var(--card-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 0.4fr 1.6fr;
+            gap: 6rem;
+        }
+
+        .section-label {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text-tertiary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .about-text strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-box {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Work Section */
+        .work-section {
+            padding: 6rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .work-layout {
+            display: grid;
+            grid-template-columns: 0.4fr 1.6fr;
+            gap: 6rem;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .work-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            background: var(--placeholder-bg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .work-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .work-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .work-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-tertiary);
+        }
+
+        .work-placeholder .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .work-placeholder .title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .work-placeholder .subtitle {
+            font-size: 0.8rem;
+        }
+
+        .work-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .work-item:hover .work-info {
+            opacity: 1;
+        }
+
+        .work-info h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+        }
+
+        .work-info p {
+            color: #ddd;
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        /* See More Button */
+        .see-more {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .see-more button {
+            padding: 0.9rem 2.5rem;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .see-more button:hover {
+            border-color: var(--text);
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Hidden items */
+        .work-item.hidden {
+            display: none;
+        }
+
+        /* Skills & Clients - Single Row Compact */
+        .info-section {
+            padding: 4rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .info-layout {
+            display: grid;
+            grid-template-columns: 0.4fr 1.6fr;
+            gap: 6rem;
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .services-tools-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .info-box h3 {
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--text-tertiary);
+        }
+
+        .info-box ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .info-box li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .clients-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+        }
+
+        .client-badge {
+            padding: 0.8rem 0.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .client-badge:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+
+        /* Contact Section - Compact Single Row */
+        .contact-section {
+            padding: 4rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.4fr 1.6fr;
+            gap: 6rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .contact-item h4 {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .contact-item a,
+        .contact-item span {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            font-weight: 300;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-layout,
+            .work-layout,
+            .info-layout,
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-content {
+                gap: 2rem;
+            }
+
+            .services-tools-row {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .info-box ul {
+                grid-template-columns: 1fr;
+            }
+
+            .clients-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            nav .nav-right {
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero,
+            .about-section,
+            .work-section,
+            .info-section,
+            .contact-section {
+                padding: 4rem 2rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content .cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-tools-row {
+                grid-template-columns: 1fr;
+            }
+
+            .info-box ul {
+                grid-template-columns: 1fr;
+            }
+
+            .clients-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/logo1.png" alt="Anish Logo">
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#work">WORK</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>ANISH</h1>
+            <p class="subtitle">Graphic Designer · Brand Strategist · Event Designer</p>
+            <p class="location">Based in Pokhara, Nepal</p>
+            <div class="cta">
+                <a href="#work" class="primary">View Work</a>
+                <a href="mailto:anishdesigns3@gmail.com" class="secondary">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-container">
+                <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png" alt="Anish Portrait">
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+        <div class="about-layout">
+            <div class="section-label">ABOUT</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a graphic designer specializing in event branding, corporate identity and social media. With over <strong>6 years of experience</strong>, I've had the privilege of working on large-scale projects with big brands, government bodies, international organizations, and major companies and events.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">YEARS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">PROJECTS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">EVENTS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">BRANDS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Work -->
+    <section class="work-section" id="work">
+        <div class="work-layout">
+            <div class="section-label">SELECTED WORK</div>
+            <div>
+                <div class="work-grid" id="workGrid">
+                    <!-- First 6 items visible by default (2 rows x 3 columns) -->
+                    <div class="work-item">
+                        <!-- Replace with: <img src="project1.jpg" alt="Project"> -->
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Tourism Capital</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Tourism Capital of Nepal</h3>
+                            <p>Complete Branding</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Visit Year 2025</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Pokhara Visit Year 2025</h3>
+                            <p>Campaign Design</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">PATA Summit</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>PATA Annual Summit</h3>
+                            <p>Event Branding</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Airport</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Airport Inauguration</h3>
+                            <p>Event Identity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Tiger Cup</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Tiger Cup Volleyball</h3>
+                            <p>Sports Branding</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Dragon Boat</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Dragon Boat Race</h3>
+                            <p>Event Design</p>
+                        </div>
+                    </div>
+
+                    <!-- Hidden items (shown on "See More") -->
+                    <div class="work-item hidden">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Street Festival</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Pokhara Street Festival</h3>
+                            <p>Event Branding</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item hidden">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">NISA Conference</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>NISA Hydropower Conference</h3>
+                            <p>Corporate Event</p>
+                        </div>
+                    </div>
+
+                    <div class="work-item hidden">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Embassy Events</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Embassy Events</h3>
+                            <p>Diplomatic Branding</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="see-more">
+                    <button id="seeMoreBtn">See More Work</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Identities -->
+    <section class="work-section">
+        <div class="work-layout">
+            <div class="section-label">BRAND IDENTITIES</div>
+            <div>
+                <div class="work-grid" id="brandGrid">
+                    <!-- First 6 items (2 rows x 3 columns) -->
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Lumino Technology</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Lumino Technology</h3>
+                            <p>Brand Identity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.pdf" target="_blank">
+                            <div class="work-placeholder">
+                                <div class="icon">📄</div>
+                                <div class="title">Sajilo Care</div>
+                                <div class="subtitle">Click to view PDF</div>
+                            </div>
+                            <div class="work-info">
+                                <h3>Sajilo Care</h3>
+                                <p>Complete Identity</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-placeholder">
+                            <div class="icon">📄</div>
+                            <div class="title">Akala Tech</div>
+                            <div class="subtitle">Add image or PDF</div>
+                        </div>
+                        <div class="work-info">
+                            <h3>Akala Tech</h3>
+                            <p>Visual System</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="see-more">
+                    <button id="seeBrandsBtn" style="display: none;">See More Brands</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Clients -->
+    <section class="info-section">
+        <div class="info-layout">
+            <div class="section-label">EXPERTISE</div>
+            <div class="info-content">
+                <!-- Services & Tools Row -->
+                <div class="services-tools-row">
+                    <div class="info-box">
+                        <h3>DESIGN SERVICES</h3>
+                        <ul>
+                            <li>Event Branding</li>
+                            <li>Corporate Identity</li>
+                            <li>Stage Design</li>
+                            <li>Social Media Design</li>
+                            <li>Motion Graphics</li>
+                            <li>Brand Guidelines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>TOOLS</h3>
+                        <ul>
+                            <li>Adobe Photoshop</li>
+                            <li>Adobe Illustrator</li>
+                            <li>Adobe InDesign</li>
+                            <li>Adobe Premiere Pro</li>
+                            <li>Adobe After Effects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Clients Row -->
+                <div class="info-box">
+                    <h3>CLIENTS</h3>
+                    <div class="clients-row">
+                        <div class="client-badge">Nepal Tourism Board</div>
+                        <div class="client-badge">Pokhara Metropolitan</div>
+                        <div class="client-badge">UNDP</div>
+                        <div class="client-badge">Nepal Rastra Bank</div>
+                        <div class="client-badge">Chinese Embassy</div>
+                        <div class="client-badge">Parichay Advertising</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="contact-layout">
+            <div class="section-label">CONTACT</div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>EMAIL</h4>
+                    <a href="mailto:anishdesigns3@gmail.com">anishdesigns3@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <h4>PHONE</h4>
+                    <a href="tel:9827150889">+977 9827150889</a>
+                </div>
+                <div class="contact-item">
+                    <h4>LOCATION</h4>
+                    <span>Pokhara, Nepal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 ANISH — Graphic Designer</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // See More Functionality
+        const seeMoreBtn = document.getElementById('seeMoreBtn');
+        const workGrid = document.getElementById('workGrid');
+        let workExpanded = false;
+
+        seeMoreBtn.addEventListener('click', () => {
+            const hiddenItems = workGrid.querySelectorAll('.work-item.hidden');
+            
+            if (!workExpanded) {
+                hiddenItems.forEach(item => item.classList.remove('hidden'));
+                seeMoreBtn.textContent = 'See Less';
+                workExpanded = true;
+            } else {
+                hiddenItems.forEach(item => item.classList.add('hidden'));
+                seeMoreBtn.textContent = 'See More Work';
+                workExpanded = false;
+                // Scroll to work section
+                document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
