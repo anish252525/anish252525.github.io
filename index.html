@@ -149,7 +149,7 @@
         }
 
         .hero-content h1 {
-            font-size: clamp(4rem, 10vw, 8rem);
+            font-size: clamp(2.5rem, 8vw, 8rem);
             font-weight: 600;
             letter-spacing: -0.03em;
             margin-bottom: 2rem;
@@ -157,7 +157,7 @@
         }
 
         .hero-content .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: var(--text-secondary);
             font-weight: 400;
             margin-bottom: 1rem;
@@ -166,7 +166,7 @@
 
         .hero-content .location {
             color: var(--text-tertiary);
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
             margin-bottom: 3rem;
         }
 
@@ -227,7 +227,8 @@
         .hero-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center;
         }
 
         /* File Upload Instructions */
@@ -639,6 +640,18 @@
                 gap: 1rem;
             }
 
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-content .location {
+                font-size: 0.85rem;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -866,7 +879,7 @@
                     </div>
                     
                     <div class="work-item">
-                        <a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.pdf" target="_blank">
+                        <a href="https://github.com/anish252525/portfolio-assets/raw/main/Sajilo_Care_Brand_Guide_V1.00.pdf" target="_blank">
                             <div class="work-placeholder">
                                 <div class="icon">📄</div>
                                 <div class="title">Sajilo Care</div>
