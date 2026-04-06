@@ -150,26 +150,111 @@
         .pdf-content iframe { width: 100%; height: 85vh; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .pdf-fallback { text-align: center; padding: 2rem 0 0; }
         .pdf-fallback a { display: inline-block; margin-top: 0.5rem; padding: 0.8rem 2rem; background: #1a1a1a; color: #fff; text-decoration: none; font-size: 0.9rem; }
+        /* ── HAMBURGER ── */
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: #1a1a1a; transition: all 0.3s cubic-bezier(0.22,1,0.36,1); transform-origin: center; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── MOBILE FULL-SCREEN MENU ── */
+        .mobile-menu {
+            display: none; position: fixed; inset: 0; background: #fafafa;
+            z-index: 1050; flex-direction: column; justify-content: center; align-items: center;
+            gap: 2.5rem; opacity: 0; transform: translateY(-20px);
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+        .mobile-menu.open { display: flex; opacity: 1; transform: translateY(0); }
+        .mobile-link {
+            color: #1a1a1a; text-decoration: none; font-size: 1.6rem;
+            font-weight: 600; letter-spacing: 2px;
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1);
+        }
+        .mobile-menu.open .mobile-link { opacity: 1; transform: translateY(0); }
+        .mobile-menu.open .mobile-link:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-menu.open .mobile-link:nth-child(2) { transition-delay: 0.10s; }
+        .mobile-menu.open .mobile-link:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-menu.open .mobile-link:nth-child(4) { transition-delay: 0.20s; }
+        .mobile-menu.open .mobile-link:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-link:hover { opacity: 0.5 !important; }
+
         @media (max-width: 1024px) {
-            .hero, .section-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .hero { grid-template-columns: 1fr; gap: 3rem; }
+            .section-layout { grid-template-columns: 1fr; gap: 2rem; }
             .work-grid { grid-template-columns: repeat(2, 1fr); }
             .services-tools-row { grid-template-columns: 1fr; gap: 3rem; }
-            .clients-row { grid-template-columns: 1fr 1fr; }
+            .clients-row { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
         }
+
         @media (max-width: 768px) {
-            nav { padding: 1.5rem 2rem; }
-            nav ul { gap: 1.2rem; }
-            .section, .hero { padding: 4rem 2rem; }
-            .work-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 3rem; }
-            .hero-stats { grid-template-columns: repeat(2, 1fr); }
-            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .clients-row { grid-template-columns: 1fr; }
-            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            /* Nav */
+            nav { padding: 1.2rem 1.5rem; }
+            nav.scrolled { padding: 0.9rem 1.5rem; }
+            nav ul { display: none; }
+            .hamburger { display: flex; }
+
+            /* Hero */
+            .hero {
+                grid-template-columns: 1fr; gap: 2rem;
+                padding: 7rem 1.5rem 3rem; min-height: auto;
+                text-align: center;
+            }
+            .hero-image { justify-content: center; order: -1; }
+            .hero-image img { max-width: 220px; }
+            .hero-content h1 { font-size: clamp(3rem, 18vw, 5rem); margin-bottom: 1rem; }
+            .hero-content .subtitle { font-size: 1.1rem; }
+            .hero-content .location { font-size: 0.88rem; margin-bottom: 1.5rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1.5rem; }
+            .hero-stats .stat-number { font-size: 1.8rem; }
+            .cta { justify-content: center; margin-top: 1.5rem; }
+
+            /* Sections */
+            .section { padding: 3rem 1.5rem; }
+            .section-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .section-label { font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+            /* Filter bar — horizontal scroll */
+            .filter-bar {
+                flex-wrap: nowrap; overflow-x: auto; gap: 0.5rem;
+                padding-bottom: 0.75rem; -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .filter-bar::-webkit-scrollbar { display: none; }
+            .filter-btn { font-size: 0.78rem; padding: 0.5rem 1rem; flex-shrink: 0; }
+
+            /* Work grid */
+            .work-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .work-overlay h3 { font-size: 0.85rem; }
+
+            /* Services / Tools / Clients */
+            .services-tools-row { grid-template-columns: 1fr; gap: 2rem; }
+            .clients-row { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .client-badge { font-size: 0.8rem; padding: 0.9rem 0.6rem; }
+
+            /* Contact */
+            .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+            /* Footer */
+            footer { padding: 2rem 1.5rem; font-size: 0.8rem; }
+
+            /* WhatsApp */
+            .whatsapp-float { bottom: 16px; right: 16px; width: 48px; height: 48px; }
             .whatsapp-float::after { display: none; }
-            .pdf-modal-header { padding: 1rem 1.5rem; }
-            .pdf-content { padding: 1.5rem; }
+
+            /* PDF modal */
+            .pdf-modal-header { padding: 1rem 1.2rem; }
+            .pdf-modal-title { font-size: 1rem; }
+            .pdf-content { padding: 1rem; }
+
+            /* Disable cursor on mobile */
             .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        @media (max-width: 420px) {
+            .hero-content h1 { font-size: clamp(2.8rem, 20vw, 4rem); }
+            .clients-row { grid-template-columns: 1fr; }
         }
 
         /* ── CUSTOM CURSOR ── */
@@ -252,21 +337,175 @@
             animation: blink 0.8s step-end infinite;
         }
         @keyframes blink { 50% { opacity: 0; } }
+
+        /* ── INTRO LOADER ── */
+        .intro-loader {
+            position: fixed; inset: 0; background: #1a1a1a; z-index: 999999;
+            display: flex; align-items: center; justify-content: center;
+            pointer-events: all;
+            transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), visibility 0.8s;
+        }
+        .intro-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+        .intro-loader-text {
+            color: #fff; font-size: clamp(3rem, 12vw, 9rem);
+            font-weight: 700; letter-spacing: -0.04em; overflow: hidden;
+            display: flex; gap: 0.02em;
+        }
+        .intro-letter {
+            display: inline-block;
+            animation: introLetterIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        .intro-loader-sub {
+            position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 4px;
+            text-transform: uppercase; animation: introFadeIn 0.6s 0.8s ease both;
+        }
+        @keyframes introLetterIn {
+            from { transform: translateY(110%); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        @keyframes introFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ── FILM GRAIN OVERLAY ── */
+        .grain-overlay {
+            position: fixed; inset: -100%; width: 300%; height: 300%;
+            z-index: 9000; pointer-events: none; opacity: 0.028;
+            animation: grainShift 0.4s steps(1) infinite;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+        @keyframes grainShift {
+            0%  { transform: translate(0,0); }
+            20% { transform: translate(-4%, 5%); }
+            40% { transform: translate(-7%, -3%); }
+            60% { transform: translate(4%, -6%); }
+            80% { transform: translate(7%, 4%); }
+            100%{ transform: translate(0,0); }
+        }
+
+        /* ── MARQUEE TICKER ── */
+        .marquee-section {
+            overflow: hidden; border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.1rem 0; background: #fafafa;
+        }
+        .marquee-track {
+            display: flex; gap: 0; white-space: nowrap;
+            animation: marqueeScroll 22s linear infinite;
+            width: max-content;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-item {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 3px;
+            text-transform: uppercase; color: #666; padding: 0 2.5rem;
+            display: inline-flex; align-items: center; gap: 2.5rem;
+        }
+        .marquee-dot { width: 4px; height: 4px; background: #1a1a1a; border-radius: 50%; display: inline-block; }
+        @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ── GLITCH EFFECT on H1 ── */
+        @keyframes glitch1 {
+            0%,95%,100% { clip-path: none; transform: none; color: #1a1a1a; }
+            96% { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translate(-4px, 0); color: #ff0040; }
+            97% { clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); transform: translate(4px, 0); color: #00ffcc; }
+            98% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translate(-2px, 0); color: #1a1a1a; }
+            99% { clip-path: none; transform: translate(2px, 0); color: #1a1a1a; }
+        }
+        .glitch-active { animation: glitch1 0.18s steps(1) !important; }
+
+        /* ── CURSOR TRAIL DOT ── */
+        .trail-dot {
+            position: fixed; width: 5px; height: 5px; border-radius: 50%;
+            background: #1a1a1a; pointer-events: none; z-index: 99990;
+            transform: translate(-50%,-50%);
+            animation: trailFade 0.6s ease forwards;
+        }
+        @keyframes trailFade {
+            0%   { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+            100% { opacity: 0;   transform: translate(-50%,-50%) scale(0); }
+        }
+
+        /* ── WORK CARD OVERLAY — slide up on hover ── */
+        .work-overlay {
+            transform: translateY(calc(100% - 3.2rem));
+            transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+            background: linear-gradient(to top, rgba(0,0,0,0.97) 60%, rgba(0,0,0,0.7) 85%, transparent);
+        }
+        .work-item:hover .work-overlay { transform: translateY(0); }
+        .work-overlay-tag {
+            font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+        }
+
+        /* ── SPLIT LETTER ANIMATION ── */
+        .split-letter {
+            display: inline-block; opacity: 0; transform: translateY(18px);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+        .split-letter.in { opacity: 1; transform: translateY(0); }
+
+        /* ── HERO BIG DECORATIVE NUMBER ── */
+        .hero-deco {
+            position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+            font-size: 28vw; font-weight: 800; color: rgba(0,0,0,0.03);
+            line-height: 1; pointer-events: none; letter-spacing: -0.05em;
+            user-select: none; z-index: 0;
+        }
+
+        /* ── STAT BOX NUMBER color on hover ── */
+        .stat-box:hover .stat-number { color: #1a1a1a; }
+        .stat-number { transition: color 0.3s; }
+
+        /* ── CONTACT ITEM magnetic effect target ── */
+        .contact-item a { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s; }
+
+        /* ── ABOUT TEXT HIGHLIGHT ── */
+        .about-text strong {
+            background: linear-gradient(120deg, #1a1a1a 0%, #1a1a1a 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 1.5px;
+            background-position: 0 95%;
+            transition: background-size 0.5s cubic-bezier(0.22,1,0.36,1);
+            padding-bottom: 1px;
+        }
+        .about-text.visible strong { background-size: 100% 1.5px; }
     </style>
 </head>
 <body>
+<!-- INTRO LOADER -->
+<div class="intro-loader" id="introLoader">
+    <div class="intro-loader-text" id="introText"></div>
+    <div class="intro-loader-sub">Graphic Designer · Pokhara, Nepal</div>
+</div>
+
+<!-- FILM GRAIN -->
+<div class="grain-overlay"></div>
+
 <nav>
     <div class="logo">
         <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/logo1.png" alt="Anish Logo">
     </div>
-    <ul>
+    <ul id="navLinks">
         <li><a href="#home">HOME</a></li>
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#work">WORK</a></li>
         <li><a href="#brands">BRAND IDENTITIES</a></li>
         <li><a href="#contact">CONTACT</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#home"   class="mobile-link">HOME</a>
+    <a href="#about"  class="mobile-link">ABOUT</a>
+    <a href="#work"   class="mobile-link">WORK</a>
+    <a href="#brands" class="mobile-link">BRAND IDENTITIES</a>
+    <a href="#contact"class="mobile-link">CONTACT</a>
+</div>
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>ANISH</h1>
@@ -284,6 +523,28 @@
         <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png" alt="Anish Portrait">
     </div>
 </section>
+<!-- MARQUEE TICKER -->
+<div class="marquee-section">
+    <div class="marquee-track" id="marqueeTrack">
+        <span class="marquee-item">Brand Identity <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Event Design <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Social Media <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Motion Graphics <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Visual Storytelling <span class="marquee-dot"></span></span>
+        <span class="marquee-item">6+ Years Experience <span class="marquee-dot"></span></span>
+        <span class="marquee-item">75+ Projects <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe Creative Suite <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Brand Identity <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Event Design <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Social Media <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Motion Graphics <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Visual Storytelling <span class="marquee-dot"></span></span>
+        <span class="marquee-item">6+ Years Experience <span class="marquee-dot"></span></span>
+        <span class="marquee-item">75+ Projects <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe Creative Suite <span class="marquee-dot"></span></span>
+    </div>
+</div>
+
 <section class="section" id="about">
     <div class="section-layout">
         <div class="section-label reveal-left">ABOUT</div>
@@ -311,58 +572,58 @@
                 <button class="filter-btn" data-filter="education">EDUCATION &amp; INSTITUTIONAL</button>
             </div>
             <div class="work-grid" id="workGrid">
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/667eea/ffffff?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Visit+Year+2025" alt=""><div class="work-overlay"><h3>Pokhara Visit Year 2025</h3><p>Campaign Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=City+Day" alt=""><div class="work-overlay"><h3>Pokhara Metropolitan City Establishment Day</h3><p>Event Branding</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/0ea5e9/ffffff?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival &amp; Mahotsav</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/06b6d4/ffffff?text=Musical+Eve" alt=""><div class="work-overlay"><h3>Pokhara Street Festival Musical Eve</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/10b981/ffffff?text=Pokhara+Fair" alt=""><div class="work-overlay"><h3>Pokhara Fair / Mahotsav</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/059669/ffffff?text=Lekhnath+Fair" alt=""><div class="work-overlay"><h3>Lekhnath Fair / Mahotsav</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Fewa+New+Year" alt=""><div class="work-overlay"><h3>Fewa New Year Fair</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/84cc16/ffffff?text=Asare+Ropai" alt=""><div class="work-overlay"><h3>Asare Ropai Mahotsav</h3><p>Cultural Event</p></div></div>
-                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/22c55e/ffffff?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/dc2626/ffffff?text=PATA+Summit" alt=""><div class="work-overlay"><h3>PATA Annual Summit</h3><p>Event Branding</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/b91c1c/ffffff?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara International Airport Inauguration</h3><p>Event Identity</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/7f1d1d/ffffff?text=NRB" alt=""><div class="work-overlay"><h3>Nepal Rastra Bank Corporate Events</h3><p>Corporate Branding</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/c2410c/ffffff?text=Land+AGM" alt=""><div class="work-overlay"><h3>Nepal Land &amp; Housing Department AGM</h3><p>Corporate Event</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Job+Fair" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metropolitan City</h3><p>Government Event</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/d97706/ffffff?text=Car+Insurance" alt=""><div class="work-overlay"><h3>Car Insurance &amp; Hydropower Risks Conference</h3><p>Conference Design</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/92400e/ffffff?text=RU+Fest+UNDP" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/78350f/ffffff?text=5th+Nagar+Sabha" alt=""><div class="work-overlay"><h3>5th Nagar Sabha</h3><p>Government Event</p></div></div>
-                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/451a03/ffffff?text=Rabindra+Adhikari" alt=""><div class="work-overlay"><h3>Rabindra Adhikari Smriti Pratisthan</h3><p>Memorial Event</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1d4ed8/ffffff?text=Gold+Cup" alt=""><div class="work-overlay"><h3>Aaha Rara Pokhara Gold Cup</h3><p>Sports Branding</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e40af/ffffff?text=Prachanda+Cup" alt=""><div class="work-overlay"><h3>Prachanda Cup Volleyball Tournament</h3><p>Sports Event</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e3a8a/ffffff?text=Tiger+Cup" alt=""><div class="work-overlay"><h3>Tiger Cup Volleyball</h3><p>Sports Branding</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/312e81/ffffff?text=NVA+Cup" alt=""><div class="work-overlay"><h3>NVA Cup Volleyball</h3><p>Sports Event</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4338ca/ffffff?text=Sports+Awards" alt=""><div class="work-overlay"><h3>Pokhara Sports Awards</h3><p>Awards Branding</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=Mountain+Race" alt=""><div class="work-overlay"><h3>International Mountain Cross Country Race</h3><p>Sports Event</p></div></div>
-                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/6366f1/ffffff?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions &amp; Event Designs</h3><p>Convention Design</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/6d28d9/ffffff?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/5b21b6/ffffff?text=NYFN" alt=""><div class="work-overlay"><h3>NYFN 10th Convention</h3><p>Convention Design</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/4c1d95/ffffff?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/701a75/ffffff?text=Sachchai+Award" alt=""><div class="work-overlay"><h3>Sachchai International Dynamic Award</h3><p>Awards Event</p></div></div>
-                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/86198f/ffffff?text=Sodveloncon" alt=""><div class="work-overlay"><h3>Sodveloncon</h3><p>Organization Event</p></div></div>
-                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0f766e/ffffff?text=NISA+Hydro" alt=""><div class="work-overlay"><h3>NISA Hydropower Conference</h3><p>Corporate Event</p></div></div>
-                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0e7490/ffffff?text=WADA+Auto" alt=""><div class="work-overlay"><h3>WADA Auto Show</h3><p>Expo Branding</p></div></div>
-                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0369a1/ffffff?text=PCCI+Trade" alt=""><div class="work-overlay"><h3>PCCI Trade Fair</h3><p>Expo Design</p></div></div>
-                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/075985/ffffff?text=ECAN+Fair" alt=""><div class="work-overlay"><h3>ECAN Fair</h3><p>Expo Design</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/be123c/ffffff?text=Miss+Pokhara" alt=""><div class="work-overlay"><h3>Miss Pokhara</h3><p>Beauty Pageant</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/9f1239/ffffff?text=Miss+Tamang" alt=""><div class="work-overlay"><h3>Miss Tamang</h3><p>Beauty Pageant</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/881337/ffffff?text=Miss+SEE" alt=""><div class="work-overlay"><h3>Miss SEE</h3><p>Beauty Pageant</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f43f5e/ffffff?text=Tara+Devi" alt=""><div class="work-overlay"><h3>Tara Devi – Aruna Lama Smriti Sajh</h3><p>Cultural Event</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/e11d48/ffffff?text=Aruna+Lama" alt=""><div class="work-overlay"><h3>Aruna Lama – Tara Devi Event</h3><p>Cultural Program</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb7185/ffffff?text=Purushottam" alt=""><div class="work-overlay"><h3>Purushottam Neupane Sangitik Sajh</h3><p>Cultural Event</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f472b6/ffffff?text=Bajhapatan" alt=""><div class="work-overlay"><h3>Bajhapatan Musical Fest</h3><p>Music Event</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb923c/ffffff?text=Dohori+Geet" alt=""><div class="work-overlay"><h3>Rastriya Khulla Dohori Geet Pratiyogita</h3><p>Music Competition</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f97316/ffffff?text=Poetry+Event" alt=""><div class="work-overlay"><h3>Tiket Ma Muktak (Poetry Event)</h3><p>Literary Event</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Teej+Festival" alt=""><div class="work-overlay"><h3>Teej Festival</h3><p>Festival Design</p></div></div>
-                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/dc2626/ffffff?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div>
-                <div class="work-item" data-cat="religious"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Krishna+ISKCON" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
-                <div class="work-item" data-cat="agriculture"><img src="https://placehold.co/800x600/65a30d/ffffff?text=Krishi+Mela" alt=""><div class="work-overlay"><h3>Krishi Paryatan Mela (Mustang)</h3><p>Agriculture &amp; Regional Event</p></div></div>
-                <div class="work-item" data-cat="political"><img src="https://placehold.co/800x600/16a34a/ffffff?text=NCP+UML" alt=""><div class="work-overlay"><h3>NCP UML Party Designs</h3><p>Political &amp; Organizational</p></div></div>
-                <div class="work-item" data-cat="education"><img src="https://placehold.co/800x600/15803d/ffffff?text=Prativa+School" alt=""><div class="work-overlay"><h3>Prativa Secondary School Anniversary</h3><p>Education &amp; Institutional</p></div></div>
-                <div class="work-item" data-cat="education"><img src="https://placehold.co/800x600/166534/ffffff?text=Social+School" alt=""><div class="work-overlay"><h3>Social Public School Anniversary</h3><p>Education &amp; Institutional</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/667eea/ffffff?text=Tourism+Capital" alt=""><div class="work-overlay"><p class="work-overlay-tag">Full Branding</p><h3>Pokhara: Tourism Capital of Nepal</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Visit+Year+2025" alt=""><div class="work-overlay"><p class="work-overlay-tag">Campaign Design</p><h3>Pokhara Visit Year 2025</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=City+Day" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Branding</p><h3>Pokhara Metropolitan City Establishment Day</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/0ea5e9/ffffff?text=Street+Festival" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Pokhara Street Festival &amp; Mahotsav</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/06b6d4/ffffff?text=Musical+Eve" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Pokhara Street Festival Musical Eve</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/10b981/ffffff?text=Pokhara+Fair" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Pokhara Fair / Mahotsav</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/059669/ffffff?text=Lekhnath+Fair" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Lekhnath Fair / Mahotsav</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Fewa+New+Year" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Fewa New Year Fair</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/84cc16/ffffff?text=Asare+Ropai" alt=""><div class="work-overlay"><p class="work-overlay-tag">Cultural Event</p><h3>Asare Ropai Mahotsav</h3></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/22c55e/ffffff?text=Annapurna+Day" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>Annapurna Day</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/dc2626/ffffff?text=PATA+Summit" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Branding</p><h3>PATA Annual Summit</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/b91c1c/ffffff?text=Airport" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Identity</p><h3>Pokhara International Airport Inauguration</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/7f1d1d/ffffff?text=NRB" alt=""><div class="work-overlay"><p class="work-overlay-tag">Corporate Branding</p><h3>Nepal Rastra Bank Corporate Events</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/c2410c/ffffff?text=Land+AGM" alt=""><div class="work-overlay"><p class="work-overlay-tag">Corporate Event</p><h3>Nepal Land &amp; Housing Department AGM</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Job+Fair" alt=""><div class="work-overlay"><p class="work-overlay-tag">Government Event</p><h3>Job Fair – Pokhara Metropolitan City</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/d97706/ffffff?text=Car+Insurance" alt=""><div class="work-overlay"><p class="work-overlay-tag">Conference Design</p><h3>Car Insurance &amp; Hydropower Risks Conference</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/92400e/ffffff?text=RU+Fest+UNDP" alt=""><div class="work-overlay"><p class="work-overlay-tag">International Event</p><h3>RU Fest (UNDP Program)</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/78350f/ffffff?text=5th+Nagar+Sabha" alt=""><div class="work-overlay"><p class="work-overlay-tag">Government Event</p><h3>5th Nagar Sabha</h3></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/451a03/ffffff?text=Rabindra+Adhikari" alt=""><div class="work-overlay"><p class="work-overlay-tag">Memorial Event</p><h3>Rabindra Adhikari Smriti Pratisthan</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1d4ed8/ffffff?text=Gold+Cup" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Branding</p><h3>Aaha Rara Pokhara Gold Cup</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e40af/ffffff?text=Prachanda+Cup" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Event</p><h3>Prachanda Cup Volleyball Tournament</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e3a8a/ffffff?text=Tiger+Cup" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Branding</p><h3>Tiger Cup Volleyball</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/312e81/ffffff?text=NVA+Cup" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Event</p><h3>NVA Cup Volleyball</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4338ca/ffffff?text=Sports+Awards" alt=""><div class="work-overlay"><p class="work-overlay-tag">Awards Branding</p><h3>Pokhara Sports Awards</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=Mountain+Race" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Event</p><h3>International Mountain Cross Country Race</h3></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/6366f1/ffffff?text=Dragon+Boat" alt=""><div class="work-overlay"><p class="work-overlay-tag">Sports Event</p><h3>Dragon Boat Race</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Lions+Club" alt=""><div class="work-overlay"><p class="work-overlay-tag">Convention Design</p><h3>Lions Club Conventions &amp; Event Designs</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/6d28d9/ffffff?text=Rotary" alt=""><div class="work-overlay"><p class="work-overlay-tag">Convention Branding</p><h3>18th Rotary District Convention</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/5b21b6/ffffff?text=NYFN" alt=""><div class="work-overlay"><p class="work-overlay-tag">Convention Design</p><h3>NYFN 10th Convention</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/4c1d95/ffffff?text=Kiwanis" alt=""><div class="work-overlay"><p class="work-overlay-tag">Convention Branding</p><h3>4th Kiwanis Nepal Convention</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/701a75/ffffff?text=Sachchai+Award" alt=""><div class="work-overlay"><p class="work-overlay-tag">Awards Event</p><h3>Sachchai International Dynamic Award</h3></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/86198f/ffffff?text=Sodveloncon" alt=""><div class="work-overlay"><p class="work-overlay-tag">Organization Event</p><h3>Sodveloncon</h3></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0f766e/ffffff?text=NISA+Hydro" alt=""><div class="work-overlay"><p class="work-overlay-tag">Corporate Event</p><h3>NISA Hydropower Conference</h3></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0e7490/ffffff?text=WADA+Auto" alt=""><div class="work-overlay"><p class="work-overlay-tag">Expo Branding</p><h3>WADA Auto Show</h3></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0369a1/ffffff?text=PCCI+Trade" alt=""><div class="work-overlay"><p class="work-overlay-tag">Expo Design</p><h3>PCCI Trade Fair</h3></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/075985/ffffff?text=ECAN+Fair" alt=""><div class="work-overlay"><p class="work-overlay-tag">Expo Design</p><h3>ECAN Fair</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/be123c/ffffff?text=Miss+Pokhara" alt=""><div class="work-overlay"><p class="work-overlay-tag">Beauty Pageant</p><h3>Miss Pokhara</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/9f1239/ffffff?text=Miss+Tamang" alt=""><div class="work-overlay"><p class="work-overlay-tag">Beauty Pageant</p><h3>Miss Tamang</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/881337/ffffff?text=Miss+SEE" alt=""><div class="work-overlay"><p class="work-overlay-tag">Beauty Pageant</p><h3>Miss SEE</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f43f5e/ffffff?text=Tara+Devi" alt=""><div class="work-overlay"><p class="work-overlay-tag">Cultural Event</p><h3>Tara Devi – Aruna Lama Smriti Sajh</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/e11d48/ffffff?text=Aruna+Lama" alt=""><div class="work-overlay"><p class="work-overlay-tag">Cultural Program</p><h3>Aruna Lama – Tara Devi Event</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb7185/ffffff?text=Purushottam" alt=""><div class="work-overlay"><p class="work-overlay-tag">Cultural Event</p><h3>Purushottam Neupane Sangitik Sajh</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f472b6/ffffff?text=Bajhapatan" alt=""><div class="work-overlay"><p class="work-overlay-tag">Music Event</p><h3>Bajhapatan Musical Fest</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb923c/ffffff?text=Dohori+Geet" alt=""><div class="work-overlay"><p class="work-overlay-tag">Music Competition</p><h3>Rastriya Khulla Dohori Geet Pratiyogita</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f97316/ffffff?text=Poetry+Event" alt=""><div class="work-overlay"><p class="work-overlay-tag">Literary Event</p><h3>Tiket Ma Muktak (Poetry Event)</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Teej+Festival" alt=""><div class="work-overlay"><p class="work-overlay-tag">Festival Design</p><h3>Teej Festival</h3></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/dc2626/ffffff?text=World+Egg+Day" alt=""><div class="work-overlay"><p class="work-overlay-tag">Event Design</p><h3>World Egg Day</h3></div></div>
+                <div class="work-item" data-cat="religious"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Krishna+ISKCON" alt=""><div class="work-overlay"><p class="work-overlay-tag">Religious Event</p><h3>Krishna Janmashtami (ISKCON)</h3></div></div>
+                <div class="work-item" data-cat="agriculture"><img src="https://placehold.co/800x600/65a30d/ffffff?text=Krishi+Mela" alt=""><div class="work-overlay"><p class="work-overlay-tag">Agriculture &amp; Regional Event</p><h3>Krishi Paryatan Mela (Mustang)</h3></div></div>
+                <div class="work-item" data-cat="political"><img src="https://placehold.co/800x600/16a34a/ffffff?text=NCP+UML" alt=""><div class="work-overlay"><p class="work-overlay-tag">Political &amp; Organizational</p><h3>NCP UML Party Designs</h3></div></div>
+                <div class="work-item" data-cat="education"><img src="https://placehold.co/800x600/15803d/ffffff?text=Prativa+School" alt=""><div class="work-overlay"><p class="work-overlay-tag">Education &amp; Institutional</p><h3>Prativa Secondary School Anniversary</h3></div></div>
+                <div class="work-item" data-cat="education"><img src="https://placehold.co/800x600/166534/ffffff?text=Social+School" alt=""><div class="work-overlay"><p class="work-overlay-tag">Education &amp; Institutional</p><h3>Social Public School Anniversary</h3></div></div>
             </div>
             <div id="noResults" style="display:none; text-align:center; color:#999; padding:3rem 0;">No projects in this category yet.</div>
             <div class="see-more" id="seeMoreWrap">
@@ -377,19 +638,19 @@
         <div class="work-grid">
             <div class="work-item" onclick="openPDF('Lumino Technology - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')" style="display:block; cursor:pointer;">
                 <img src="https://placehold.co/800x600/667eea/ffffff?text=Lumino+Tech" alt="Lumino Technology">
-                <div class="work-overlay"><h3>Lumino Technology</h3><p>Complete Identity — Click to view PDF</p></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Lumino Technology</h3></div>
             </div>
             <div class="work-item" onclick="openPDF('Sajilo Care - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')" style="cursor:pointer; display:block;">
                 <img src="https://placehold.co/800x600/f093fb/ffffff?text=Sajilo+Care" alt="Sajilo Care">
-                <div class="work-overlay"><h3>Sajilo Care</h3><p>Complete Identity — Click to view PDF</p></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Sajilo Care</h3></div>
             </div>
             <div class="work-item" onclick="openPDF('Akala Tech - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')" style="display:block; cursor:pointer;">
                 <img src="https://placehold.co/800x600/4facfe/ffffff?text=Akala+Tech" alt="Akala Tech">
-                <div class="work-overlay"><h3>Akala Tech</h3><p>Complete Identity — Click to view PDF</p></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Akala Tech</h3></div>
             </div>
             <div class="work-item" style="display:block;">
                 <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Club+Ivy" alt="Club Ivy">
-                <div class="work-overlay"><h3>Club Ivy</h3><p>Brand Identity</p></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Brand Identity</p><h3>Club Ivy</h3></div>
             </div>
         </div>
     </div>
@@ -455,6 +716,96 @@
     <div class="pdf-content" id="pdfContent"></div>
 </div>
 <script>
+    // ── INTRO LOADER ──────────────────────────────────────────────
+    (function() {
+        var loader = document.getElementById('introLoader');
+        var textEl = document.getElementById('introText');
+        'ANISH'.split('').forEach(function(ch, i) {
+            var span = document.createElement('span');
+            span.className = 'intro-letter';
+            span.textContent = ch;
+            span.style.animationDelay = (i * 0.09) + 's';
+            textEl.appendChild(span);
+        });
+        setTimeout(function() { loader.classList.add('done'); }, 1900);
+    })();
+
+    // ── GLITCH on H1 ──────────────────────────────────────────────
+    var glitchEl = document.querySelector('.hero-content h1');
+    function triggerGlitch() {
+        if (!glitchEl) return;
+        glitchEl.classList.add('glitch-active');
+        setTimeout(function() { glitchEl.classList.remove('glitch-active'); }, 200);
+        setTimeout(triggerGlitch, 3500 + Math.random() * 4000);
+    }
+    setTimeout(triggerGlitch, 4500);
+
+    // ── CURSOR TRAIL ──────────────────────────────────────────────
+    var lastTrail = 0;
+    document.addEventListener('mousemove', function(e) {
+        var now = Date.now();
+        if (now - lastTrail < 55) return;
+        lastTrail = now;
+        var d = document.createElement('div');
+        d.className = 'trail-dot';
+        d.style.left = e.clientX + 'px';
+        d.style.top  = e.clientY + 'px';
+        document.body.appendChild(d);
+        setTimeout(function() { if (d.parentNode) d.parentNode.removeChild(d); }, 650);
+    });
+
+    // ── SPLIT LETTER ANIMATION on section labels ──────────────────
+    document.querySelectorAll('.section-label').forEach(function(label) {
+        var text = label.textContent;
+        label.innerHTML = '';
+        text.split('').forEach(function(ch, i) {
+            var s = document.createElement('span');
+            s.className = 'split-letter';
+            s.textContent = ch === ' ' ? '\u00a0' : ch;
+            s.style.transitionDelay = (i * 0.032) + 's';
+            label.appendChild(s);
+        });
+    });
+    var splitObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.split-letter').forEach(function(s) { s.classList.add('in'); });
+                splitObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.section-label').forEach(function(el) { splitObserver.observe(el); });
+
+    // ── HAMBURGER MENU ────────────────────────────────────────────
+    var hamburger   = document.getElementById('hamburger');
+    var mobileMenu  = document.getElementById('mobileMenu');
+    var mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu(open) {
+        hamburger.classList.toggle('open', open);
+        if (open) {
+            mobileMenu.style.display = 'flex';
+            requestAnimationFrame(function() { mobileMenu.classList.add('open'); });
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(function() {
+                if (!mobileMenu.classList.contains('open')) mobileMenu.style.display = 'none';
+            }, 380);
+        }
+    }
+
+    hamburger.addEventListener('click', function() {
+        toggleMenu(!hamburger.classList.contains('open'));
+    });
+
+    mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            toggleMenu(false);
+        });
+    });
+
     // ── CUSTOM CURSOR ─────────────────────────────────────────────
     var dot  = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
