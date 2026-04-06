@@ -169,7 +169,89 @@
             .whatsapp-float::after { display: none; }
             .pdf-modal-header { padding: 1rem 1.5rem; }
             .pdf-content { padding: 1.5rem; }
+            .cursor-dot, .cursor-ring { display: none; }
         }
+
+        /* ── CUSTOM CURSOR ── */
+        @media (hover: hover) { body, a, button { cursor: none !important; } }
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 6px; height: 6px;
+            background: #1a1a1a; border-radius: 50%; pointer-events: none;
+            z-index: 99999; transform: translate(-50%,-50%);
+            transition: transform 0.08s, background 0.2s, width 0.2s, height 0.2s;
+        }
+        .cursor-ring {
+            position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+            border: 1.5px solid rgba(26,26,26,0.4); border-radius: 50%; pointer-events: none;
+            z-index: 99998; transform: translate(-50%,-50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.12s ease-out;
+        }
+        .cursor-dot.hovering { width: 10px; height: 10px; background: #1a1a1a; }
+        .cursor-ring.hovering { width: 50px; height: 50px; border-color: rgba(26,26,26,0.2); }
+
+        /* ── SCROLL PROGRESS BAR ── */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: #1a1a1a; z-index: 99997; width: 0%;
+            pointer-events: none; transition: width 0.05s linear;
+        }
+
+        /* ── NAV LINKS ENTRANCE ── */
+        nav ul li {
+            opacity: 0;
+            animation: navLinkIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        nav ul li:nth-child(1) { animation-delay: 0.15s; }
+        nav ul li:nth-child(2) { animation-delay: 0.22s; }
+        nav ul li:nth-child(3) { animation-delay: 0.29s; }
+        nav ul li:nth-child(4) { animation-delay: 0.36s; }
+        nav ul li:nth-child(5) { animation-delay: 0.43s; }
+        @keyframes navLinkIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── HERO HEADING SCRAMBLE PLACEHOLDER ── */
+        .hero-content h1 { will-change: contents; }
+
+        /* ── HERO IMAGE FLOAT ── */
+        .hero-image img {
+            animation: heroFloat 5s ease-in-out infinite;
+            will-change: transform;
+        }
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-14px); }
+        }
+
+        /* ── WORK ITEM 3D TILT — transition override ── */
+        .work-item { transform-style: preserve-3d; will-change: transform; }
+
+        /* ── UNDERLINE REVEAL on section labels ── */
+        .section-label {
+            position: relative; display: inline-block; padding-bottom: 0.5rem;
+        }
+        .section-label::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1.5px; background: #1a1a1a;
+            transition: width 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s;
+        }
+        .section-label.visible::after { width: 100%; }
+
+        /* ── CLIENT BADGE STAGGER ── */
+        .client-badge {
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1), border-color 0.3s, box-shadow 0.3s;
+        }
+        .client-badge.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── TYPEWRITER CURSOR ── */
+        .typewriter-cursor {
+            display: inline-block; width: 2px; height: 1em;
+            background: #1a1a1a; margin-left: 2px; vertical-align: middle;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -362,6 +444,9 @@
         <path d="M16 0C7.164 0 0 7.163 0 16c0 2.825.737 5.485 2.028 7.79L.084 30.948l7.383-1.936A15.918 15.918 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.496 0-4.87-.688-6.906-1.987l-.495-.296-5.132 1.346 1.37-5.004-.325-.512A13.238 13.238 0 012.667 16c0-7.363 5.97-13.333 13.333-13.333S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.94c-.397-.198-2.352-1.16-2.717-1.293-.365-.132-.631-.198-.897.199-.266.397-1.029 1.293-1.261 1.559-.233.266-.465.299-.862.1-.397-.199-1.677-.618-3.194-1.971-1.18-1.053-1.977-2.352-2.21-2.75-.232-.397-.024-.612.175-.81.179-.179.397-.465.596-.697.199-.233.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.199-.897-2.16-1.229-2.955-.323-.774-.652-.67-.897-.682-.232-.012-.498-.015-.764-.015s-.697.1-1.062.498c-.365.398-1.394 1.36-1.394 3.319s1.427 3.85 1.625 4.116c.199.266 2.806 4.285 6.794 6.009.95.41 1.69.655 2.267.838.952.303 1.817.26 2.502.158.763-.114 2.352-.962 2.684-1.89.332-.93.332-1.726.233-1.89-.1-.165-.365-.266-.764-.465z"/>
     </svg>
 </a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 <div class="pdf-modal" id="pdfModal">
     <div class="pdf-modal-header">
         <div class="pdf-modal-title" id="pdfTitle"></div>
@@ -370,6 +455,72 @@
     <div class="pdf-content" id="pdfContent"></div>
 </div>
 <script>
+    // ── CUSTOM CURSOR ─────────────────────────────────────────────
+    var dot  = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX; mouseY = e.clientY;
+        dot.style.left = mouseX + 'px';
+        dot.style.top  = mouseY + 'px';
+    });
+    (function animateRing() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        ring.style.left = ringX + 'px';
+        ring.style.top  = ringY + 'px';
+        requestAnimationFrame(animateRing);
+    })();
+    document.querySelectorAll('a, button, .work-item, .client-badge, .filter-btn').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { dot.classList.add('hovering'); ring.classList.add('hovering'); });
+        el.addEventListener('mouseleave', function() { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+    });
+
+    // ── SCROLL PROGRESS BAR ───────────────────────────────────────
+    var progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function() {
+        var scrolled = window.scrollY;
+        var total = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (scrolled / total * 100) + '%';
+    }, { passive: true });
+
+    // ── TEXT SCRAMBLE on ANISH ────────────────────────────────────
+    var h1 = document.querySelector('.hero-content h1');
+    var finalText = 'ANISH';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var iteration = 0;
+    var scrambleInterval = setInterval(function() {
+        h1.textContent = finalText.split('').map(function(ch, i) {
+            if (i < Math.floor(iteration)) return finalText[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        iteration += 0.4;
+        if (iteration > finalText.length) {
+            h1.textContent = finalText;
+            clearInterval(scrambleInterval);
+        }
+    }, 45);
+
+    // ── TYPEWRITER on subtitle ────────────────────────────────────
+    var subtitle = document.querySelector('.hero-content .subtitle');
+    var subtitleText = subtitle.textContent;
+    subtitle.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    subtitle.appendChild(cursor);
+    var charIdx = 0;
+    setTimeout(function() {
+        var typer = setInterval(function() {
+            if (charIdx < subtitleText.length) {
+                subtitle.insertBefore(document.createTextNode(subtitleText[charIdx]), cursor);
+                charIdx++;
+            } else {
+                clearInterval(typer);
+                setTimeout(function() { cursor.style.display = 'none'; }, 1200);
+            }
+        }, 55);
+    }, 700);
+
     // ── NAV SCROLL SHRINK ─────────────────────────────────────────
     var nav = document.querySelector('nav');
     window.addEventListener('scroll', function() {
@@ -483,6 +634,64 @@
     });
 
     render(false); // init — no animation on first load
+
+    // ── 3D CARD TILT ──────────────────────────────────────────────
+    document.querySelectorAll('.work-item').forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var cx = rect.width / 2;
+            var cy = rect.height / 2;
+            var rotX = ((y - cy) / cy) * -7;
+            var rotY = ((x - cx) / cx) *  7;
+            card.style.transform = 'perspective(700px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(1.04)';
+            card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            card.style.zIndex = '2';
+        });
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+            card.style.zIndex = '';
+        });
+    });
+
+    // ── MAGNETIC CTA BUTTON ───────────────────────────────────────
+    var ctaBtn = document.querySelector('.cta .primary');
+    if (ctaBtn) {
+        ctaBtn.addEventListener('mousemove', function(e) {
+            var rect = ctaBtn.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width  / 2;
+            var y = e.clientY - rect.top  - rect.height / 2;
+            ctaBtn.style.transform = 'translate(' + x * 0.25 + 'px, ' + y * 0.25 + 'px)';
+        });
+        ctaBtn.addEventListener('mouseleave', function() {
+            ctaBtn.style.transform = '';
+        });
+    }
+
+    // ── CLIENT BADGES STAGGER ─────────────────────────────────────
+    var badgeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var badges = entry.target.querySelectorAll('.client-badge');
+                badges.forEach(function(badge, i) {
+                    setTimeout(function() { badge.classList.add('visible'); }, i * 100);
+                });
+                badgeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    var clientsRow = document.querySelector('.clients-row');
+    if (clientsRow) badgeObserver.observe(clientsRow);
+
+    // ── PARALLAX HERO IMAGE ───────────────────────────────────────
+    var heroImg = document.querySelector('.hero-image');
+    window.addEventListener('scroll', function() {
+        if (heroImg) {
+            heroImg.style.transform = 'translateY(' + window.scrollY * 0.12 + 'px)';
+        }
+    }, { passive: true });
 
     // ── PDF MODAL ─────────────────────────────────────────────────
     function openPDF(title, pdfUrl) {
