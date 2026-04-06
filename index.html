@@ -1,160 +1,96 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ANISH — Graphic Designer</title>
-<meta content="light" name="color-scheme"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANISH — Graphic Designer</title>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { background: #fafafa; color-scheme: light only; }
         body { background: #fafafa; color: #1a1a1a; font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-        /* Navigation */
         nav {
             position: fixed; top: 0; left: 0; right: 0;
             padding: 2rem 4rem;
-            background: rgba(250,250,250,0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid #e0e0e0;
+            background: rgba(250,250,250,0.9); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid #e0e0e0;
             display: flex; justify-content: space-between; align-items: center;
         }
-        nav .logo img { height: 32px; width: auto; object-fit: contain; }
+        nav .logo img { height: 32px; }
         nav ul { list-style: none; display: flex; gap: 2.5rem; }
-        nav a { color: #1a1a1a; text-decoration: none; font-weight: 400; font-size: 0.85rem; letter-spacing: 0.5px; transition: opacity 0.3s; }
+        nav a { color: #1a1a1a; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px; transition: opacity 0.3s; }
         nav a:hover { opacity: 0.5; }
-
-        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem;
+            min-height: 100vh; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem;
             padding: 10rem 4rem 4rem; max-width: 1400px; margin: 0 auto; align-items: center;
         }
         .hero-content h1 { font-size: clamp(2.5rem, 8vw, 8rem); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 2rem; line-height: 0.9; }
-        .hero-content .subtitle { font-size: clamp(1rem, 2.5vw, 1.3rem); color: #666; font-weight: 400; margin-bottom: 1rem; line-height: 1.5; }
-        .hero-content .location { color: #999; font-size: clamp(0.85rem, 1.5vw, 0.95rem); margin-bottom: 3rem; }
+        .hero-content .subtitle { font-size: clamp(1rem, 2.5vw, 1.3rem); color: #666; margin-bottom: 1rem; }
+        .hero-content .location { color: #999; font-size: 0.95rem; margin-bottom: 3rem; }
         .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
         .hero-stats .stat-box { padding: 1.5rem 1rem; background: #fff; border: 1px solid #e0e0e0; text-align: center; transition: all 0.3s; }
         .hero-stats .stat-box:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .hero-stats .stat-number { font-size: 2.2rem; font-weight: 600; color: #1a1a1a; line-height: 1; margin-bottom: 0.4rem; }
+        .hero-stats .stat-number { font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 0.4rem; }
         .hero-stats .stat-label { color: #999; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
-        .hero-content .cta { display: flex; gap: 1.5rem; margin-top: 3rem; }
-        .hero-content .cta a { padding: 1rem 2.5rem; text-decoration: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0.3px; transition: all 0.3s; }
-        .hero-content .cta .primary { background: #1a1a1a; color: #fff; }
-        .hero-content .cta .primary:hover { opacity: 0.8; }
+        .cta { display: flex; gap: 1.5rem; margin-top: 3rem; }
+        .cta a { padding: 1rem 2.5rem; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+        .cta .primary { background: #1a1a1a; color: #fff; }
+        .cta .primary:hover { opacity: 0.8; }
         .hero-image { display: flex; align-items: center; justify-content: flex-end; }
-        .hero-image img { width: 100%; max-width: 450px; height: auto; object-fit: contain; object-position: center top; }
-
-        /* About */
-        .about-section { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; border-top: 1px solid #e0e0e0; }
-        .about-layout { display: grid; grid-template-columns: 0.4fr 1.6fr; gap: 6rem; }
+        .hero-image img { width: 100%; max-width: 450px; height: auto; object-fit: contain; }
+        .section { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; border-top: 1px solid #e0e0e0; }
+        .section-layout { display: grid; grid-template-columns: 0.4fr 1.6fr; gap: 6rem; }
         .section-label { font-size: 1rem; font-weight: 600; letter-spacing: 1px; color: #666; }
         .about-text p { font-size: 1.05rem; color: #666; margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; }
         .about-text strong { color: #1a1a1a; font-weight: 500; }
-
-        /* Work Section */
-        .work-section { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; border-top: 1px solid #e0e0e0; }
-        .work-layout { display: grid; grid-template-columns: 0.4fr 1.6fr; gap: 6rem; }
-
-        /* Filter Bar */
-        .filter-bar {
-            display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem;
-        }
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
         .filter-btn {
-            padding: 0.5rem 1.2rem;
-            border: 1px solid #e0e0e0;
-            background: none;
-            color: #666;
-            font-size: 0.78rem;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.25s;
-            white-space: nowrap;
+            padding: 0.5rem 1.2rem; border: 1px solid #e0e0e0;
+            background: none; color: #666; font-size: 0.78rem; font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px; cursor: pointer; transition: all 0.25s; white-space: nowrap;
         }
         .filter-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
         .filter-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-
-        /* Projects Grid */
-        .work-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-        }
+        .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        /* Hide all work items by default; JS will show the correct ones */
+        #workGrid .work-item { display: none; }
         .work-item {
-            position: relative; aspect-ratio: 4/3;
-            background: #f0f0f0; border: 1px solid #e0e0e0;
-            overflow: hidden; cursor: pointer;
-            transition: all 0.3s;
+            position: relative; aspect-ratio: 4/3; background: #f0f0f0;
+            border: 1px solid #e0e0e0; overflow: hidden; cursor: pointer; transition: all 0.3s;
         }
         .work-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .work-item img { width: 100%; height: 100%; object-fit: cover; }
         .work-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 1.2rem 1.4rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
-            color: white;
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.4rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent); color: white;
         }
-        .work-overlay h3 { font-size: 0.9rem; margin-bottom: 0.25rem; font-weight: 600; color: #fff; }
+        .work-overlay h3 { font-size: 0.9rem; margin-bottom: 0.25rem; font-weight: 600; }
         .work-overlay p { color: #ccc; font-size: 0.78rem; }
-
-        /* JS controls visibility */
-        #workGrid .work-item.hidden {
-            display: none;
+        .see-more { margin-top: 2rem; text-align: center; display: none; }
+        .see-more button {
+            padding: 0.9rem 2.5rem; background: none; border: 1px solid #e0e0e0;
+            color: #1a1a1a; font-size: 0.9rem; font-family: 'Inter', sans-serif;
+            cursor: pointer; transition: all 0.3s;
         }
-        #workGrid .work-item.visible {
-            display: block;
-            animation: fadeUp 0.3s ease forwards;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* No results */
-        .no-results {
-            grid-column: 1/-1;
-            text-align: center;
-            color: #999;
-            font-size: 0.95rem;
-            padding: 3rem 0;
-        }
-
-        /* Brand Identities */
-        .info-section { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; border-top: 1px solid #e0e0e0; }
-        .info-layout { display: grid; grid-template-columns: 0.3fr 1.7fr; gap: 4rem; }
+        .see-more button:hover { border-color: #1a1a1a; background: #1a1a1a; color: #fff; }
         .info-content { display: flex; flex-direction: column; gap: 4rem; }
         .services-tools-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
         .info-box h3 { font-size: 0.75rem; margin-bottom: 1.5rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #666; }
         .info-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-        .info-box li { color: #1a1a1a; font-size: 0.95rem; font-weight: 400; }
+        .info-box li { color: #1a1a1a; font-size: 0.95rem; }
         .clients-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .client-badge { padding: 1.2rem 1rem; background: #fff; border: 1px solid #e0e0e0; font-size: 0.9rem; color: #1a1a1a; text-align: center; transition: all 0.3s; font-weight: 400; }
+        .client-badge { padding: 1.2rem 1rem; background: #fff; border: 1px solid #e0e0e0; font-size: 0.9rem; text-align: center; transition: all 0.3s; }
         .client-badge:hover { border-color: #1a1a1a; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-        /* Contact */
-        .contact-section { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; border-top: 1px solid #e0e0e0; }
-        .contact-layout { display: grid; grid-template-columns: 0.3fr 1.7fr; gap: 4rem; }
         .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
         .contact-item h4 { font-size: 0.75rem; color: #666; margin-bottom: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
-        .contact-item a, .contact-item span { color: #1a1a1a; text-decoration: none; font-size: 1rem; font-weight: 400; transition: opacity 0.3s; }
+        .contact-item a, .contact-item span { color: #1a1a1a; text-decoration: none; font-size: 1rem; transition: opacity 0.3s; }
         .contact-item a:hover { opacity: 0.5; }
-
-        /* Footer */
-        footer { padding: 3rem 4rem; text-align: center; color: #999; font-size: 0.85rem; font-weight: 300; border-top: 1px solid #e0e0e0; }
-
-        /* WhatsApp */
+        footer { padding: 3rem 4rem; text-align: center; color: #999; font-size: 0.85rem; border-top: 1px solid #e0e0e0; }
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25D366; color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 0 4px 12px rgba(37,211,102,0.4);
-            cursor: pointer; transition: all 0.3s; z-index: 999; text-decoration: none;
+            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(37,211,102,0.4); transition: all 0.3s; z-index: 999; text-decoration: none;
         }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,0.6); }
+        .whatsapp-float:hover { transform: scale(1.1); }
         .whatsapp-float::after {
             content: 'Send Message'; position: absolute; right: 70px;
             background: #1a1a1a; color: white; padding: 0.6rem 1.2rem;
@@ -162,30 +98,18 @@
             opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
         .whatsapp-float:hover::after { opacity: 1; }
-
-        /* See More */
-        .see-more button {
-            padding: 0.9rem 2.5rem;
-            background: none; border: 1px solid #e0e0e0;
-            color: #1a1a1a; font-size: 0.9rem; font-family: 'Inter', sans-serif;
-            font-weight: 400; letter-spacing: 0.3px; cursor: pointer; transition: all 0.3s;
-        }
-        .see-more button:hover { border-color: #1a1a1a; background: #1a1a1a; color: #fff; }
-
-        /* PDF Modal */
-        .pdf-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #fafafa; z-index: 2000; animation: fadeIn 0.3s; overflow-y: auto; }
+        .pdf-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #fafafa; z-index: 2000; overflow-y: auto; }
         .pdf-modal.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .pdf-modal-header { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: #fff; border-bottom: 1px solid #e0e0e0; z-index: 10; }
-        .pdf-modal-title { color: #1a1a1a; font-size: 1.2rem; font-weight: 500; }
-        .close-modal { background: none; border: none; color: #1a1a1a; font-size: 2rem; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .pdf-modal-header { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: #fff; border-bottom: 1px solid #e0e0e0; }
+        .pdf-modal-title { font-size: 1.2rem; font-weight: 500; }
+        .close-modal { background: none; border: none; font-size: 2rem; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
         .close-modal:hover { background: #f0f0f0; border-radius: 50%; }
         .pdf-content { max-width: 1400px; margin: 0 auto; padding: 3rem; }
-        .pdf-content iframe { width: 100%; height: 90vh; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-
-        /* Responsive */
+        .pdf-content iframe { width: 100%; height: 85vh; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .pdf-fallback { text-align: center; padding: 2rem 0 0; }
+        .pdf-fallback a { display: inline-block; margin-top: 0.5rem; padding: 0.8rem 2rem; background: #1a1a1a; color: #fff; text-decoration: none; font-size: 0.9rem; }
         @media (max-width: 1024px) {
-            .hero, .about-layout, .work-layout, .info-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .hero, .section-layout { grid-template-columns: 1fr; gap: 3rem; }
             .work-grid { grid-template-columns: repeat(2, 1fr); }
             .services-tools-row { grid-template-columns: 1fr; gap: 3rem; }
             .clients-row { grid-template-columns: 1fr 1fr; }
@@ -193,395 +117,305 @@
         @media (max-width: 768px) {
             nav { padding: 1.5rem 2rem; }
             nav ul { gap: 1.2rem; }
-            .hero, .about-section, .work-section, .info-section, .contact-section { padding: 4rem 2rem; }
+            .section, .hero { padding: 4rem 2rem; }
             .work-grid { grid-template-columns: 1fr; }
             .hero-content h1 { font-size: 3rem; }
             .hero-stats { grid-template-columns: repeat(2, 1fr); }
             .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
             .clients-row { grid-template-columns: 1fr; }
-            .filter-bar { gap: 0.5rem; }
-            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
             .whatsapp-float::after { display: none; }
+            .pdf-modal-header { padding: 1rem 1.5rem; }
+            .pdf-content { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 <nav>
-<div class="logo">
-<img alt="Anish Logo" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/logo1.png"/>
-</div>
-<ul>
-<li><a href="#home">HOME</a></li>
-<li><a href="#about">ABOUT</a></li>
-<li><a href="#work">WORK</a></li>
-<li><a href="#brands">BRAND IDENTITIES</a></li>
-<li><a href="#contact">CONTACT</a></li>
-</ul>
+    <div class="logo">
+        <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/logo1.png" alt="Anish Logo">
+    </div>
+    <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#work">WORK</a></li>
+        <li><a href="#brands">BRAND IDENTITIES</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    </ul>
 </nav>
-<!-- Hero -->
 <section class="hero" id="home">
-<div class="hero-content">
-<h1>ANISH</h1>
-<p class="subtitle">Graphic Designer</p>
-<p class="location">Brand, Event &amp; Social Media Design</p>
-<div class="hero-stats">
-<div class="stat-box"><div class="stat-number">6+</div><div class="stat-label">Years</div></div>
-<div class="stat-box"><div class="stat-number">75+</div><div class="stat-label">Projects</div></div>
-<div class="stat-box"><div class="stat-number">25+</div><div class="stat-label">Events</div></div>
-<div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">Brands</div></div>
-</div>
-<div class="cta">
-<a class="primary" href="#work">View My Work</a>
-</div>
-</div>
-<div class="hero-image">
-<img alt="Anish Portrait" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png"/>
-</div>
+    <div class="hero-content">
+        <h1>ANISH</h1>
+        <p class="subtitle">Graphic Designer</p>
+        <p class="location">Brand, Event &amp; Social Media Design</p>
+        <div class="hero-stats">
+            <div class="stat-box"><div class="stat-number">6+</div><div class="stat-label">Years</div></div>
+            <div class="stat-box"><div class="stat-number">75+</div><div class="stat-label">Projects</div></div>
+            <div class="stat-box"><div class="stat-number">25+</div><div class="stat-label">Events</div></div>
+            <div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">Brands</div></div>
+        </div>
+        <div class="cta"><a href="#work" class="primary">View My Work</a></div>
+    </div>
+    <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png" alt="Anish Portrait">
+    </div>
 </section>
-<!-- About -->
-<section class="about-section" id="about">
-<div class="about-layout">
-<div class="section-label">ABOUT</div>
-<div class="about-content">
-<div class="about-text">
-<p>With <strong>6+ years</strong> in the field, I create visual identities and experiences for events, brands, and social media. My clients include government bodies, international organizations, and major brands across Nepal.</p>
-<p>I keep up with design trends and integrate AI tools into my workflow. I also have foundational skills in video editing and motion graphics using Premiere Pro and After Effects.</p>
-</div>
-</div>
-</div>
+<section class="section" id="about">
+    <div class="section-layout">
+        <div class="section-label">ABOUT</div>
+        <div class="about-text">
+            <p>With <strong>6+ years</strong> in the field, I create visual identities and experiences for events, brands, and social media. My clients include government bodies, international organizations, and major brands across Nepal.</p>
+            <p>I keep up with design trends and integrate AI tools into my workflow. I also have foundational skills in video editing and motion graphics using Premiere Pro and After Effects.</p>
+        </div>
+    </div>
 </section>
-<!-- Selected Work -->
-<section class="work-section" id="work">
-<div class="work-layout">
-<div class="section-label">SELECTED WORK</div>
-<div>
-<!-- Filter Bar -->
-<div class="filter-bar">
-<button class="filter-btn active" data-filter="all">ALL</button>
-<button class="filter-btn" data-filter="city-tourism">CITY &amp; TOURISM</button>
-<button class="filter-btn" data-filter="international-govt">INTERNATIONAL &amp; GOVT</button>
-<button class="filter-btn" data-filter="sports">SPORTS</button>
-<button class="filter-btn" data-filter="clubs-orgs">CLUBS &amp; ORGS</button>
-<button class="filter-btn" data-filter="corporate-expo">CORPORATE &amp; EXPO</button>
-<button class="filter-btn" data-filter="cultural">CULTURAL &amp; ENTERTAINMENT</button>
-<button class="filter-btn" data-filter="religious">RELIGIOUS &amp; FESTIVAL</button>
-<button class="filter-btn" data-filter="other">OTHER</button>
-</div>
-<!-- Grid -->
-<div class="work-grid" id="workGrid">
-<!-- City & Tourism -->
-<div class="work-item" data-category="city-tourism">
-<img alt="Tourism Capital" src="https://placehold.co/800x600/667eea/ffffff?text=Tourism+Capital"/>
-<div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div>
-</div>
-<div class="work-item" data-category="city-tourism">
-<img alt="Visit Year 2025" src="https://placehold.co/800x600/7c3aed/ffffff?text=Visit+Year+2025"/>
-<div class="work-overlay"><h3>Pokhara Visit Year 2025</h3><p>Campaign Design</p></div>
-</div>
-<div class="work-item" data-category="city-tourism">
-<img alt="Pokhara Metro City Day" src="https://placehold.co/800x600/4f46e5/ffffff?text=City+Day"/>
-<div class="work-overlay"><h3>Pokhara Metropolitan City Establishment Day</h3><p>Event Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Street Festival" src="https://placehold.co/800x600/0ea5e9/ffffff?text=Street+Festival"/>
-<div class="work-overlay"><h3>Pokhara Street Festival &amp; Mahotsav</h3><p>Event Design</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Musical Eve" src="https://placehold.co/800x600/06b6d4/ffffff?text=Musical+Eve"/>
-<div class="work-overlay"><h3>Pokhara Street Festival Musical Eve</h3><p>Event Design</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Pokhara Fair" src="https://placehold.co/800x600/10b981/ffffff?text=Pokhara+Fair"/>
-<div class="work-overlay"><h3>Pokhara Fair / Mahotsav</h3><p>Event Design</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Lekhnath Fair" src="https://placehold.co/800x600/059669/ffffff?text=Lekhnath+Fair"/>
-<div class="work-overlay"><h3>Lekhnath Fair / Mahotsav</h3><p>Event Design</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Fewa New Year Fair" src="https://placehold.co/800x600/f59e0b/ffffff?text=Fewa+New+Year"/>
-<div class="work-overlay"><h3>Fewa New Year Fair</h3><p>Event Design</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Asare Ropai" src="https://placehold.co/800x600/84cc16/ffffff?text=Asare+Ropai"/>
-<div class="work-overlay"><h3>Asare Ropai Mahotsav</h3><p>Cultural Event</p></div>
-</div>
-<div class="work-item hidden" data-category="city-tourism">
-<img alt="Annapurna Day" src="https://placehold.co/800x600/22c55e/ffffff?text=Annapurna+Day"/>
-<div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div>
-</div>
-<!-- International & Govt -->
-<div class="work-item hidden" data-category="international-govt">
-<img alt="PATA Summit" src="https://placehold.co/800x600/dc2626/ffffff?text=PATA+Summit"/>
-<div class="work-overlay"><h3>PATA Annual Summit</h3><p>Event Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Airport Inauguration" src="https://placehold.co/800x600/b91c1c/ffffff?text=Airport"/>
-<div class="work-overlay"><h3>Pokhara International Airport Inauguration</h3><p>Event Identity</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Nepal Rastra Bank" src="https://placehold.co/800x600/7f1d1d/ffffff?text=NRB"/>
-<div class="work-overlay"><h3>Nepal Rastra Bank Corporate Events</h3><p>Corporate Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Land Housing AGM" src="https://placehold.co/800x600/c2410c/ffffff?text=Land+AGM"/>
-<div class="work-overlay"><h3>Nepal Land &amp; Housing Department AGM</h3><p>Corporate Event</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Job Fair" src="https://placehold.co/800x600/ea580c/ffffff?text=Job+Fair"/>
-<div class="work-overlay"><h3>Job Fair – Pokhara Metropolitan City</h3><p>Government Event</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Car Insurance" src="https://placehold.co/800x600/d97706/ffffff?text=Car+Insurance"/>
-<div class="work-overlay"><h3>Car Insurance &amp; Hydropower Risks</h3><p>Conference Design</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="RU Fest UNDP" src="https://placehold.co/800x600/92400e/ffffff?text=RU+Fest+UNDP"/>
-<div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="5th Nagar Sabha" src="https://placehold.co/800x600/78350f/ffffff?text=5th+Nagar+Sabha"/>
-<div class="work-overlay"><h3>5th Nagar Sabha</h3><p>Government Event</p></div>
-</div>
-<div class="work-item hidden" data-category="international-govt">
-<img alt="Rabindra Adhikari" src="https://placehold.co/800x600/451a03/ffffff?text=Rabindra+Adhikari"/>
-<div class="work-overlay"><h3>Rabindra Adhikari Smriti Pratisthan</h3><p>Memorial Event</p></div>
-</div>
-<!-- Sports -->
-<div class="work-item hidden" data-category="sports">
-<img alt="Aaha Gold Cup" src="https://placehold.co/800x600/1d4ed8/ffffff?text=Aaha+Gold+Cup"/>
-<div class="work-overlay"><h3>Aaha Rara Pokhara Gold Cup</h3><p>Sports Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="Prachanda Cup" src="https://placehold.co/800x600/1e40af/ffffff?text=Prachanda+Cup"/>
-<div class="work-overlay"><h3>Prachanda Cup Volleyball Tournament</h3><p>Sports Event</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="Tiger Cup" src="https://placehold.co/800x600/1e3a8a/ffffff?text=Tiger+Cup"/>
-<div class="work-overlay"><h3>Tiger Cup Volleyball</h3><p>Sports Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="NVA Cup" src="https://placehold.co/800x600/312e81/ffffff?text=NVA+Cup"/>
-<div class="work-overlay"><h3>NVA Cup Volleyball</h3><p>Sports Event</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="Sports Awards" src="https://placehold.co/800x600/4338ca/ffffff?text=Sports+Awards"/>
-<div class="work-overlay"><h3>Pokhara Sports Awards</h3><p>Awards Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="Mountain Race" src="https://placehold.co/800x600/4f46e5/ffffff?text=Mountain+Race"/>
-<div class="work-overlay"><h3>International Mountain Cross Country Race</h3><p>Sports Event</p></div>
-</div>
-<div class="work-item hidden" data-category="sports">
-<img alt="Dragon Boat" src="https://placehold.co/800x600/6366f1/ffffff?text=Dragon+Boat"/>
-<div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div>
-</div>
-<!-- Clubs & Orgs -->
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="Lions Club" src="https://placehold.co/800x600/7c3aed/ffffff?text=Lions+Club"/>
-<div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div>
-</div>
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="Rotary Convention" src="https://placehold.co/800x600/6d28d9/ffffff?text=Rotary+District"/>
-<div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="NYFN Convention" src="https://placehold.co/800x600/5b21b6/ffffff?text=NYFN+Conv"/>
-<div class="work-overlay"><h3>NYFN 10th Convention</h3><p>Convention Design</p></div>
-</div>
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="Kiwanis Nepal" src="https://placehold.co/800x600/4c1d95/ffffff?text=Kiwanis"/>
-<div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="Sachchai Award" src="https://placehold.co/800x600/701a75/ffffff?text=Sachchai+Award"/>
-<div class="work-overlay"><h3>Sachchai International Dynamic Award</h3><p>Awards Event</p></div>
-</div>
-<div class="work-item hidden" data-category="clubs-orgs">
-<img alt="Sodveloncon" src="https://placehold.co/800x600/86198f/ffffff?text=Sodveloncon"/>
-<div class="work-overlay"><h3>Sodveloncon</h3><p>Organization Event</p></div>
-</div>
-<!-- Corporate & Expo -->
-<div class="work-item hidden" data-category="corporate-expo">
-<img alt="NISA Hydropower" src="https://placehold.co/800x600/0f766e/ffffff?text=NISA+Hydro"/>
-<div class="work-overlay"><h3>NISA Hydropower Conference</h3><p>Corporate Event</p></div>
-</div>
-<div class="work-item hidden" data-category="corporate-expo">
-<img alt="WADA Auto Show" src="https://placehold.co/800x600/0e7490/ffffff?text=WADA+Auto"/>
-<div class="work-overlay"><h3>WADA Auto Show</h3><p>Expo Branding</p></div>
-</div>
-<div class="work-item hidden" data-category="corporate-expo">
-<img alt="PCCI Trade Fair" src="https://placehold.co/800x600/0369a1/ffffff?text=PCCI+Trade"/>
-<div class="work-overlay"><h3>PCCI Trade Fair</h3><p>Expo Design</p></div>
-</div>
-<div class="work-item hidden" data-category="corporate-expo">
-<img alt="ECAN Fair" src="https://placehold.co/800x600/075985/ffffff?text=ECAN+Fair"/>
-<div class="work-overlay"><h3>ECAN Fair</h3><p>Expo Design</p></div>
-</div>
-<!-- Cultural & Entertainment -->
-<div class="work-item hidden" data-category="cultural">
-<img alt="Miss Pokhara" src="https://placehold.co/800x600/be123c/ffffff?text=Miss+Pokhara"/>
-<div class="work-overlay"><h3>Miss Pokhara</h3><p>Beauty Pageant</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Miss Tamang" src="https://placehold.co/800x600/9f1239/ffffff?text=Miss+Tamang"/>
-<div class="work-overlay"><h3>Miss Tamang</h3><p>Beauty Pageant</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Miss SEE" src="https://placehold.co/800x600/881337/ffffff?text=Miss+SEE"/>
-<div class="work-overlay"><h3>Miss SEE</h3><p>Beauty Pageant</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Tara Devi Sajh" src="https://placehold.co/800x600/f43f5e/ffffff?text=Tara+Devi+Sajh"/>
-<div class="work-overlay"><h3>Tara Devi – Aruna Lama Smriti Sajh</h3><p>Cultural Event</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Aruna Lama Event" src="https://placehold.co/800x600/e11d48/ffffff?text=Aruna+Lama"/>
-<div class="work-overlay"><h3>Aruna Lama – Tara Devi Event</h3><p>Cultural Program</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Purushottam Sajh" src="https://placehold.co/800x600/fb7185/ffffff?text=Purushottam+Sajh"/>
-<div class="work-overlay"><h3>Purushottam Neupane Sangitik Sajh</h3><p>Cultural Event</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Bajhapatan" src="https://placehold.co/800x600/fda4af/1a1a1a?text=Bajhapatan+Fest"/>
-<div class="work-overlay"><h3>Bajhapatan Musical Fest</h3><p>Music Event</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Dohori Geet" src="https://placehold.co/800x600/fb923c/ffffff?text=Dohori+Geet"/>
-<div class="work-overlay"><h3>Rastriya Khulla Dohori Geet Pratiyogita</h3><p>Music Competition</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Poetry Event" src="https://placehold.co/800x600/f97316/ffffff?text=Poetry+Event"/>
-<div class="work-overlay"><h3>Tiket Ma Muktak (Poetry Event)</h3><p>Literary Event</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="Teej Festival" src="https://placehold.co/800x600/ea580c/ffffff?text=Teej+Festival"/>
-<div class="work-overlay"><h3>Teej Festival</h3><p>Festival Design</p></div>
-</div>
-<div class="work-item hidden" data-category="cultural">
-<img alt="World Egg Day" src="https://placehold.co/800x600/dc2626/ffffff?text=World+Egg+Day"/>
-<div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div>
-</div>
-<!-- Religious & Festival -->
-<div class="work-item hidden" data-category="religious">
-<img alt="Krishna Janmashtami" src="https://placehold.co/800x600/f59e0b/ffffff?text=Krishna+ISKCON"/>
-<div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div>
-</div>
-<!-- Other -->
-<div class="work-item hidden" data-category="other">
-<img alt="Krishi Mela" src="https://placehold.co/800x600/65a30d/ffffff?text=Krishi+Mela"/>
-<div class="work-overlay"><h3>Krishi Paryatan Mela (Mustang)</h3><p>Agriculture Event</p></div>
-</div>
-<div class="work-item hidden" data-category="other">
-<img alt="NCP UML" src="https://placehold.co/800x600/16a34a/ffffff?text=NCP+UML"/>
-<div class="work-overlay"><h3>NCP UML Party Designs</h3><p>Political Design</p></div>
-</div>
-<div class="work-item hidden" data-category="other">
-<img alt="Prativa School" src="https://placehold.co/800x600/15803d/ffffff?text=Prativa+School"/>
-<div class="work-overlay"><h3>Prativa Secondary School Anniversary</h3><p>Institutional Design</p></div>
-</div>
-<div class="work-item hidden" data-category="other">
-<img alt="Social School" src="https://placehold.co/800x600/166534/ffffff?text=Social+School"/>
-<div class="work-overlay"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div>
-</div>
-</div>
-<!-- No results message -->
-<div id="noResults" style="display:none; text-align:center; color:#999; padding:3rem 0; font-size:0.95rem;">No projects in this category yet.</div>
-<!-- See More Button -->
-<div class="see-more" id="seeMoreWrap" style="display:none; margin-top:2rem; text-align:center;">
-<button id="seeMoreBtn">See More</button>
-</div>
-</div>
-</div>
+<section class="section" id="work">
+    <div class="section-layout">
+        <div class="section-label">SELECTED WORK</div>
+        <div>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="city-tourism">CITY &amp; TOURISM</button>
+                <button class="filter-btn" data-filter="intl-govt">INTERNATIONAL &amp; GOVT</button>
+                <button class="filter-btn" data-filter="sports">SPORTS</button>
+                <button class="filter-btn" data-filter="clubs-orgs">CLUBS &amp; ORGS</button>
+                <button class="filter-btn" data-filter="corporate-expo">CORPORATE &amp; EXPO</button>
+                <button class="filter-btn" data-filter="cultural">CULTURAL &amp; ENTERTAINMENT</button>
+                <button class="filter-btn" data-filter="religious">RELIGIOUS &amp; FESTIVAL</button>
+                <button class="filter-btn" data-filter="other">OTHER</button>
+            </div>
+            <div class="work-grid" id="workGrid">
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/667eea/ffffff?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Visit+Year+2025" alt=""><div class="work-overlay"><h3>Pokhara Visit Year 2025</h3><p>Campaign Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=City+Day" alt=""><div class="work-overlay"><h3>Pokhara Metropolitan City Establishment Day</h3><p>Event Branding</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/0ea5e9/ffffff?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival &amp; Mahotsav</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/06b6d4/ffffff?text=Musical+Eve" alt=""><div class="work-overlay"><h3>Pokhara Street Festival Musical Eve</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/10b981/ffffff?text=Pokhara+Fair" alt=""><div class="work-overlay"><h3>Pokhara Fair / Mahotsav</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/059669/ffffff?text=Lekhnath+Fair" alt=""><div class="work-overlay"><h3>Lekhnath Fair / Mahotsav</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Fewa+New+Year" alt=""><div class="work-overlay"><h3>Fewa New Year Fair</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/84cc16/ffffff?text=Asare+Ropai" alt=""><div class="work-overlay"><h3>Asare Ropai Mahotsav</h3><p>Cultural Event</p></div></div>
+                <div class="work-item" data-cat="city-tourism"><img src="https://placehold.co/800x600/22c55e/ffffff?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/dc2626/ffffff?text=PATA+Summit" alt=""><div class="work-overlay"><h3>PATA Annual Summit</h3><p>Event Branding</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/b91c1c/ffffff?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara International Airport Inauguration</h3><p>Event Identity</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/7f1d1d/ffffff?text=NRB" alt=""><div class="work-overlay"><h3>Nepal Rastra Bank Corporate Events</h3><p>Corporate Branding</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/c2410c/ffffff?text=Land+AGM" alt=""><div class="work-overlay"><h3>Nepal Land &amp; Housing Department AGM</h3><p>Corporate Event</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Job+Fair" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metropolitan City</h3><p>Government Event</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/d97706/ffffff?text=Car+Insurance" alt=""><div class="work-overlay"><h3>Car Insurance &amp; Hydropower Risks Conference</h3><p>Conference Design</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/92400e/ffffff?text=RU+Fest+UNDP" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/78350f/ffffff?text=5th+Nagar+Sabha" alt=""><div class="work-overlay"><h3>5th Nagar Sabha</h3><p>Government Event</p></div></div>
+                <div class="work-item" data-cat="intl-govt"><img src="https://placehold.co/800x600/451a03/ffffff?text=Rabindra+Adhikari" alt=""><div class="work-overlay"><h3>Rabindra Adhikari Smriti Pratisthan</h3><p>Memorial Event</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1d4ed8/ffffff?text=Gold+Cup" alt=""><div class="work-overlay"><h3>Aaha Rara Pokhara Gold Cup</h3><p>Sports Branding</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e40af/ffffff?text=Prachanda+Cup" alt=""><div class="work-overlay"><h3>Prachanda Cup Volleyball Tournament</h3><p>Sports Event</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/1e3a8a/ffffff?text=Tiger+Cup" alt=""><div class="work-overlay"><h3>Tiger Cup Volleyball</h3><p>Sports Branding</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/312e81/ffffff?text=NVA+Cup" alt=""><div class="work-overlay"><h3>NVA Cup Volleyball</h3><p>Sports Event</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4338ca/ffffff?text=Sports+Awards" alt=""><div class="work-overlay"><h3>Pokhara Sports Awards</h3><p>Awards Branding</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/4f46e5/ffffff?text=Mountain+Race" alt=""><div class="work-overlay"><h3>International Mountain Cross Country Race</h3><p>Sports Event</p></div></div>
+                <div class="work-item" data-cat="sports"><img src="https://placehold.co/800x600/6366f1/ffffff?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/7c3aed/ffffff?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions &amp; Event Designs</h3><p>Convention Design</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/6d28d9/ffffff?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/5b21b6/ffffff?text=NYFN" alt=""><div class="work-overlay"><h3>NYFN 10th Convention</h3><p>Convention Design</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/4c1d95/ffffff?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/701a75/ffffff?text=Sachchai+Award" alt=""><div class="work-overlay"><h3>Sachchai International Dynamic Award</h3><p>Awards Event</p></div></div>
+                <div class="work-item" data-cat="clubs-orgs"><img src="https://placehold.co/800x600/86198f/ffffff?text=Sodveloncon" alt=""><div class="work-overlay"><h3>Sodveloncon</h3><p>Organization Event</p></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0f766e/ffffff?text=NISA+Hydro" alt=""><div class="work-overlay"><h3>NISA Hydropower Conference</h3><p>Corporate Event</p></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0e7490/ffffff?text=WADA+Auto" alt=""><div class="work-overlay"><h3>WADA Auto Show</h3><p>Expo Branding</p></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/0369a1/ffffff?text=PCCI+Trade" alt=""><div class="work-overlay"><h3>PCCI Trade Fair</h3><p>Expo Design</p></div></div>
+                <div class="work-item" data-cat="corporate-expo"><img src="https://placehold.co/800x600/075985/ffffff?text=ECAN+Fair" alt=""><div class="work-overlay"><h3>ECAN Fair</h3><p>Expo Design</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/be123c/ffffff?text=Miss+Pokhara" alt=""><div class="work-overlay"><h3>Miss Pokhara</h3><p>Beauty Pageant</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/9f1239/ffffff?text=Miss+Tamang" alt=""><div class="work-overlay"><h3>Miss Tamang</h3><p>Beauty Pageant</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/881337/ffffff?text=Miss+SEE" alt=""><div class="work-overlay"><h3>Miss SEE</h3><p>Beauty Pageant</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f43f5e/ffffff?text=Tara+Devi" alt=""><div class="work-overlay"><h3>Tara Devi – Aruna Lama Smriti Sajh</h3><p>Cultural Event</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/e11d48/ffffff?text=Aruna+Lama" alt=""><div class="work-overlay"><h3>Aruna Lama – Tara Devi Event</h3><p>Cultural Program</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb7185/ffffff?text=Purushottam" alt=""><div class="work-overlay"><h3>Purushottam Neupane Sangitik Sajh</h3><p>Cultural Event</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f472b6/ffffff?text=Bajhapatan" alt=""><div class="work-overlay"><h3>Bajhapatan Musical Fest</h3><p>Music Event</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/fb923c/ffffff?text=Dohori+Geet" alt=""><div class="work-overlay"><h3>Rastriya Khulla Dohori Geet Pratiyogita</h3><p>Music Competition</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/f97316/ffffff?text=Poetry+Event" alt=""><div class="work-overlay"><h3>Tiket Ma Muktak (Poetry Event)</h3><p>Literary Event</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/ea580c/ffffff?text=Teej+Festival" alt=""><div class="work-overlay"><h3>Teej Festival</h3><p>Festival Design</p></div></div>
+                <div class="work-item" data-cat="cultural"><img src="https://placehold.co/800x600/dc2626/ffffff?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div>
+                <div class="work-item" data-cat="religious"><img src="https://placehold.co/800x600/f59e0b/ffffff?text=Krishna+ISKCON" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
+                <div class="work-item" data-cat="other"><img src="https://placehold.co/800x600/65a30d/ffffff?text=Krishi+Mela" alt=""><div class="work-overlay"><h3>Krishi Paryatan Mela (Mustang)</h3><p>Agriculture Event</p></div></div>
+                <div class="work-item" data-cat="other"><img src="https://placehold.co/800x600/16a34a/ffffff?text=NCP+UML" alt=""><div class="work-overlay"><h3>NCP UML Party Designs</h3><p>Political Design</p></div></div>
+                <div class="work-item" data-cat="other"><img src="https://placehold.co/800x600/15803d/ffffff?text=Prativa+School" alt=""><div class="work-overlay"><h3>Prativa Secondary School Anniversary</h3><p>Institutional Design</p></div></div>
+                <div class="work-item" data-cat="other"><img src="https://placehold.co/800x600/166534/ffffff?text=Social+School" alt=""><div class="work-overlay"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div></div>
+            </div>
+            <div id="noResults" style="display:none; text-align:center; color:#999; padding:3rem 0;">No projects in this category yet.</div>
+            <div class="see-more" id="seeMoreWrap">
+                <button id="seeMoreBtn">See More</button>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- Brand Identities -->
-<section class="work-section" id="brands">
-<div class="work-layout">
-<div class="section-label">BRAND IDENTITIES</div>
-<div>
-<div class="work-grid">
-<div class="work-item">
-<img alt="Lumino Technology" src="https://placehold.co/800x600/667eea/ffffff?text=Lumino+Tech"/>
-<div class="work-overlay"><h3>Lumino Technology</h3><p>Brand Identity</p></div>
-</div>
-<div class="work-item" onclick="openPDF('Sajilo Care - Brand Guidelines', 'https://github.com/anish252525/portfolio-assets/raw/main/Sajilo_Care_Brand_Guide_V1.00.pdf')">
-<img alt="Sajilo Care" src="https://placehold.co/800x600/f093fb/ffffff?text=Sajilo+Care"/>
-<div class="work-overlay"><h3>Sajilo Care</h3><p>Complete Identity</p></div>
-</div>
-<div class="work-item">
-<img alt="Akala Tech" src="https://placehold.co/800x600/4facfe/ffffff?text=Akala+Tech"/>
-<div class="work-overlay"><h3>Akala Tech</h3><p>Visual System</p></div>
-</div>
-</div>
-</div>
-</div>
+<section class="section" id="brands">
+    <div class="section-layout">
+        <div class="section-label">BRAND IDENTITIES</div>
+        <div class="work-grid">
+            <div class="work-item" style="display:block;">
+                <img src="https://placehold.co/800x600/667eea/ffffff?text=Lumino+Tech" alt="Lumino Technology">
+                <div class="work-overlay"><h3>Lumino Technology</h3><p>Brand Identity</p></div>
+            </div>
+            <div class="work-item" onclick="openPDF('Sajilo Care - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')" style="cursor:pointer; display:block;">
+                <img src="https://placehold.co/800x600/f093fb/ffffff?text=Sajilo+Care" alt="Sajilo Care">
+                <div class="work-overlay"><h3>Sajilo Care</h3><p>Complete Identity — Click to view PDF</p></div>
+            </div>
+            <div class="work-item" style="display:block;">
+                <img src="https://placehold.co/800x600/4facfe/ffffff?text=Akala+Tech" alt="Akala Tech">
+                <div class="work-overlay"><h3>Akala Tech</h3><p>Visual System</p></div>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- Expertise -->
-<section class="info-section">
-<div class="info-layout">
-<div class="section-label">EXPERTISE</div>
-<div class="info-content">
-<div class="services-tools-row">
-<div class="info-box">
-<h3>DESIGN SERVICES</h3>
-<ul>
-<li>Event Branding</li>
-<li>Brand Guidelines</li>
-<li>Social Media Design</li>
-<li>Video Editing</li>
-<li>Motion Graphics</li>
-</ul>
-</div>
-<div class="info-box">
-<h3>TOOLS</h3>
-<ul>
-<li>Adobe Photoshop</li>
-<li>Adobe Illustrator</li>
-<li>Adobe InDesign</li>
-<li>Adobe Premiere Pro</li>
-<li>Adobe After Effects</li>
-</ul>
-</div>
-</div>
-<div class="info-box">
-<h3>CLIENTS</h3>
-<div class="clients-row">
-<div class="client-badge">Nepal Tourism Board</div>
-<div class="client-badge">Pokhara Metropolitan</div>
-<div class="client-badge">UNDP</div>
-<div class="client-badge">Nepal Rastra Bank</div>
-<div class="client-badge">Chinese Embassy</div>
-<div class="client-badge">Parichay Advertising</div>
-</div>
-</div>
-</div>
-</div>
+<section class="section">
+    <div class="section-layout">
+        <div class="section-label">EXPERTISE</div>
+        <div class="info-content">
+            <div class="services-tools-row">
+                <div class="info-box">
+                    <h3>DESIGN SERVICES</h3>
+                    <ul>
+                        <li>Event Branding</li><li>Brand Guidelines</li>
+                        <li>Social Media Design</li><li>Video Editing</li><li>Motion Graphics</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h3>TOOLS</h3>
+                    <ul>
+                        <li>Adobe Photoshop</li><li>Adobe Illustrator</li>
+                        <li>Adobe InDesign</li><li>Adobe Premiere Pro</li><li>Adobe After Effects</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3>CLIENTS</h3>
+                <div class="clients-row">
+                    <div class="client-badge">Nepal Tourism Board</div>
+                    <div class="client-badge">Pokhara Metropolitan</div>
+                    <div class="client-badge">UNDP</div>
+                    <div class="client-badge">Nepal Rastra Bank</div>
+                    <div class="client-badge">Chinese Embassy</div>
+                    <div class="client-badge">Parichay Advertising</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- Contact -->
-<section class="contact-section" id="contact">
-<div class="contact-layout">
-<div class="section-label">CONTACT</div>
-<div class="contact-grid">
-<div class="contact-item"><h4>EMAIL</h4><a href="/cdn-cgi/l/email-protection#3756595e445f5352445e5059440477505a565e5b1954585a"><span class="__cf_email__" data-cfemail="294847405a414d4c5a404e475a1a694e44484045074a4644">[email protected]</span></a></div>
-<div class="contact-item"><h4>PHONE</h4><a href="tel:9827150889">+977 9827150889</a></div>
-<div class="contact-item"><h4>LOCATION</h4><span>Pokhara, Nepal</span></div>
-</div>
-</div>
+<section class="section" id="contact">
+    <div class="section-layout">
+        <div class="section-label">CONTACT</div>
+        <div class="contact-grid">
+            <div class="contact-item"><h4>EMAIL</h4><a href="mailto:anishdesigns3@gmail.com">anishdesigns3@gmail.com</a></div>
+            <div class="contact-item"><h4>PHONE</h4><a href="tel:+9779827150889">+977 9827150889</a></div>
+            <div class="contact-item"><h4>LOCATION</h4><span>Pokhara, Nepal</span></div>
+        </div>
+    </div>
 </section>
-<footer><p>© 2026 ANISH — Graphic Designer</p></footer>
-<!-- WhatsApp -->
-<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/9779827150889?text=Hi%20Anish,%20I'd%20like%20to%20discuss%20a%20project" target="_blank">
-<svg fill="currentColor" height="30" viewbox="0 0 32 32" width="30">
-<path d="M16 0C7.164 0 0 7.163 0 16c0 2.825.737 5.485 2.028 7.79L.084 30.948l7.383-1.936A15.918 15.918 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.496 0-4.87-.688-6.906-1.987l-.495-.296-5.132 1.346 1.37-5.004-.325-.512A13.238 13.238 0 012.667 16c0-7.363 5.97-13.333 13.333-13.333S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.94c-.397-.198-2.352-1.16-2.717-1.293-.365-.132-.631-.198-.897.199-.266.397-1.029 1.293-1.261 1.559-.233.266-.465.299-.862.1-.397-.199-1.677-.618-3.194-1.971-1.18-1.053-1.977-2.352-2.21-2.75-.232-.397-.024-.612.175-.81.179-.179.397-.465.596-.697.199-.233.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.199-.897-2.16-1.229-2.955-.323-.774-.652-.67-.897-.682-.232-.012-.498-.015-.764-.015s-.697.1-1.062.498c-.365.398-1.394 1.36-1.394 3.319s1.427 3.85 1.625 4.116c.199.266 2.806 4.285 6.794 6.009.95.41 1.69.655 2.267.838.952.303 1.817.26 2.502.158.763-.114 2.352-.962 2.684-1.89.332-.93.332-1.726.233-1.89-.1-.165-.365-.266-.764-.465z"></path>
-</svg>
+<footer><p>&#169; 2026 ANISH — Graphic Designer</p></footer>
+<a href="https://wa.me/9779827150889?text=Hi%20Anish,%20I'd%20like%20to%20discuss%20a%20project" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor">
+        <path d="M16 0C7.164 0 0 7.163 0 16c0 2.825.737 5.485 2.028 7.79L.084 30.948l7.383-1.936A15.918 15.918 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.496 0-4.87-.688-6.906-1.987l-.495-.296-5.132 1.346 1.37-5.004-.325-.512A13.238 13.238 0 012.667 16c0-7.363 5.97-13.333 13.333-13.333S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.94c-.397-.198-2.352-1.16-2.717-1.293-.365-.132-.631-.198-.897.199-.266.397-1.029 1.293-1.261 1.559-.233.266-.465.299-.862.1-.397-.199-1.677-.618-3.194-1.971-1.18-1.053-1.977-2.352-2.21-2.75-.232-.397-.024-.612.175-.81.179-.179.397-.465.596-.697.199-.233.266-.398.398-.664.133-.266.067-.498-.033-.697-.1-.199-.897-2.16-1.229-2.955-.323-.774-.652-.67-.897-.682-.232-.012-.498-.015-.764-.015s-.697.1-1.062.498c-.365.398-1.394 1.36-1.394 3.319s1.427 3.85 1.625 4.116c.199.266 2.806 4.285 6.794 6.009.95.41 1.69.655 2.267.838.952.303 1.817.26 2.502.158.763-.114 2.352-.962 2.684-1.89.332-.93.332-1.726.233-1.89-.1-.165-.365-.266-.764-.465z"/>
+    </svg>
 </a>
-<!-- PDF Modal -->
 <div class="pdf-modal" id="pdfModal">
-<div class="pdf-modal-header">
-<div class="pdf-modal-title" id="pdfTitle">Project Name</div>
-<button class="close-modal" onclick="closePDF()">×</button>
+    <div class="pdf-modal-header">
+        <div class="pdf-modal-title" id="pdfTitle"></div>
+        <button onclick="closePDF()" class="close-modal">&#x2715;</button>
+    </div>
+    <div class="pdf-content" id="pdfContent"></div>
 </div>
-<div class="pdf-content" id="pdfContent"></div>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script></script></body></html>
+<script>
+    // ── FILTER + SEE MORE ──────────────────────────────────────────
+    var SHOW = 6; // Show 2 rows of 3 initially
+
+    var currentFilter = 'all';
+    var expanded = false;
+
+    // Collect all work items from #workGrid only
+    var allItems = Array.from(document.querySelectorAll('#workGrid .work-item'));
+    var noResults = document.getElementById('noResults');
+    var seeMoreWrap = document.getElementById('seeMoreWrap');
+    var seeMoreBtn = document.getElementById('seeMoreBtn');
+
+    function render() {
+        // Determine which items match the active filter
+        var matched = allItems.filter(function(item) {
+            return currentFilter === 'all' || item.getAttribute('data-cat') === currentFilter;
+        });
+
+        // Decide how many to show
+        var toShow = expanded ? matched : matched.slice(0, SHOW);
+        var showSet = new Set(toShow);
+
+        // Show/hide each item — use '' to let CSS control the display type
+        allItems.forEach(function(item) {
+            item.style.display = showSet.has(item) ? '' : 'none';
+        });
+
+        // Empty-state message
+        noResults.style.display = matched.length === 0 ? 'block' : 'none';
+
+        // See More / See Less button
+        if (matched.length > SHOW) {
+            seeMoreWrap.style.display = 'block';
+            seeMoreBtn.textContent = expanded
+                ? 'See Less'
+                : 'See More (' + (matched.length - SHOW) + ' more)';
+        } else {
+            seeMoreWrap.style.display = 'none';
+        }
+    }
+
+    // Filter button clicks
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Update active state
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active'); // use captured `btn`, not `this`
+
+            currentFilter = btn.getAttribute('data-filter');
+            expanded = false;
+            render();
+        });
+    });
+
+    // See More / See Less toggle
+    seeMoreBtn.addEventListener('click', function() {
+        expanded = !expanded;
+        render();
+        if (!expanded) {
+            document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    // Run on load
+    render();
+
+    // ── PDF MODAL ──────────────────────────────────────────────────
+    function openPDF(title, pdfUrl) {
+        document.getElementById('pdfTitle').textContent = title;
+        document.getElementById('pdfContent').innerHTML =
+            '<iframe src="https://docs.google.com/viewer?url=' + encodeURIComponent(pdfUrl) + '&embedded=true" style="width:100%;height:85vh;border:none;"></iframe>' +
+            '<div class="pdf-fallback"><p>PDF not loading? Open directly:</p><a href="' + pdfUrl + '" target="_blank">Open PDF</a></div>';
+        document.getElementById('pdfModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePDF() {
+        document.getElementById('pdfModal').classList.remove('active');
+        document.getElementById('pdfContent').innerHTML = '';
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePDF();
+    });
+
+    // ── SMOOTH SCROLL ──────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+</script>
+</body>
+</html>
