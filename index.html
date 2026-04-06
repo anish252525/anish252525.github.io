@@ -118,7 +118,7 @@
         .services-tools-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
         .info-box h3 { font-size: 0.75rem; margin-bottom: 1.5rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #666; }
         .info-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-        .info-box li { color: #1a1a1a; font-size: 0.95rem; }
+        .info-box li { color: #1a1a1a; font-size: 0.95rem; will-change: transform, opacity; }
         .clients-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .client-badge { padding: 1.2rem 1rem; background: #fff; border: 1px solid #e0e0e0; font-size: 0.9rem; text-align: center; transition: all 0.3s; }
         .client-badge:hover { border-color: #1a1a1a; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -255,6 +255,22 @@
         @media (max-width: 420px) {
             .hero-content h1 { font-size: clamp(2.8rem, 20vw, 4rem); }
             .clients-row { grid-template-columns: 1fr; }
+            .rotating-badge-wrap { display: none; }
+        }
+
+        /* Mobile fixes for new animation elements */
+        @media (max-width: 768px) {
+            /* Stat boxes — override opacity animation so they show on mobile */
+            .stat-box { opacity: 1; transform: none; }
+            /* Contact items visible by default on mobile */
+            .contact-item h4 { opacity: 1; transform: none; }
+            .contact-item a, .contact-item span { opacity: 1; transform: none; }
+            /* Word reveal reset on mobile for readability */
+            .word-inner { transform: none; }
+            /* Spotlight off on mobile */
+            .spotlight { display: none; }
+            /* Second marquee smaller text */
+            .marquee-item { font-size: 0.65rem; padding: 0 1.5rem; }
         }
 
         /* ── CUSTOM CURSOR ── */
@@ -299,14 +315,10 @@
         /* ── HERO HEADING SCRAMBLE PLACEHOLDER ── */
         .hero-content h1 { will-change: contents; }
 
-        /* ── HERO IMAGE FLOAT ── */
+        /* ── HERO IMAGE — 3D parallax via JS, gentle transition ── */
         .hero-image img {
-            animation: heroFloat 5s ease-in-out infinite;
             will-change: transform;
-        }
-        @keyframes heroFloat {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-14px); }
+            transition: transform 0.15s ease-out;
         }
 
         /* ── WORK ITEM 3D TILT — transition override ── */
@@ -443,6 +455,67 @@
         }
         .work-item:hover::before, .work-item:hover::after { opacity: 1; }
 
+        /* ── PDF ICON BADGE on brand cards ── */
+        .pdf-badge {
+            position: absolute; top: 1rem; right: 1rem; z-index: 4;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: scale(0.6) rotate(-15deg);
+            transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        }
+        .pdf-badge svg { width: 18px; height: 18px; fill: #1a1a1a; }
+        .work-item:hover .pdf-badge { opacity: 1; transform: scale(1) rotate(0deg); }
+
+        /* ── 3D PERSPECTIVE HERO ── */
+        .hero { perspective: 1200px; }
+        .hero-content { transform-style: preserve-3d; }
+
+        /* ── 3D STAT BOX hover flip ── */
+        .stat-box {
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1),
+                        box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .stat-box:hover {
+            transform: translateY(-6px) rotateX(8deg) scale(1.04) !important;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* ── 3D FILTER BTN press ── */
+        .filter-btn { transform-style: preserve-3d; }
+        .filter-btn:active { transform: scale(0.95) translateY(2px); }
+
+        /* ── 3D CLIENT BADGE hover ── */
+        .client-badge:hover {
+            transform: translateY(-4px) rotateX(6deg) scale(1.03) !important;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1) !important;
+        }
+
+        /* ── FLOATING PARTICLES in hero ── */
+        .particle {
+            position: absolute; border-radius: 50%;
+            background: rgba(26,26,26,0.06); pointer-events: none;
+            animation: particleFloat linear infinite;
+        }
+        @keyframes particleFloat {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ── 3D MARQUEE ITEMS ── */
+        .marquee-item {
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-flex; align-items: center;
+        }
+        .marquee-item:hover { transform: translateY(-2px) scale(1.05); color: #1a1a1a; }
+
+        /* ── EXPERTISE SECTION LABEL reveal fix ── */
+        .section-label { display: block; }
+
         /* ── BRAND CARD HOVER TEXT REVEAL ── */
         .brand-hover-label {
             position: absolute; top: 1rem; right: 1rem;
@@ -475,14 +548,18 @@
             to   { transform: translateX(0); }
         }
 
-        /* ── INTRO LOADER ── */
+        /* ── INTRO LOADER — curtain wipe out ── */
         .intro-loader {
             position: fixed; inset: 0; background: #1a1a1a; z-index: 999999;
             display: flex; align-items: center; justify-content: center;
             pointer-events: all;
-            transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), visibility 0.8s;
+            transition: transform 1s cubic-bezier(0.76,0,0.24,1), visibility 1s;
+            transform-origin: top center;
         }
-        .intro-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+        .intro-loader.done {
+            transform: translateY(-100%);
+            visibility: hidden; pointer-events: none;
+        }
         .intro-loader-text {
             color: #fff; font-size: clamp(3rem, 12vw, 9rem);
             font-weight: 700; letter-spacing: -0.04em; overflow: hidden;
@@ -568,8 +645,13 @@
         /* ── WORK CARD OVERLAY — slide up on hover ── */
         .work-overlay {
             transform: translateY(calc(100% - 3.2rem));
-            transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
-            background: linear-gradient(to top, rgba(0,0,0,0.97) 60%, rgba(0,0,0,0.7) 85%, transparent);
+            transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+            background: linear-gradient(to top,
+                rgba(10,10,10,0.96) 0%,
+                rgba(10,10,10,0.75) 50%,
+                rgba(10,10,10,0.2) 80%,
+                transparent 100%);
+            backdrop-filter: blur(2px);
         }
         .work-item:hover .work-overlay { transform: translateY(0); }
         .work-overlay-tag {
@@ -660,15 +742,6 @@
     </div>
     <div class="hero-image">
         <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png" alt="Anish Portrait">
-        <div class="rotating-badge-wrap">
-            <svg class="rotating-badge" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <path id="badgePath" d="M65,65 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/>
-                </defs>
-                <text><textPath href="#badgePath">GRAPHIC DESIGNER · POKHARA · NEPAL · 6+ YEARS · </textPath></text>
-            </svg>
-            <span class="rotating-badge-star">✦</span>
-        </div>
     </div>
 </section>
 <!-- MARQUEE TICKER -->
@@ -786,15 +859,18 @@
         <div class="work-grid">
             <div class="work-item" onclick="openPDF('Lumino Technology - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')" style="display:block; cursor:pointer;">
                 <img src="https://placehold.co/800x600/667eea/ffffff?text=Lumino+Tech" alt="Lumino Technology">
-                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Lumino Technology</h3></div>
+                <div class="pdf-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1.5H8V17zm0-3h8v1.5H8V14zm0-3h4v1.5H8V11z"/></svg></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Brand Guidelines</p><h3>Lumino Technology</h3></div>
             </div>
             <div class="work-item" onclick="openPDF('Sajilo Care - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')" style="cursor:pointer; display:block;">
                 <img src="https://placehold.co/800x600/f093fb/ffffff?text=Sajilo+Care" alt="Sajilo Care">
-                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Sajilo Care</h3></div>
+                <div class="pdf-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1.5H8V17zm0-3h8v1.5H8V14zm0-3h4v1.5H8V11z"/></svg></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Brand Guidelines</p><h3>Sajilo Care</h3></div>
             </div>
             <div class="work-item" onclick="openPDF('Akala Tech - Brand Guidelines', 'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')" style="display:block; cursor:pointer;">
                 <img src="https://placehold.co/800x600/4facfe/ffffff?text=Akala+Tech" alt="Akala Tech">
-                <div class="work-overlay"><p class="work-overlay-tag">Complete Identity — Click to view PDF</p><h3>Akala Tech</h3></div>
+                <div class="pdf-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1.5H8V17zm0-3h8v1.5H8V14zm0-3h4v1.5H8V11z"/></svg></div>
+                <div class="work-overlay"><p class="work-overlay-tag">Brand Guidelines</p><h3>Akala Tech</h3></div>
             </div>
             <div class="work-item" style="display:block;">
                 <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Club+Ivy" alt="Club Ivy">
@@ -803,6 +879,31 @@
         </div>
     </div>
 </section>
+
+<!-- REVERSE MARQUEE -->
+<div class="marquee-section">
+    <div class="marquee-track-reverse">
+        <span class="marquee-item">Adobe Photoshop <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe Illustrator <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe InDesign <span class="marquee-dot"></span></span>
+        <span class="marquee-item">After Effects <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Premiere Pro <span class="marquee-dot"></span></span>
+        <span class="marquee-item">20+ Brands <span class="marquee-dot"></span></span>
+        <span class="marquee-item">25+ Events <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Nepal Tourism Board <span class="marquee-dot"></span></span>
+        <span class="marquee-item">UNDP <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe Photoshop <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe Illustrator <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Adobe InDesign <span class="marquee-dot"></span></span>
+        <span class="marquee-item">After Effects <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Premiere Pro <span class="marquee-dot"></span></span>
+        <span class="marquee-item">20+ Brands <span class="marquee-dot"></span></span>
+        <span class="marquee-item">25+ Events <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Nepal Tourism Board <span class="marquee-dot"></span></span>
+        <span class="marquee-item">UNDP <span class="marquee-dot"></span></span>
+    </div>
+</div>
+
 <section class="section">
     <div class="section-layout">
         <div class="section-label">EXPERTISE</div>
@@ -1184,11 +1285,11 @@
     var clientsRow = document.querySelector('.clients-row');
     if (clientsRow) badgeObserver.observe(clientsRow);
 
-    // ── PARALLAX HERO IMAGE ───────────────────────────────────────
-    var heroImg = document.querySelector('.hero-image');
+    // ── HERO PARALLAX on scroll (wrapper, not img) ────────────────
+    var heroImgWrap = document.querySelector('.hero-image');
     window.addEventListener('scroll', function() {
-        if (heroImg) {
-            heroImg.style.transform = 'translateY(' + window.scrollY * 0.12 + 'px)';
+        if (heroImgWrap && window.scrollY < window.innerHeight) {
+            heroImgWrap.style.transform = 'translateY(' + window.scrollY * 0.08 + 'px)';
         }
     }, { passive: true });
 
@@ -1215,6 +1316,170 @@
         a.addEventListener('click', function(e) {
             var target = document.querySelector(this.getAttribute('href'));
             if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    // ── SPOTLIGHT EFFECT ──────────────────────────────────────────
+    var spotlight = document.getElementById('spotlight');
+    document.addEventListener('mousemove', function(e) {
+        spotlight.style.background = 'radial-gradient(500px circle at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(0,0,0,0.045), transparent 70%)';
+    });
+
+    // ── NAV LINK HOVER SCRAMBLE ───────────────────────────────────
+    var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    document.querySelectorAll('nav ul li a').forEach(function(link) {
+        var original = link.textContent;
+        var frame = null;
+        link.addEventListener('mouseenter', function() {
+            var iter = 0;
+            cancelAnimationFrame(frame);
+            (function tick() {
+                link.textContent = original.split('').map(function(ch, i) {
+                    if (ch === ' ') return ' ';
+                    if (i < Math.floor(iter)) return original[i];
+                    return CHARS[Math.floor(Math.random() * CHARS.length)];
+                }).join('');
+                iter += 0.5;
+                if (iter < original.length) frame = requestAnimationFrame(tick);
+                else link.textContent = original;
+            })();
+        });
+        link.addEventListener('mouseleave', function() {
+            cancelAnimationFrame(frame);
+            link.textContent = original;
+        });
+    });
+
+    // ── ACTIVE SECTION NAV HIGHLIGHT ─────────────────────────────
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('nav ul li a');
+    var sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                navLinks.forEach(function(a) { a.classList.remove('active-section'); });
+                var active = document.querySelector('nav ul li a[href="#' + entry.target.id + '"]');
+                if (active) active.classList.add('active-section');
+            }
+        });
+    }, { threshold: 0.4 });
+    sections.forEach(function(s) { sectionObserver.observe(s); });
+
+    // ── WORD-BY-WORD REVEAL on about paragraphs ───────────────────
+    document.querySelectorAll('.about-text p').forEach(function(p) {
+        var words = p.innerHTML.split(/(\s+)/);
+        p.innerHTML = words.map(function(w) {
+            if (w.trim() === '' || w.startsWith('<')) return w;
+            return '<span class="word-reveal"><span class="word-inner">' + w + '</span></span>';
+        }).join('');
+    });
+    var wordObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.word-inner').forEach(function(w, i) {
+                    setTimeout(function() { w.classList.add('in'); }, i * 28);
+                });
+                wordObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.about-text p').forEach(function(p) { wordObserver.observe(p); });
+
+    // ── EXPERTISE LIST STAGGER ────────────────────────────────────
+    document.querySelectorAll('.info-box').forEach(function(box) {
+        var listObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('li').forEach(function(li, i) {
+                        setTimeout(function() { li.classList.add('in'); }, i * 90);
+                    });
+                    listObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+        listObs.observe(box);
+    });
+
+    // ── FLOATING PARTICLES in hero ─────────────────────────────────
+    var heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        for (var p = 0; p < 12; p++) {
+            (function() {
+                var dot = document.createElement('div');
+                dot.className = 'particle';
+                var size = 4 + Math.random() * 8;
+                dot.style.cssText = [
+                    'width:' + size + 'px',
+                    'height:' + size + 'px',
+                    'left:' + (Math.random() * 100) + '%',
+                    'top:' + (60 + Math.random() * 40) + '%',
+                    'animation-duration:' + (8 + Math.random() * 14) + 's',
+                    'animation-delay:' + (Math.random() * 8) + 's'
+                ].join(';');
+                heroSection.style.position = 'relative';
+                heroSection.style.overflow = 'hidden';
+                heroSection.appendChild(dot);
+            })();
+        }
+    }
+
+    // ── 3D MOUSE PARALLAX on hero ─────────────────────────────────
+    var heroContent = document.querySelector('.hero-content');
+    var heroImgEl   = document.querySelector('.hero-image img');
+    document.addEventListener('mousemove', function(e) {
+        var cx = window.innerWidth  / 2;
+        var cy = window.innerHeight / 2;
+        var dx = (e.clientX - cx) / cx;
+        var dy = (e.clientY - cy) / cy;
+        if (heroContent) {
+            heroContent.style.transform = 'rotateY(' + (dx * 3) + 'deg) rotateX(' + (-dy * 2) + 'deg)';
+        }
+        if (heroImgEl) {
+            heroImgEl.style.transform = 'translateX(' + (dx * -12) + 'px) translateY(' + (dy * -8) + 'px)';
+        }
+    });
+
+    // ── STAT BOX STAGGER ─────────────────────────────────────────
+    var statObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.stat-box').forEach(function(b, i) {
+                    setTimeout(function() { b.classList.add('in'); }, i * 100);
+                });
+                statObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    var statsGrid = document.querySelector('.hero-stats');
+    if (statsGrid) statObs.observe(statsGrid);
+
+    // ── CONTACT ITEMS REVEAL ──────────────────────────────────────
+    var contactObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.contact-item').forEach(function(item, i) {
+                    setTimeout(function() { item.classList.add('in'); }, i * 120);
+                });
+                contactObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    var contactGrid = document.querySelector('.contact-grid');
+    if (contactGrid) contactObs.observe(contactGrid);
+
+    // ── MOBILE LINK SCRAMBLE (tap) ────────────────────────────────
+    document.querySelectorAll('.mobile-link').forEach(function(link) {
+        var orig = link.textContent;
+        link.addEventListener('touchstart', function() {
+            var it = 0;
+            var iv = setInterval(function() {
+                link.textContent = orig.split('').map(function(c, i) {
+                    if (c === ' ') return ' ';
+                    if (i < Math.floor(it)) return orig[i];
+                    return CHARS[Math.floor(Math.random() * 26)];
+                }).join('');
+                it += 0.6;
+                if (it > orig.length) { clearInterval(iv); link.textContent = orig; }
+            }, 35);
         });
     });
 </script>
