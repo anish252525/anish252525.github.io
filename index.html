@@ -96,6 +96,12 @@ nav ul li a:hover::after{width:100%;}
 .stat-lbl{font-size:0.62rem;font-weight:600;color:var(--mu);letter-spacing:2px;text-transform:uppercase;}
 
 /* ── SECTION ── */
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-bottom:3rem;border-bottom:1px solid var(--br);}
+.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--br);border:1px solid var(--br);}
+.about-stat{background:var(--bk2);padding:1.5rem 1.2rem;transition:background 0.2s;}
+.about-stat:hover{background:#161616;}
+.about-stat .stat-num{font-family:'AwesomeSerif',serif;font-weight:700;font-size:1.8rem;color:var(--g);line-height:1;margin-bottom:0.3rem;font-style:italic;}
+.about-stat .stat-lbl{font-size:0.6rem;font-weight:600;color:var(--mu);letter-spacing:2px;text-transform:uppercase;}
 .section{padding:5rem 4rem;max-width:1400px;margin:0 auto;}
 .section-divider{border:none;border-top:1px solid var(--br);}
 .sec-label{font-size:0.65rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem;}
@@ -225,6 +231,8 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   nav ul{gap:1rem;}
   nav ul li a{font-size:0.65rem;letter-spacing:1px;}
   .nav-hire{display:none;}
+  .about-top{grid-template-columns:1fr;gap:2rem;}
+  .about-stats{grid-template-columns:repeat(2,1fr);}
   .section{padding:3.5rem 1.2rem;}
   .hero{padding:0 1.2rem;padding-top:65px;height:auto;min-height:calc(100vh - 120px);}
   .hero-content{padding:2rem 0 1.5rem;}
@@ -307,22 +315,36 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-item reveal stagger-1"><div class="stat-num">6+</div><div class="stat-lbl">Years</div></div>
-    <div class="stat-item reveal stagger-2"><div class="stat-num">75+</div><div class="stat-lbl">Projects</div></div>
-    <div class="stat-item reveal stagger-3"><div class="stat-num">25+</div><div class="stat-lbl">Events</div></div>
-    <div class="stat-item reveal stagger-4"><div class="stat-num">20+</div><div class="stat-lbl">Brands</div></div>
-  </div>
-</div>
+<!-- STATS now inside about section -->
 
 <!-- ABOUT -->
 <hr class="section-divider">
 <section class="section" id="about">
-  <div class="sec-label reveal">About</div>
-  <h2 class="sec-title reveal">Six years.<br><em>Still going.</em></h2>
-  <div class="about-grid">
+  <div class="about-top reveal">
+    <div class="about-top-left">
+      <div class="sec-label">About</div>
+      <h2 class="sec-title" style="margin-bottom:0;">Doing what<br><em>I love.</em></h2>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="stat-num">6+</div>
+        <div class="stat-lbl">Years</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">75+</div>
+        <div class="stat-lbl">Projects</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-lbl">Events</div>
+      </div>
+      <div class="about-stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-lbl">Brands</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-grid" style="margin-top:3.5rem;">
     <div class="about-text reveal-left">
       <p>I've been doing this for <strong>six years</strong>. Brands, events, campaigns, social media — across Nepal, for clients ranging from local businesses and brands to government bodies and international organisations.</p>
       <p>I work with Adobe's full suite and bring AI into the process where it makes sense — not to replace craft, but to move faster and think bigger.</p>
