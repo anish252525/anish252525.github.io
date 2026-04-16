@@ -130,12 +130,12 @@ nav ul li a:hover::after{width:100%;}
 
 /* ── WORK GRID ── */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.work-item{position:relative;background:var(--bk2);overflow:hidden;cursor:pointer;border:1px solid var(--br);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;}
+.work-item{background:var(--bk2);cursor:pointer;border:1px solid var(--br);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;overflow:hidden;}
 .work-item:hover{border-color:var(--g);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(167,233,47,0.08);}
 .work-item-img{aspect-ratio:4/3;overflow:hidden;position:relative;}
 .work-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
 .work-item:hover .work-item-img img{transform:scale(1.04);}
-.work-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.88);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity 0.3s ease;}
+.work-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.85);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity 0.3s ease;}
 .work-item:hover .work-overlay{opacity:1;}
 .work-overlay h3{font-family:'AwesomeSerif',serif;font-weight:600;font-style:italic;font-size:1rem;color:var(--wh);margin-bottom:0.3rem;line-height:1.3;transform:translateY(10px);opacity:0;transition:all 0.35s 0.05s cubic-bezier(0.22,1,0.36,1);}
 .work-overlay p{font-size:0.65rem;color:var(--g);font-weight:600;letter-spacing:2px;text-transform:uppercase;transform:translateY(6px);opacity:0;transition:all 0.3s cubic-bezier(0.22,1,0.36,1);}
@@ -429,6 +429,162 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     <div class="work-item" data-cat="other"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Social+School" alt=""><div class="work-overlay"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div></div><div class="work-item-label"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div></div>
   </div>
   <div id="noResults" style="display:none;text-align:center;color:var(--mu);padding:3rem 0;font-size:0.85rem;">No projects in this category.</div>
+  <div class="see-more" id="seeMoreWrap" style="display:none;"><button id="seeMoreBtn">See More</button></div>
+</section>
+
+<!-- BRANDS -->
+<hr class="section-divider">
+<section class="section" id="brands">
+  <div class="sec-label reveal">Logo &amp; Identity</div>
+  <h2 class="sec-title reveal">Brand <em>Identities</em></h2>
+  <div class="brand-grid">
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Lumino Technology — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')" style="cursor:pointer;"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lumino+Tech" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Sajilo Care — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Sajilo+Care" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity — click to view</p></div></div>
+    <div class="brand-card reveal stagger-3" onclick="openPDF('Akala Tech — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')" style="cursor:pointer;"><img src="https://placehold.co/800x600/141414/a7e92f?text=Akala+Tech" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<hr class="section-divider">
+<section class="section reveal">
+  <div class="sec-label">Expertise</div>
+  <h2 class="sec-title">Tools &amp; <em>Process</em></h2>
+  <div class="expertise-row">
+    <div class="expertise-col"><h3>Design Services</h3><ul><li>Event Branding</li><li>Brand Guidelines</li><li>Social Media Design</li><li>Video Editing</li><li>Motion Graphics</li></ul></div>
+    <div class="expertise-col"><h3>Adobe Suite</h3><ul><li>Photoshop</li><li>Illustrator</li><li>InDesign</li><li>Premiere Pro</li><li>After Effects</li></ul></div>
+    <div class="expertise-col"><h3>How I Work</h3><ul><li>Client first, always</li><li>Every element has a purpose</li><li>Fast delivery, quality intact</li><li>Revisions till you're happy</li><li>AI where it saves time</li></ul></div>
+  </div>
+  <div class="clients-label">Notable Clients</div>
+  <div class="clients-list-grid">
+    <div class="client-box"><span>Nepal Tourism Board</span></div>
+    <div class="client-box"><span>Pokhara Metropolitan City</span></div>
+    <div class="client-box"><span>UNDP</span></div>
+    <div class="client-box"><span>Nepal Rastra Bank</span></div>
+    <div class="client-box"><span>Chinese Embassy</span></div>
+    <div class="client-box"><span>Parichay Advertising</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<hr class="section-divider">
+<section class="section" id="contact">
+  <div class="sec-label reveal">Contact</div>
+  <h2 class="sec-title reveal">Let's work <em>together.</em></h2>
+  <div class="contact-row">
+    <div class="contact-box reveal stagger-1"><h4>Email</h4><a href="mailto:anishdesigns3@gmail.com">anishdesigns3@gmail.com</a></div>
+    <div class="contact-box reveal stagger-2"><h4>Phone</h4><a href="tel:+9779827150889">+977 9827150889</a></div>
+    <div class="contact-box reveal stagger-3"><h4>Location</h4><span>Pokhara, Nepal</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Anish Designs.</div>
+  <div class="footer-copy">&copy; 2026 Anish Designs &mdash; Pokhara, Nepal</div>
+  <div class="footer-links"><a href="mailto:anishdesigns3@gmail.com">Email</a><a href="https://wa.me/9779827150889" target="_blank">WhatsApp</a></div>
+</footer>
+
+<a href="https://wa.me/9779827150889?text=Hi%20Anish" class="wa-btn" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="font-size:1.5rem;"></i>
+</a>
+
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-header">
+    <div class="pdf-modal-title" id="pdfTitle"></div>
+    <button onclick="closePDF()" class="close-modal">&#x2715;</button>
+  </div>
+  <div class="pdf-content" id="pdfContent"></div>
+</div>
+
+<script>
+// CURSOR
+var cur = document.getElementById('cursor');
+var ring = document.getElementById('cursorRing');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('a,button,.work-item,.brand-card,.filter-btn').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(167,233,47,0.7)';});
+  el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(167,233,47,0.4)';});
+});
+
+// NAV SCROLL
+var nav = document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>60)nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// MARQUEE — placeholder tiles until real logos uploaded
+(function(){
+  var track = document.getElementById('marqueeTrack');
+  var clients = ['NTB','PMC','UNDP','NRB','Embassy','Parichay','PATA','Lions','Rotary','NISA','WADA','PCCI'];
+  var all = clients.concat(clients); // duplicate for seamless loop
+  all.forEach(function(name){
+    var el = document.createElement('div');
+    el.className = 'marquee-item';
+    el.textContent = name;
+    track.appendChild(el);
+  });
+})();
+
+// FILTER + SEE MORE
+var SHOW=3,cf='all',ex=false;
+var items=Array.prototype.slice.call(document.querySelectorAll('#workGrid .work-item'));
+var nr=document.getElementById('noResults');
+var smw=document.getElementById('seeMoreWrap');
+var smb=document.getElementById('seeMoreBtn');
+function render(){
+  var m=items.filter(function(i){return cf==='all'||i.getAttribute('data-cat')===cf;});
+  var s=ex?m:m.slice(0,SHOW);
+  var set=new Set(s);
+  items.forEach(function(i){i.style.display=set.has(i)?'block':'none';});
+  nr.style.display=m.length===0?'block':'none';
+  if(m.length>SHOW){smw.style.display='block';smb.textContent=ex?'See Less':'See More ('+(m.length-SHOW)+' more)';}
+  else smw.style.display='none';
+}
+document.querySelectorAll('.filter-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(function(x){x.classList.remove('active');});
+    this.classList.add('active');cf=this.getAttribute('data-filter');ex=false;render();
+  });
+});
+smb.addEventListener('click',function(){
+  ex=!ex;render();
+  if(!ex)document.getElementById('work').scrollIntoView({behavior:'smooth'});
+});
+render();
+
+// PDF
+function openPDF(t,u){
+  document.getElementById('pdfTitle').textContent=t;
+  document.getElementById('pdfContent').innerHTML='<iframe src="https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true" style="width:100%;height:85vh;border:none;"></iframe><div class="pdf-fallback"><a href="'+u+'" target="_blank">Open PDF directly</a></div>';
+  document.getElementById('pdfModal').classList.add('active');document.body.style.overflow='hidden';
+}
+function closePDF(){
+  document.getElementById('pdfModal').classList.remove('active');
+  document.getElementById('pdfContent').innerHTML='';document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePDF();});
+
+// SCROLL REVEAL
+var obs=new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(r){obs.observe(r);});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html</div>
   <div class="see-more" id="seeMoreWrap" style="display:none;"><button id="seeMoreBtn">See More</button></div>
 </section>
 
