@@ -85,22 +85,22 @@ nav ul li a:hover::after{width:100%;}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* ── STATS ── */
-.stats-strip{border-bottom:1px solid var(--br);}
+.stats-strip{border-bottom:1px solid var(--br);background:var(--bk2);}
 .stats-inner{max-width:1400px;margin:0 auto;padding:0 4rem;display:grid;grid-template-columns:repeat(4,1fr);}
-.stat-item{padding:2.5rem 0 2.5rem 2rem;border-right:1px solid var(--br);transition:background 0.25s;cursor:default;}
+.stat-item{padding:1.8rem 0 1.8rem 2rem;border-right:1px solid var(--br);transition:background 0.25s;cursor:default;}
 .stat-item:first-child{padding-left:0;}
 .stat-item:last-child{border-right:none;}
-.stat-item:hover{background:var(--bk2);}
-.stat-num{font-family:'AwesomeSerif',serif;font-weight:700;font-size:3rem;color:var(--g);line-height:1;margin-bottom:0.3rem;font-style:italic;transition:transform 0.3s;}
-.stat-item:hover .stat-num{transform:translateY(-3px);}
-.stat-lbl{font-size:0.68rem;font-weight:500;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;}
+.stat-item:hover{background:rgba(167,233,47,0.03);}
+.stat-num{font-family:'AwesomeSerif',serif;font-weight:700;font-size:2rem;color:var(--g);line-height:1;margin-bottom:0.2rem;font-style:italic;transition:transform 0.3s;}
+.stat-item:hover .stat-num{transform:translateY(-2px);}
+.stat-lbl{font-size:0.62rem;font-weight:600;color:var(--mu);letter-spacing:2px;text-transform:uppercase;}
 
 /* ── SECTION ── */
-.section{padding:7rem 4rem;max-width:1400px;margin:0 auto;}
+.section{padding:5rem 4rem;max-width:1400px;margin:0 auto;}
 .section-divider{border:none;border-top:1px solid var(--br);}
 .sec-label{font-size:0.65rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem;}
 .sec-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--g);}
-.sec-title{font-family:'AwesomeSerif',serif;font-weight:700;font-style:italic;font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1;color:var(--wh);margin-bottom:4rem;letter-spacing:-0.02em;}
+.sec-title{font-family:'AwesomeSerif',serif;font-weight:700;font-style:italic;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;color:var(--wh);margin-bottom:3rem;letter-spacing:-0.02em;}
 .sec-title em{color:var(--g);}
 
 /* ── ABOUT ── */
@@ -321,7 +321,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <hr class="section-divider">
 <section class="section" id="about">
   <div class="sec-label reveal">About</div>
-  <h2 class="sec-title reveal">I design things<br>that <em>matter.</em></h2>
+  <h2 class="sec-title reveal">Six years.<br><em>Still going.</em></h2>
   <div class="about-grid">
     <div class="about-text reveal-left">
       <p>I've been doing this for <strong>six years</strong>. Brands, events, campaigns, social media — across Nepal, for clients ranging from local businesses and brands to government bodies and international organisations.</p>
