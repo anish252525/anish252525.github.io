@@ -143,6 +143,15 @@ nav ul li a:hover::after{width:100%;}
 .see-more button:hover{border-color:var(--g);color:var(--g);}
 
 /* ── BRAND ── */
+.brand-featured{border:1px solid var(--g);background:var(--bk2);overflow:hidden;display:grid;grid-template-columns:1.2fr 0.8fr;margin-bottom:1rem;}
+.brand-featured-img{position:relative;overflow:hidden;aspect-ratio:16/7;}
+.brand-featured-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;filter:brightness(0.8);}
+.brand-featured:hover .brand-featured-img img{transform:scale(1.03);}
+.brand-featured-info{padding:2rem;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid rgba(167,233,47,0.2);}
+.brand-featured-tabs{display:flex;flex-direction:column;gap:0.5rem;margin-top:1.5rem;}
+.bft{display:flex;align-items:center;gap:0.6rem;padding:0.7rem 1rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:0.72rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;text-align:left;width:100%;}
+.bft:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
+.bft i{font-size:0.75rem;}
 .brand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .brand-card{border:1px solid var(--br);background:var(--bk2);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;}
 .brand-card:hover{border-color:var(--g);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,0.6),0 0 0 1px rgba(167,233,47,0.1);}
@@ -246,14 +255,42 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 .wa-btn:hover{transform:scale(1.1) rotate(-5deg);box-shadow:0 8px 32px rgba(167,233,47,0.3);}
 
 /* ── PDF ── */
-.pdf-modal{display:none;position:fixed;inset:0;background:var(--bk);z-index:2000;overflow-y:auto;}
-.pdf-modal.active{display:block;}
-.pdf-modal-header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:var(--bk);border-bottom:1px solid var(--br);}
-.pdf-modal-title{font-size:0.85rem;font-weight:500;color:var(--wh);letter-spacing:1px;}
-.close-modal{background:none;border:1px solid var(--br);color:var(--mu);font-size:0.9rem;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.pdf-modal{display:none;position:fixed;inset:0;background:var(--bk);z-index:2000;flex-direction:column;}
+.pdf-modal.active{display:flex;}
+.pdf-modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.9rem 1.5rem;
+  background:var(--bk2);border-bottom:1px solid var(--br);
+  flex-shrink:0;
+}
+.pdf-modal-left{display:flex;align-items:center;gap:1rem;}
+.pdf-modal-title{
+  font-family:'AwesomeSerif',serif;font-style:italic;
+  font-size:0.95rem;font-weight:600;color:var(--wh);
+}
+.pdf-modal-actions{display:flex;align-items:center;gap:0.6rem;}
+.pdf-download-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.45rem 1rem;
+  background:var(--g);color:var(--bk);
+  text-decoration:none;font-size:0.7rem;font-weight:700;
+  letter-spacing:0.5px;font-family:'Inter',sans-serif;
+  border:none;cursor:pointer;transition:background 0.2s;
+  white-space:nowrap;
+}
+.pdf-download-btn:hover{background:#b8f535;}
+.close-modal{
+  background:none;border:1px solid var(--br);
+  color:var(--mu);font-size:0.85rem;cursor:pointer;
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;font-family:'Inter',sans-serif;flex-shrink:0;
+}
 .close-modal:hover{border-color:var(--wh);color:var(--wh);}
-.pdf-content{max-width:1400px;margin:0 auto;padding:3rem;}
-.pdf-content iframe{width:100%;height:85vh;border:none;}
+.pdf-body{flex:1;overflow:hidden;position:relative;}
+.pdf-body iframe{
+  width:100%;height:100%;border:none;
+  position:absolute;inset:0;
+}
 .pdf-fallback{padding:1.5rem 0;}
 .pdf-fallback a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;background:var(--g);color:var(--bk);text-decoration:none;font-size:0.8rem;font-weight:700;}
 
@@ -310,6 +347,11 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   .filter-btn{padding:0.4rem 0.7rem;font-size:0.6rem;}
 
   /* BRANDS */
+  .brand-featured{grid-template-columns:1fr;}
+  .brand-featured-img{aspect-ratio:16/9;}
+  .brand-featured-info{padding:1.2rem;border-left:none;border-top:1px solid rgba(167,233,47,0.2);}
+  .brand-featured-tabs{flex-direction:row;flex-wrap:wrap;}
+  .bft{width:auto;flex:1;}
   .brand-grid{grid-template-columns:repeat(2,1fr);gap:0.8rem;}
 
   /* EXPERTISE */
@@ -336,7 +378,9 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 
   /* MISC */
   .scroll-hint{display:none;}
-  .pdf-modal-header{padding:1rem 1.2rem;}
+  .pdf-modal-header{padding:0.8rem 1rem;}
+  .pdf-modal-title{font-size:0.75rem;}
+  .pdf-download-btn{font-size:0.65rem;padding:0.4rem 0.7rem;}
   .pdf-content{padding:1rem;}
   .pdf-content iframe{height:70vh;}
   .featured-card{grid-template-columns:1fr;}
@@ -444,14 +488,37 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <section class="section" id="brands">
   <div class="sec-label reveal">Logo &amp; Identity</div>
   <h2 class="sec-title reveal">Brand <em>Identities</em></h2>
+
+  <!-- #1 Pokhara Visit Year 2025 - full width, 3 PDFs -->
+  <div class="brand-featured reveal" style="margin-bottom:1rem;">
+    <div class="brand-featured-img">
+      <img src="https://placehold.co/1200x400/0d0d0d/a7e92f?text=Pokhara+Visit+Year+2025" alt="Pokhara Visit Year 2025">
+      <span class="pdf-tag" style="position:absolute;top:1rem;left:1rem;">Campaign</span>
+    </div>
+    <div class="brand-featured-info">
+      <div>
+        <div class="feat-label">City &amp; Tourism — No. 1 Project</div>
+        <h3 style="font-family:'AwesomeSerif',serif;font-weight:700;font-style:italic;font-size:clamp(1.4rem,3vw,2rem);color:var(--wh);margin-bottom:0.5rem;letter-spacing:-0.02em;">Pokhara Visit Year 2025</h3>
+        <p style="font-size:0.82rem;color:var(--mu);font-weight:300;line-height:1.6;">Complete visual identity system for Nepal's biggest tourism campaign.</p>
+      </div>
+      <div class="brand-featured-tabs">
+        <button class="bft active" onclick="openPDF('Pokhara Visit Year 2025 — Logo Meaning','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf')"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</button>
+        <button class="bft" onclick="openPDF('Pokhara Visit Year 2025 — Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf')"><i class="fa-regular fa-file-pdf"></i> Inauguration</button>
+        <button class="bft" onclick="openPDF('Pokhara Visit Year 2025 — Use Cases','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf')"><i class="fa-regular fa-file-pdf"></i> Use Cases</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid of remaining brand cards -->
   <div class="brand-grid">
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Lumino Technology — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lumino+Tech" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('Sajilo Care — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Sajilo+Care" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-3" onclick="openPDF('Akala Tech — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Akala+Tech" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
-    <div class="brand-card reveal stagger-4" onclick="openPDF('Gandaki Aadarsha Academy — Logo Presentation','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Gandaki+Aadarsha+Academy" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Sarangkot Dham — Branding','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Sarangkot+Dham" alt="Sarangkot Dham"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('RU Fest — Event Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=RU+Fest" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-3" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd..pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Shhan+Skin+Drugs" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Pokhara Tourism Capital','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Lumino Technology — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Lumino+Tech" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-3" onclick="openPDF('Sajilo Care — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Sajilo+Care" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('Akala Tech — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Akala+Tech" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Gandaki Aadarsha Academy','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Gandaki+Aadarsha+Academy" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Sarangkot Dham','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Sarangkot+Dham" alt="Sarangkot Dham"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
+    <div class="brand-card reveal stagger-3" onclick="openPDF('RU Fest — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=RU+Fest" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Shhan+Skin+Drugs" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
   </div>
 </section>
 
@@ -480,14 +547,14 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   </div>
 
   <div class="work-grid" id="workGrid">
-<div class="work-item" onclick="openPDF('Pokhara: Tourism Capital of Nepal','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Tourism_Capital.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara: Tourism Capital</h3><p>Full Branding</p></div></div>
+<div class="work-item" onclick="openPDF('Pokhara: Tourism Capital of Nepal','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara: Tourism Capital</h3><p>Full Branding</p></div></div>
     <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
     <div class="work-item" onclick="openPDF('Annapurna Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
     <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
     <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Job+Fair" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
     <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Report.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=RU+Fest" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
     <div class="work-item" onclick="openPDF('Dragon Boat Race','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
-    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/4th_Lions_J_Convention_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
     <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
     <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/kiwanis_presentationfinal.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
     <div class="work-item" onclick="openPDF('World Egg Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
@@ -606,10 +673,17 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 
 <div class="pdf-modal" id="pdfModal">
   <div class="pdf-modal-header">
-    <div class="pdf-modal-title" id="pdfTitle"></div>
-    <button onclick="closePDF()" class="close-modal">&#x2715;</button>
+    <div class="pdf-modal-left">
+      <div class="pdf-modal-title" id="pdfTitle"></div>
+    </div>
+    <div class="pdf-modal-actions">
+      <a id="pdfDownloadBtn" href="#" target="_blank" class="pdf-download-btn">
+        <i class="fa-solid fa-download"></i> Download
+      </a>
+      <button onclick="closePDF()" class="close-modal">&#x2715;</button>
+    </div>
   </div>
-  <div class="pdf-content" id="pdfContent"></div>
+  <div class="pdf-body" id="pdfContent"></div>
 </div>
 
 <script>
@@ -673,13 +747,12 @@ document.addEventListener('keydown',function(e){
 // PDF
 function openPDF(t,u){
   document.getElementById('pdfTitle').textContent=t;
+  document.getElementById('pdfDownloadBtn').href=u;
   var viewer='https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true';
   document.getElementById('pdfContent').innerHTML=
-    '<div style="text-align:center;padding:1rem 0 0.5rem;">'+
-    '<a href="'+u+'" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;background:var(--g);color:var(--bk);text-decoration:none;font-size:0.8rem;font-weight:700;font-family:Inter,sans-serif;">'+
-    '<i class=\"fa-solid fa-download\"></i> Open / Download PDF</a></div>'+
-    '<iframe src="'+viewer+'" style="width:100%;height:80vh;border:none;" loading="lazy"></iframe>';
-  document.getElementById('pdfModal').classList.add('active');document.body.style.overflow='hidden';
+    '<iframe src="'+viewer+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;" loading="lazy"></iframe>';
+  document.getElementById('pdfModal').classList.add('active');
+  document.body.style.overflow='hidden';
 }
 function closePDF(){
   document.getElementById('pdfModal').classList.remove('active');
