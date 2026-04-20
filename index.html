@@ -269,13 +269,13 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   display:flex;justify-content:space-between;align-items:center;
   padding:0.9rem 1.5rem;
   background:var(--bk2);border-bottom:1px solid var(--br);
-  flex-shrink:0;
+  flex-shrink:0;position:relative;z-index:10;
 }
 .pdf-modal-tabs{display:flex;gap:0.3rem;margin-top:0.4rem;flex-wrap:wrap;}
 .pdf-modal-tab{padding:0.25rem 0.7rem;background:none;border:1px solid var(--br);color:var(--mu);font-size:0.6rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .pdf-modal-tab.active{background:var(--g);color:var(--bk);border-color:var(--g);}
 .pdf-modal-tab:hover:not(.active){border-color:var(--wh);color:var(--wh);}
-.pdf-modal-left{display:flex;align-items:center;gap:1rem;}
+.pdf-modal-left{display:flex;flex-direction:column;align-items:flex-start;gap:0.2rem;}
 .pdf-modal-title{
   font-family:'AwesomeSerif',serif;font-style:italic;
   font-size:0.95rem;font-weight:600;color:var(--wh);
@@ -668,6 +668,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
       <a id="pdfDownloadBtn" href="#" target="_blank" class="pdf-download-btn">
         <i class="fa-solid fa-download"></i> Download
       </a>
+      <button onclick="closePDF()" class="close-modal" title="Back to site"><i class="fa-solid fa-house" style="font-size:0.75rem;"></i></button>
       <button onclick="closePDF()" class="close-modal">&#x2715;</button>
     </div>
   </div>
