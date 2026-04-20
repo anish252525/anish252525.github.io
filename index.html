@@ -143,7 +143,8 @@ nav ul li a:hover::after{width:100%;}
 .see-more button:hover{border-color:var(--g);color:var(--g);}
 
 /* ── BRAND ── */
-.brand-featured{border:1px solid var(--g);background:var(--bk2);overflow:hidden;display:grid;grid-template-columns:1.2fr 0.8fr;margin-bottom:1rem;}
+.brand-featured{border:1px solid var(--br);background:var(--bk2);overflow:hidden;display:grid;grid-template-columns:1.2fr 0.8fr;margin-bottom:1rem;transition:border-color 0.3s;}
+.brand-featured:hover{border-color:var(--g);}
 .brand-featured-img{position:relative;overflow:hidden;aspect-ratio:16/7;}
 .brand-featured-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;filter:brightness(0.8);}
 .brand-featured:hover .brand-featured-img img{transform:scale(1.03);}
@@ -152,6 +153,12 @@ nav ul li a:hover::after{width:100%;}
 .bft{display:flex;align-items:center;gap:0.6rem;padding:0.7rem 1rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:0.72rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;text-align:left;width:100%;}
 .bft:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
 .bft i{font-size:0.75rem;}
+.brand-card-multi{cursor:default;}
+.brand-multi-btns{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.8rem;}
+.brand-multi-btns button{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0.8rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:0.67rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;text-align:left;width:100%;}
+.brand-multi-btns button:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
+.brand-multi-btns button i{font-size:0.7rem;color:var(--g);}
+.brand-multi-btns button:hover i{color:var(--bk);}
 .brand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .brand-card{border:1px solid var(--br);background:var(--bk2);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;}
 .brand-card:hover{border-color:var(--g);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,0.6),0 0 0 1px rgba(167,233,47,0.1);}
@@ -489,29 +496,23 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="sec-label reveal">Logo &amp; Identity</div>
   <h2 class="sec-title reveal">Brand <em>Identities</em></h2>
 
-  <!-- #1 Pokhara Visit Year 2025 - full width, 3 PDFs -->
-  <div class="brand-featured reveal" style="margin-bottom:1rem;">
-    <div class="brand-featured-img">
-      <img src="https://placehold.co/1200x400/0d0d0d/a7e92f?text=Pokhara+Visit+Year+2025" alt="Pokhara Visit Year 2025">
-      <span class="pdf-tag" style="position:absolute;top:1rem;left:1rem;">Campaign</span>
-    </div>
-    <div class="brand-featured-info">
-      <div>
-        <div class="feat-label">City &amp; Tourism — No. 1 Project</div>
-        <h3 style="font-family:'AwesomeSerif',serif;font-weight:700;font-style:italic;font-size:clamp(1.4rem,3vw,2rem);color:var(--wh);margin-bottom:0.5rem;letter-spacing:-0.02em;">Pokhara Visit Year 2025</h3>
-        <p style="font-size:0.82rem;color:var(--mu);font-weight:300;line-height:1.6;">Complete visual identity system for Nepal's biggest tourism campaign.</p>
-      </div>
-      <div class="brand-featured-tabs">
-        <button class="bft active" onclick="openPDF('Pokhara Visit Year 2025 — Logo Meaning','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf')"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</button>
-        <button class="bft" onclick="openPDF('Pokhara Visit Year 2025 — Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf')"><i class="fa-regular fa-file-pdf"></i> Inauguration</button>
-        <button class="bft" onclick="openPDF('Pokhara Visit Year 2025 — Use Cases','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf')"><i class="fa-regular fa-file-pdf"></i> Use Cases</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Grid of remaining brand cards -->
+  <!-- Grid of brand cards - Visit Year first -->
   <div class="brand-grid">
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Pokhara Tourism Capital','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
+    <!-- #1 Pokhara Visit Year 2025 - normal card with 3 PDF buttons -->
+    <div class="brand-card brand-card-multi reveal stagger-1">
+      <img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Visit+Year+2025" alt="Pokhara Visit Year 2025">
+      <div class="brand-card-info">
+        <h3>Pokhara Visit Year 2025</h3>
+        <p>Campaign Identity — 3 Documents</p>
+        <div class="brand-multi-btns">
+          <button onclick="openPDF('Pokhara Visit Year 2025 — Logo Meaning','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf')"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</button>
+          <button onclick="openPDF('Pokhara Visit Year 2025 — Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf')"><i class="fa-regular fa-file-pdf"></i> Inauguration</button>
+          <button onclick="openPDF('Pokhara Visit Year 2025 — Use Cases','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf')"><i class="fa-regular fa-file-pdf"></i> Use Cases</button>
+        </div>
+      </div>
+    </div>
+  <div class="brand-grid">
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Pokhara Tourism Capital','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Tourism%20Capital.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
     <div class="brand-card reveal stagger-2" onclick="openPDF('Lumino Technology — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Lumino+Tech" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
     <div class="brand-card reveal stagger-3" onclick="openPDF('Sajilo Care — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://placehold.co/800x600/141414/a7e92f?text=Sajilo+Care" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
     <div class="brand-card reveal stagger-4" onclick="openPDF('Akala Tech — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Akala+Tech" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
@@ -547,7 +548,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   </div>
 
   <div class="work-grid" id="workGrid">
-<div class="work-item" onclick="openPDF('Pokhara: Tourism Capital of Nepal','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara: Tourism Capital</h3><p>Full Branding</p></div></div>
+<div class="work-item" onclick="openPDF('Pokhara: Tourism Capital of Nepal','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Tourism%20Capital.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara: Tourism Capital</h3><p>Full Branding</p></div></div>
     <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
     <div class="work-item" onclick="openPDF('Annapurna Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
     <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
@@ -556,7 +557,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     <div class="work-item" onclick="openPDF('Dragon Boat Race','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
     <div class="work-item" onclick="openPDF('Lions Club Conventions','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
     <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/kiwanis_presentationfinal.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/kiwanis_presentation%20final.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
     <div class="work-item" onclick="openPDF('World Egg Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
     <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Krishna+ISKCON" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
   </div>
@@ -653,15 +654,15 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
       <button class="project-tab" onclick="switchTab(2)">Use Cases</button>
     </div>
     <div class="project-tab-content active" id="ptab0">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
+      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab1">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
+      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab2">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
+      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
   </div>
@@ -748,17 +749,19 @@ document.addEventListener('keydown',function(e){
 function openPDF(t,u){
   document.getElementById('pdfTitle').textContent=t;
   document.getElementById('pdfDownloadBtn').href=u;
-  var viewer='https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true';
+  // Use PDF.js viewer - fast, no Google restrictions, works directly
+  var viewer='https://mozilla.github.io/pdf.js/web/viewer.html?file='+encodeURIComponent(u);
   document.getElementById('pdfContent').innerHTML=
-    '<iframe src="'+viewer+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;" loading="lazy"></iframe>';
+    '<iframe src="'+viewer+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;"></iframe>';
   document.getElementById('pdfModal').classList.add('active');
   document.body.style.overflow='hidden';
 }
 function closePDF(){
   document.getElementById('pdfModal').classList.remove('active');
-  document.getElementById('pdfContent').innerHTML='';document.body.style.overflow='';
+  document.getElementById('pdfContent').innerHTML='';
+  document.body.style.overflow='';
 }
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closePDF();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closePDF();closeProject();}});
 
 // SCROLL REVEAL
 var obs=new IntersectionObserver(function(en){
