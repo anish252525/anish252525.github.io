@@ -75,14 +75,16 @@ nav ul li a:hover::after{width:100%;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
 /* ── MARQUEE ── */
-.clients-bar{border-top:1px solid var(--br);border-bottom:1px solid var(--br);background:var(--bk2);overflow:hidden;padding:1.4rem 0;position:relative;}
+.clients-bar{border-top:1px solid var(--br);border-bottom:1px solid var(--br);background:var(--bk2);overflow:hidden;padding:0.6rem 0;position:relative;}
 .clients-bar::before,.clients-bar::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;}
 .clients-bar::before{left:0;background:linear-gradient(to right,var(--bk2),transparent);}
 .clients-bar::after{right:0;background:linear-gradient(to left,var(--bk2),transparent);}
-.marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 28s linear infinite;}
+.marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 34s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
-.marquee-item{display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;background:var(--br);margin:0 1rem;font-size:0.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--mu);flex-shrink:0;border:1px solid #282828;transition:all 0.3s;}
-.marquee-item:hover{border-color:var(--g);color:var(--g);transform:scale(1.08);}
+.marquee-item{display:flex;align-items:center;justify-content:center;width:150px;height:100px;border-radius:10px;background:var(--br);margin:0 0.6rem;flex-shrink:0;border:1px solid #282828;transition:all 0.25s;overflow:hidden;cursor:pointer;}
+.marquee-item:hover{border-color:var(--g);transform:scale(1.05);box-shadow:0 0 0 1px rgba(167,233,47,0.15);}
+.marquee-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(0.9);transition:filter 0.25s;}
+.marquee-item:hover img{filter:brightness(1.1);}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* ── STATS ── */
@@ -406,7 +408,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   .project-tab{padding:0.6rem 0.8rem;font-size:0.62rem;}
   .project-tab-content iframe{height:60vh;}
   .wa-btn{bottom:18px;right:18px;width:46px;height:46px;font-size:1.2rem;}
-  .marquee-item{width:52px;height:52px;font-size:0.58rem;margin:0 0.6rem;}
+  .marquee-item{width:110px;height:75px;margin:0 0.4rem;}
   .cursor,.cursor-ring{display:none;}
 }
 </style>
@@ -444,7 +446,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     </div>
   </div>
   <div class="hero-image">
-    <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/anish1.png" alt="Anish">
+    <img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/anish1.png" alt="Anish">
   </div>
 </section>
 
@@ -506,24 +508,24 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="brand-grid">
     <!-- #1 Pokhara Visit Year 2025 - 3 PDF buttons -->
     <div class="brand-card brand-card-multi reveal stagger-1">
-      <img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025.jpg" alt="Pokhara Visit Year 2025" onclick="openPDFMulti([{label:'Logo Meaning',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)" style="cursor:pointer;">
+      <img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025.jpg" alt="Pokhara Visit Year 2025" onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)" style="cursor:pointer;">
       <div class="brand-card-info">
         <h3>Pokhara Visit Year 2025</h3>
         <p>Campaign Identity — 3 Documents</p>
         <div class="brand-multi-btns">
-          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</button>
-          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],1)"><i class="fa-regular fa-file-pdf"></i> Inauguration</button>
-          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],2)"><i class="fa-regular fa-file-pdf"></i> Use Cases</button>
+          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</button>
+          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],1)"><i class="fa-regular fa-file-pdf"></i> Inauguration</button>
+          <button onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],2)"><i class="fa-regular fa-file-pdf"></i> Use Cases</button>
         </div>
       </div>
     </div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('Pokhara Tourism Capital','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Tourism%20Capital.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.jpg" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
-    <div class="brand-card reveal stagger-3" onclick="openPDF('Lumino Technology — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino%20Technolog%20y.jpg" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-4" onclick="openPDF('Sajilo Care — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo%20Care.jpg" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Akala Tech — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala_Tech_Brand_Guide.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala%20Tech%20Solutions.jpg" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('Gandaki Aadarsha Academy','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Gandaki%20Aadarsha%20Academy.jpg" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
-    <div class="brand-card reveal stagger-4" onclick="openPDF('RU Fest — Brand Guidelines','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU%20Fest%2C%20Brand%20Identity%20.jpg" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf')"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin.jpg" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Pokhara Tourism Capital','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Tourism%20Capital.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Tourism%20Capital.jpg" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
+    <div class="brand-card reveal stagger-3" onclick="openPDF('Lumino Technology — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lumino%20Technolog%20y.jpg" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('Sajilo Care — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sajilo%20Care.jpg" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Akala Tech — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Akala_Tech_Brand_Guide.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Akala%20Tech%20Solutions.jpg" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Gandaki Aadarsha Academy','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Gandaki%20Aadarsha%20Academy.jpg" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('RU Fest — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU%20Fest%2C%20Brand%20Identity%20.jpg" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Shhan%20Skin.jpg" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
   </div>
 </section>
 
@@ -534,18 +536,18 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <h2 class="sec-title reveal">Selected <em>Works</em></h2>
 
   <div class="work-grid" id="workGrid">
-    <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Street%20Festival.jpg" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Annapurna Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna%20Day.jpg" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20International%20Airport.jpg" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
-    <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Job%20Fair%2C%20Pokhara%20Metropolitancity.jpg" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
-    <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Report.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU%20Fest%20UNDP%20Program.jpg" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
-    <div class="work-item" onclick="openPDF('Dragon Boat Race','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National%20Dragon%20Boat%20Race.jpg" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
-    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lions%20Convention.jpg" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
-    <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Rotary%20Convention.jpg" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/kiwanis_presentation%20final.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Kiwanis%20International.jpg" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('World Egg Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/World%20Egg%20Day.jpg" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Sarangkot Dham','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.jpg" alt=""><div class="work-overlay"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna%20Janmastami.jpg" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Street%20Festival.jpg" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Annapurna Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Annapurna%20Day.jpg" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20International%20Airport.jpg" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
+    <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Job%20Fair%2C%20Pokhara%20Metropolitancity.jpg" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
+    <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Report.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU%20Fest%20UNDP%20Program.jpg" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Dragon Boat Race','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/National%20Dragon%20Boat%20Race.jpg" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lions%20Convention.jpg" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
+    <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Rotary%20Convention.jpg" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/kiwanis_presentation%20final.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Kiwanis%20International.jpg" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('World Egg Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/World%20Egg%20Day.jpg" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Sarangkot Dham','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.jpg" alt=""><div class="work-overlay"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna%20Janmastami.jpg" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
   </div>
 
   <div class="coming-soon-block">
@@ -640,16 +642,16 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
       <button class="project-tab" onclick="switchTab(2)">Use Cases</button>
     </div>
     <div class="project-tab-content active" id="ptab0">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab1">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab2">
-      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
   </div>
 </div>
@@ -695,35 +697,49 @@ window.addEventListener('scroll',function(){
   else nav.classList.remove('scrolled');
 });
 
-// MARQUEE — placeholder tiles until real logos uploaded
+// MARQUEE
 (function(){
   var track = document.getElementById('marqueeTrack');
+  var base = 'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/';
+  var pdfs = 'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/';
   var logos = [
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala%20Tech%20Solutions.jpg', alt:'Akala Tech'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Gandaki%20Aadarsha%20Academy.jpg', alt:'Gandaki Aadarsha Academy'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Kiwanis%20International.jpg', alt:'Kiwanis International'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino%20Technolog%20y.jpg', alt:'Lumino Technology'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lions%20Convention.jpg', alt:'Lions Club'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National%20Dragon%20Boat%20Race.jpg', alt:'Dragon Boat Race'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.jpg', alt:'Pokhara Tourism Capital'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025.jpg', alt:'Visit Year 2025'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU%20Fest%2C%20Brand%20Identity%20.jpg', alt:'RU Fest'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Rotary%20Convention.jpg', alt:'Rotary'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo%20Care.jpg', alt:'Sajilo Care'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.jpg', alt:'Sarangkot Dham'},
-    {src:'https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin.jpg', alt:'Shhan Skin'},
+    {src:base+'Akala%20Tech%20Solutions.jpg',        alt:'Akala Tech',           pdf:pdfs+'Akala_Tech_Brand_Guide.pdf',                              title:'Akala Tech — Brand Guidelines'},
+    {src:base+'Annapurna%20Day.jpg',                 alt:'Annapurna Day',        pdf:pdfs+'Annapurna_Day_Final.pdf',                                 title:'Annapurna Day'},
+    {src:base+'Gandaki%20Aadarsha%20Academy.jpg',    alt:'Gandaki Aadarsha',     pdf:pdfs+'Logo_Presentation_Gandaki_Aadarsha_Academy.pdf',          title:'Gandaki Aadarsha Academy'},
+    {src:base+'Kiwanis%20International.jpg',         alt:'Kiwanis',              pdf:pdfs+'kiwanis_presentation%20final.pdf',                        title:'4th Kiwanis Nepal Convention'},
+    {src:base+'Krishna%20Janmastami.jpg',            alt:'Krishna Janmashtami',  pdf:pdfs+'Krishna_Janmastami_Designs.pdf',                          title:'Krishna Janmashtami (ISKCON)'},
+    {src:base+'Lions%20Convention.jpg',              alt:'Lions Club',           pdf:pdfs+'4th%20Lions%20J%20Convention%20Designs.pdf',             title:'Lions Club Conventions'},
+    {src:base+'Lumino%20Technolog%20y.jpg',          alt:'Lumino Technology',    pdf:pdfs+'Lumino_Tech_Brand_Guide.pdf',                             title:'Lumino Technology — Brand Guidelines'},
+    {src:base+'National%20Dragon%20Boat%20Race.jpg', alt:'Dragon Boat Race',     pdf:pdfs+'National_Dragon_Race_V1.pdf',                             title:'Dragon Boat Race'},
+    {src:base+'Pokhara%20Street%20Festival.jpg',     alt:'Street Festival',      pdf:pdfs+'Pokhara_Street_Festival_2023.pdf',                        title:'Pokhara Street Festival'},
+    {src:base+'Pokhara%20Tourism%20Capital.jpg',     alt:'Tourism Capital',      pdf:pdfs+'Pokhara_Tourism%20Capital.pdf',                           title:'Pokhara Tourism Capital'},
+    {src:base+'Pokhara%20Visit%20Year%202025.jpg',   alt:'Visit Year 2025',      pdf:null, title:'Pokhara Visit Year 2025'},
+    {src:base+'RU%20Fest%2C%20Brand%20Identity%20.jpg', alt:'RU Fest',          pdf:pdfs+'RU_Fest_Secondary_Guidelines_V2.pdf',                     title:'RU Fest — Brand Guidelines'},
+    {src:base+'Rotary%20Convention.jpg',             alt:'Rotary',               pdf:pdfs+'18th_Rotary_Conference_Designs.pdf',                      title:'18th Rotary District Convention'},
+    {src:base+'Sajilo%20Care.jpg',                   alt:'Sajilo Care',          pdf:pdfs+'Sajilo_Care_Brand_Guide_V1.00.pdf',                       title:'Sajilo Care — Brand Guidelines'},
+    {src:base+'Sarangkot%20Dham.jpg',                alt:'Sarangkot Dham',       pdf:pdfs+'Sarangkot%20Dham.pdf',                                    title:'Sarangkot Dham'},
+    {src:base+'Shhan%20Skin.jpg',                    alt:'Shhan Skin',           pdf:pdfs+'Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf',                  title:'Shhan Skin Drugs Pvt. Ltd.'},
+    {src:base+'World%20Egg%20Day.jpg',               alt:'World Egg Day',        pdf:pdfs+'Egg%20day.pdf',                                           title:'World Egg Day'},
   ];
-  var all = logos.concat(logos); // duplicate for seamless loop
-  all.forEach(function(logo){
+  // Duplicate for seamless infinite loop
+  logos.concat(logos).forEach(function(logo){
     var el = document.createElement('div');
     el.className = 'marquee-item';
-    el.style.cssText='background:none;border:none;padding:0;';
+    if(logo.pdf){
+      el.onclick = function(){ openPDF(logo.title, logo.pdf); };
+    } else {
+      // Visit Year — open multi PDF
+      el.onclick = function(){
+        openPDFMulti([
+          {label:'Logo Meaning', url:pdfs+'Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},
+          {label:'Inauguration', url:pdfs+'Pokhara%20Visit%20Year%202025_Inauguration.pdf'},
+          {label:'Use Cases',    url:pdfs+'Pokhara_Visit_Year_2025_Use_Cases.pdf'}
+        ], 0);
+      };
+    }
     var img = document.createElement('img');
     img.src = logo.src;
     img.alt = logo.alt;
-    img.style.cssText='height:52px;width:auto;max-width:100px;object-fit:contain;filter:brightness(0.85);transition:filter 0.2s;';
-    img.onmouseover = function(){this.style.filter='brightness(1.1)';};
-    img.onmouseout = function(){this.style.filter='brightness(0.85)';};
     el.appendChild(img);
     track.appendChild(el);
   });
