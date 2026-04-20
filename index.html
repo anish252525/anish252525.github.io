@@ -63,6 +63,7 @@ nav ul li a:hover::after{width:100%;}
   animation:floatIn 1s 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }
 .hero-image:hover img{transform:scale(1.02);}
+@keyframes spin{to{transform:rotate(360deg);}}
 @keyframes floatIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* Green glow */
@@ -154,11 +155,11 @@ nav ul li a:hover::after{width:100%;}
 .bft:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
 .bft i{font-size:0.75rem;}
 .brand-card-multi{cursor:default;}
-.brand-multi-btns{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.8rem;}
-.brand-multi-btns button{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0.8rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:0.67rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;text-align:left;width:100%;}
+.brand-card-multi img{pointer-events:none;}
+.brand-multi-btns{display:flex;flex-direction:column;gap:0.35rem;margin-top:0.6rem;}
+.brand-multi-btns button{display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0.7rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:0.63rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;text-align:left;width:100%;}
 .brand-multi-btns button:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
-.brand-multi-btns button i{font-size:0.7rem;color:var(--g);}
-.brand-multi-btns button:hover i{color:var(--bk);}
+.brand-multi-btns button i{font-size:0.65rem;flex-shrink:0;}
 .brand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .brand-card{border:1px solid var(--br);background:var(--bk2);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;}
 .brand-card:hover{border-color:var(--g);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,0.6),0 0 0 1px rgba(167,233,47,0.1);}
@@ -226,8 +227,8 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 }
 
 /* FEATURED CARD */
-.featured-card{border:1px solid var(--g);background:var(--bk2);margin-bottom:1.5rem;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
-.featured-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(167,233,47,0.12),0 0 0 1px rgba(167,233,47,0.2);}
+.featured-card{border:1px solid var(--br);background:var(--bk2);margin-bottom:1.5rem;cursor:pointer;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+.featured-card:hover{border-color:var(--g);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
 .featured-card-img{overflow:hidden;position:relative;}
 .featured-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;filter:brightness(0.75);}
 .featured-card:hover .featured-card-img img{transform:scale(1.04);filter:brightness(0.9);}
@@ -654,15 +655,15 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
       <button class="project-tab" onclick="switchTab(2)">Use Cases</button>
     </div>
     <div class="project-tab-content active" id="ptab0">
-      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf"></iframe>
+      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab1">
-      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf"></iframe>
+      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
     <div class="project-tab-content" id="ptab2">
-      <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf"></iframe>
+      <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
       <div class="project-fallback"><a href="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
     </div>
   </div>
@@ -749,10 +750,12 @@ document.addEventListener('keydown',function(e){
 function openPDF(t,u){
   document.getElementById('pdfTitle').textContent=t;
   document.getElementById('pdfDownloadBtn').href=u;
-  // Use PDF.js viewer - fast, no Google restrictions, works directly
-  var viewer='https://mozilla.github.io/pdf.js/web/viewer.html?file='+encodeURIComponent(u);
+  var viewer='https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true';
   document.getElementById('pdfContent').innerHTML=
-    '<iframe src="'+viewer+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;"></iframe>';
+    '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bk2);flex-direction:column;gap:1rem;" id="pdfLoading">'+
+    '<div style="width:40px;height:40px;border:3px solid var(--br);border-top-color:var(--g);border-radius:50%;animation:spin 0.8s linear infinite;"></div>'+
+    '<span style="font-size:0.75rem;color:var(--mu);font-family:Inter,sans-serif;">Loading PDF...</span></div>'+
+    '<iframe src="'+viewer+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.3s;" onload="this.style.opacity=1;var l=document.getElementById('pdfLoading');if(l)l.style.display='none';"></iframe>';
   document.getElementById('pdfModal').classList.add('active');
   document.body.style.overflow='hidden';
 }
