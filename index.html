@@ -130,7 +130,7 @@ nav ul li a:hover::after{width:100%;}
 
 /* ── WORK GRID ── */
 .work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.work-item{background:var(--bk2);cursor:pointer;border:1px solid var(--br);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;overflow:hidden;}
+.work-item{position:relative;background:var(--bk2);cursor:pointer;border:1px solid var(--br);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;overflow:hidden;}
 .work-item:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.5),0 0 0 1px rgba(167,233,47,0.08);}
 .work-item-img{aspect-ratio:4/3;overflow:hidden;position:relative;}
 .work-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
@@ -190,7 +190,26 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 .footer-links a:hover{color:var(--wh);}
 
 /* ── WHATSAPP ── */
-/* FEATURED PROJECT CARD */
+/* COMING SOON */
+.coming-soon-block{margin-top:3rem;border:1px solid var(--br);background:var(--bk2);}
+.coming-soon-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:1.5rem;}
+.coming-soon-label{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:0.5rem;}
+.coming-soon-label i{color:var(--g);}
+.coming-soon-header p{font-size:0.72rem;color:var(--mu);font-weight:300;}
+.coming-soon-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--br);}
+.cs-item{background:var(--bk2);padding:0.8rem 1rem;transition:background 0.2s;}
+.cs-item:hover{background:var(--bk3,#161616);}
+.cs-item span{font-size:0.7rem;color:var(--mu);font-weight:400;display:block;line-height:1.4;}
+
+/* PDF tag on work items */
+.work-item .pdf-tag{position:absolute;top:0.6rem;right:0.6rem;z-index:3;}
+
+@media(max-width:768px){
+  .coming-soon-grid{grid-template-columns:repeat(2,1fr);}
+  .coming-soon-header{flex-direction:column;align-items:flex-start;gap:0.4rem;}
+}
+
+/* FEATURED CARD */
 .featured-card{border:1px solid var(--g);background:var(--bk2);margin-bottom:1.5rem;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
 .featured-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(167,233,47,0.12),0 0 0 1px rgba(167,233,47,0.2);}
 .featured-card-img{overflow:hidden;position:relative;}
@@ -425,18 +444,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <section class="section" id="work">
   <div class="sec-label reveal">Portfolio</div>
   <h2 class="sec-title reveal">Selected <em>Work</em></h2>
-  <div class="filter-bar reveal">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="city-tourism">City &amp; Tourism</button>
-    <button class="filter-btn" data-filter="intl-govt">Intl &amp; Govt</button>
-    <button class="filter-btn" data-filter="sports">Sports</button>
-    <button class="filter-btn" data-filter="clubs-orgs">Clubs &amp; Orgs</button>
-    <button class="filter-btn" data-filter="corporate-expo">Corporate &amp; Expo</button>
-    <button class="filter-btn" data-filter="cultural">Cultural</button>
-    <button class="filter-btn" data-filter="religious">Religious</button>
-    <button class="filter-btn" data-filter="other">Other</button>
-  </div>
-  <!-- FEATURED PROJECT -->
+
   <div class="featured-card reveal" onclick="openProject()">
     <div class="featured-card-img">
       <span class="featured-badge"><i class="fa-solid fa-star"></i> Featured Project</span>
@@ -445,71 +453,69 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     <div class="featured-card-info">
       <div class="feat-label">City &amp; Tourism — Campaign Design</div>
       <h3>Pokhara Visit Year 2025</h3>
-      <p>A complete visual identity system for Nepal's biggest tourism campaign — covering inauguration branding, logo meaning &amp; usage, and real-world use cases.</p>
+      <p>A complete visual identity system for Nepal's biggest tourism campaign — covering logo meaning &amp; usage, inauguration branding, and real-world use cases.</p>
       <div class="featured-tabs-hint">
-        <span class="feat-tab-pill"><i class="fa-regular fa-file-pdf"></i> Inauguration</span>
         <span class="feat-tab-pill"><i class="fa-regular fa-file-pdf"></i> Logo Meaning</span>
+        <span class="feat-tab-pill"><i class="fa-regular fa-file-pdf"></i> Inauguration</span>
         <span class="feat-tab-pill"><i class="fa-regular fa-file-pdf"></i> Use Cases</span>
       </div>
       <button class="featured-card-btn"><i class="fa-solid fa-eye"></i> View Full Project</button>
     </div>
   </div>
 
-  <div class="work-grid reveal" id="workGrid">
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><div class="work-item-label"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=City+Day" alt=""><div class="work-overlay"><h3>Pokhara Metropolitan City Day</h3><p>Event Branding</p></div></div><div class="work-item-label"><h3>Pokhara Metropolitan City Day</h3><p>Event Branding</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival &amp; Mahotsav</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Musical+Eve" alt=""><div class="work-overlay"><h3>Street Festival Musical Eve</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Street Festival Musical Eve</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Pokhara+Fair" alt=""><div class="work-overlay"><h3>Pokhara Fair / Mahotsav</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Pokhara Fair / Mahotsav</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lekhnath+Fair" alt=""><div class="work-overlay"><h3>Lekhnath Fair / Mahotsav</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Lekhnath Fair / Mahotsav</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Fewa+New+Year" alt=""><div class="work-overlay"><h3>Fewa New Year Fair</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Fewa New Year Fair</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Asare+Ropai" alt=""><div class="work-overlay"><h3>Asare Ropai Mahotsav</h3><p>Cultural Event</p></div></div><div class="work-item-label"><h3>Asare Ropai Mahotsav</h3><p>Cultural Event</p></div></div>
-    <div class="work-item" data-cat="city-tourism"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=PATA+Summit" alt=""><div class="work-overlay"><h3>PATA Annual Summit</h3><p>Event Branding</p></div></div><div class="work-item-label"><h3>PATA Annual Summit</h3><p>Event Branding</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=NRB" alt=""><div class="work-overlay"><h3>Nepal Rastra Bank Events</h3><p>Corporate Branding</p></div></div><div class="work-item-label"><h3>Nepal Rastra Bank Events</h3><p>Corporate Branding</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Land+AGM" alt=""><div class="work-overlay"><h3>Nepal Land &amp; Housing Dept AGM</h3><p>Corporate Event</p></div></div><div class="work-item-label"><h3>Land &amp; Housing Dept AGM</h3><p>Corporate Event</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Job+Fair" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Hydropower" alt=""><div class="work-overlay"><h3>Car Insurance &amp; Hydropower Risks</h3><p>Conference Design</p></div></div><div class="work-item-label"><h3>Car Insurance &amp; Hydropower</h3><p>Conference Design</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=RU+Fest" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Nagar+Sabha" alt=""><div class="work-overlay"><h3>5th Nagar Sabha</h3><p>Government Event</p></div></div><div class="work-item-label"><h3>5th Nagar Sabha</h3><p>Government Event</p></div></div>
-    <div class="work-item" data-cat="intl-govt"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Rabindra" alt=""><div class="work-overlay"><h3>Rabindra Adhikari Smriti Pratisthan</h3><p>Memorial Event</p></div></div><div class="work-item-label"><h3>Rabindra Adhikari Smriti</h3><p>Memorial Event</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Gold+Cup" alt=""><div class="work-overlay"><h3>Aaha Rara Pokhara Gold Cup</h3><p>Sports Branding</p></div></div><div class="work-item-label"><h3>Aaha Rara Pokhara Gold Cup</h3><p>Sports Branding</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Prachanda+Cup" alt=""><div class="work-overlay"><h3>Prachanda Cup Volleyball</h3><p>Sports Event</p></div></div><div class="work-item-label"><h3>Prachanda Cup Volleyball</h3><p>Sports Event</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Tiger+Cup" alt=""><div class="work-overlay"><h3>Tiger Cup Volleyball</h3><p>Sports Branding</p></div></div><div class="work-item-label"><h3>Tiger Cup Volleyball</h3><p>Sports Branding</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=NVA+Cup" alt=""><div class="work-overlay"><h3>NVA Cup Volleyball</h3><p>Sports Event</p></div></div><div class="work-item-label"><h3>NVA Cup Volleyball</h3><p>Sports Event</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Sports+Awards" alt=""><div class="work-overlay"><h3>Pokhara Sports Awards</h3><p>Awards Branding</p></div></div><div class="work-item-label"><h3>Pokhara Sports Awards</h3><p>Awards Branding</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Mountain+Race" alt=""><div class="work-overlay"><h3>Intl Mountain Cross Country Race</h3><p>Sports Event</p></div></div><div class="work-item-label"><h3>Mountain Cross Country Race</h3><p>Sports Event</p></div></div>
-    <div class="work-item" data-cat="sports"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=NYFN" alt=""><div class="work-overlay"><h3>NYFN 10th Convention</h3><p>Convention Design</p></div></div><div class="work-item-label"><h3>NYFN 10th Convention</h3><p>Convention Design</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Sachchai" alt=""><div class="work-overlay"><h3>Sachchai Intl Dynamic Award</h3><p>Awards Event</p></div></div><div class="work-item-label"><h3>Sachchai Intl Dynamic Award</h3><p>Awards Event</p></div></div>
-    <div class="work-item" data-cat="clubs-orgs"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Sodveloncon" alt=""><div class="work-overlay"><h3>Sodveloncon</h3><p>Organization Event</p></div></div><div class="work-item-label"><h3>Sodveloncon</h3><p>Organization Event</p></div></div>
-    <div class="work-item" data-cat="corporate-expo"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=NISA+Hydro" alt=""><div class="work-overlay"><h3>NISA Hydropower Conference</h3><p>Corporate Event</p></div></div><div class="work-item-label"><h3>NISA Hydropower Conference</h3><p>Corporate Event</p></div></div>
-    <div class="work-item" data-cat="corporate-expo"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=WADA+Auto" alt=""><div class="work-overlay"><h3>WADA Auto Show</h3><p>Expo Branding</p></div></div><div class="work-item-label"><h3>WADA Auto Show</h3><p>Expo Branding</p></div></div>
-    <div class="work-item" data-cat="corporate-expo"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=PCCI+Trade" alt=""><div class="work-overlay"><h3>PCCI Trade Fair</h3><p>Expo Design</p></div></div><div class="work-item-label"><h3>PCCI Trade Fair</h3><p>Expo Design</p></div></div>
-    <div class="work-item" data-cat="corporate-expo"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=ECAN+Fair" alt=""><div class="work-overlay"><h3>ECAN Fair</h3><p>Expo Design</p></div></div><div class="work-item-label"><h3>ECAN Fair</h3><p>Expo Design</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Miss+Pokhara" alt=""><div class="work-overlay"><h3>Miss Pokhara</h3><p>Beauty Pageant</p></div></div><div class="work-item-label"><h3>Miss Pokhara</h3><p>Beauty Pageant</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Miss+Tamang" alt=""><div class="work-overlay"><h3>Miss Tamang</h3><p>Beauty Pageant</p></div></div><div class="work-item-label"><h3>Miss Tamang</h3><p>Beauty Pageant</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Miss+SEE" alt=""><div class="work-overlay"><h3>Miss SEE</h3><p>Beauty Pageant</p></div></div><div class="work-item-label"><h3>Miss SEE</h3><p>Beauty Pageant</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tara+Devi" alt=""><div class="work-overlay"><h3>Tara Devi – Aruna Lama Smriti Sajh</h3><p>Cultural Event</p></div></div><div class="work-item-label"><h3>Tara Devi – Aruna Lama Smriti Sajh</h3><p>Cultural Event</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Aruna+Lama" alt=""><div class="work-overlay"><h3>Aruna Lama – Tara Devi Event</h3><p>Cultural Program</p></div></div><div class="work-item-label"><h3>Aruna Lama – Tara Devi Event</h3><p>Cultural Program</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Purushottam" alt=""><div class="work-overlay"><h3>Purushottam Neupane Sangitik Sajh</h3><p>Cultural Event</p></div></div><div class="work-item-label"><h3>Purushottam Neupane Sangitik Sajh</h3><p>Cultural Event</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Bajhapatan" alt=""><div class="work-overlay"><h3>Bajhapatan Musical Fest</h3><p>Music Event</p></div></div><div class="work-item-label"><h3>Bajhapatan Musical Fest</h3><p>Music Event</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Dohori+Geet" alt=""><div class="work-overlay"><h3>Rastriya Khulla Dohori Geet Pratiyogita</h3><p>Music Competition</p></div></div><div class="work-item-label"><h3>Rastriya Dohori Geet Pratiyogita</h3><p>Music Competition</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Poetry" alt=""><div class="work-overlay"><h3>Tiket Ma Muktak (Poetry Event)</h3><p>Literary Event</p></div></div><div class="work-item-label"><h3>Tiket Ma Muktak</h3><p>Literary Event</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Teej+Festival" alt=""><div class="work-overlay"><h3>Teej Festival</h3><p>Festival Design</p></div></div><div class="work-item-label"><h3>Teej Festival</h3><p>Festival Design</p></div></div>
-    <div class="work-item" data-cat="cultural"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" data-cat="religious"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Krishna+ISKCON" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
-    <div class="work-item" data-cat="other"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Krishi+Mela" alt=""><div class="work-overlay"><h3>Krishi Paryatan Mela (Mustang)</h3><p>Agriculture Event</p></div></div><div class="work-item-label"><h3>Krishi Paryatan Mela</h3><p>Agriculture Event</p></div></div>
-    <div class="work-item" data-cat="other"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=NCP+UML" alt=""><div class="work-overlay"><h3>NCP UML Party Designs</h3><p>Political Design</p></div></div><div class="work-item-label"><h3>NCP UML Party Designs</h3><p>Political Design</p></div></div>
-    <div class="work-item" data-cat="other"><div class="work-item-img"><img src="https://placehold.co/800x600/0d0d0d/a7e92f?text=Prativa+School" alt=""><div class="work-overlay"><h3>Prativa Secondary School Anniversary</h3><p>Institutional Design</p></div></div><div class="work-item-label"><h3>Prativa School Anniversary</h3><p>Institutional Design</p></div></div>
-    <div class="work-item" data-cat="other"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Social+School" alt=""><div class="work-overlay"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div></div><div class="work-item-label"><h3>Social Public School Anniversary</h3><p>Institutional Design</p></div></div>
+  <div class="work-grid" id="workGrid">
+<div class="work-item" onclick="openPDF('Pokhara: Tourism Capital of Nepal','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Tourism_Capital.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Tourism+Capital" alt=""><div class="work-overlay"><h3>Pokhara: Tourism Capital of Nepal</h3><p>Full Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara: Tourism Capital</h3><p>Full Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Street+Festival" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Annapurna Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Annapurna+Day" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Airport" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
+    <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Job+Fair" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
+    <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU_Fest_Report.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=RU+Fest" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Dragon Boat Race','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Dragon+Boat" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/4th_Lions_J_Convention_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Lions+Club" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
+    <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Rotary" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/kiwanis_presentationfinal.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Kiwanis" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('World Egg Day','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=World+Egg+Day" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img src="https://placehold.co/800x600/141414/a7e92f?text=Krishna+ISKCON" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
   </div>
-  <div id="noResults" style="display:none;text-align:center;color:var(--mu);padding:3rem 0;font-size:0.85rem;">No projects in this category.</div>
-  <div class="see-more" id="seeMoreWrap" style="display:none;"><button id="seeMoreBtn">See More</button></div>
+
+  <div class="coming-soon-block">
+    <div class="coming-soon-header">
+      <span class="coming-soon-label"><i class="fa-solid fa-clock"></i> More Work — Coming Soon</span>
+      <p>PDFs being added for these projects</p>
+    </div>
+    <div class="coming-soon-grid">
+<div class="cs-item"><span>Pokhara Metropolitan City Day</span></div>
+      <div class="cs-item"><span>Street Festival Musical Eve</span></div>
+      <div class="cs-item"><span>Pokhara Fair / Mahotsav</span></div>
+      <div class="cs-item"><span>Lekhnath Fair / Mahotsav</span></div>
+      <div class="cs-item"><span>Fewa New Year Fair</span></div>
+      <div class="cs-item"><span>Asare Ropai Mahotsav</span></div>
+      <div class="cs-item"><span>PATA Annual Summit</span></div>
+      <div class="cs-item"><span>Nepal Rastra Bank Events</span></div>
+      <div class="cs-item"><span>Nepal Land &amp; Housing Dept AGM</span></div>
+      <div class="cs-item"><span>Car Insurance &amp; Hydropower Risks</span></div>
+      <div class="cs-item"><span>5th Nagar Sabha</span></div>
+      <div class="cs-item"><span>Rabindra Adhikari Smriti</span></div>
+      <div class="cs-item"><span>Aaha Rara Pokhara Gold Cup</span></div>
+      <div class="cs-item"><span>Prachanda Cup Volleyball</span></div>
+      <div class="cs-item"><span>Tiger Cup Volleyball</span></div>
+      <div class="cs-item"><span>NVA Cup Volleyball</span></div>
+      <div class="cs-item"><span>Pokhara Sports Awards</span></div>
+      <div class="cs-item"><span>Mountain Cross Country Race</span></div>
+      <div class="cs-item"><span>NYFN 10th Convention</span></div>
+      <div class="cs-item"><span>Sachchai Intl Dynamic Award</span></div>
+      <div class="cs-item"><span>NISA Hydropower Conference</span></div>
+      <div class="cs-item"><span>WADA Auto Show</span></div>
+      <div class="cs-item"><span>PCCI Trade Fair</span></div>
+      <div class="cs-item"><span>ECAN Fair</span></div>
+      <div class="cs-item"><span>Miss Pokhara</span></div>
+      <div class="cs-item"><span>Miss Tamang</span></div>
+      <div class="cs-item"><span>Miss SEE</span></div>
+      <div class="cs-item"><span>Teej Festival</span></div>
+      <div class="cs-item"><span>Bajhapatan Musical Fest</span></div>
+      <div class="cs-item"><span>Krishi Paryatan Mela</span></div>
+    </div>
+  </div>
 </section>
 
 <!-- BRANDS -->
@@ -640,31 +646,8 @@ window.addEventListener('scroll',function(){
 })();
 
 // FILTER + SEE MORE
-var SHOW=8,cf='all',ex=false;
-var items=Array.prototype.slice.call(document.querySelectorAll('#workGrid .work-item'));
-var nr=document.getElementById('noResults');
-var smw=document.getElementById('seeMoreWrap');
-var smb=document.getElementById('seeMoreBtn');
-function render(){
-  var m=items.filter(function(i){return cf==='all'||i.getAttribute('data-cat')===cf;});
-  var s=ex?m:m.slice(0,SHOW);
-  var set=new Set(s);
-  items.forEach(function(i){i.style.display=set.has(i)?'block':'none';});
-  nr.style.display=m.length===0?'block':'none';
-  if(m.length>SHOW){smw.style.display='block';smb.textContent=ex?'See Less':'See More ('+(m.length-SHOW)+' more)';}
-  else smw.style.display='none';
-}
-document.querySelectorAll('.filter-btn').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('.filter-btn').forEach(function(x){x.classList.remove('active');});
-    this.classList.add('active');cf=this.getAttribute('data-filter');ex=false;render();
-  });
-});
-smb.addEventListener('click',function(){
-  ex=!ex;render();
-  if(!ex)document.getElementById('work').scrollIntoView({behavior:'smooth'});
-});
-render();
+// Show all work items - no filter for now
+document.querySelectorAll('#workGrid .work-item').forEach(function(i){i.style.display='block';});
 
 // PROJECT MODAL
 function openProject(){
@@ -690,7 +673,9 @@ document.addEventListener('keydown',function(e){
 // PDF
 function openPDF(t,u){
   document.getElementById('pdfTitle').textContent=t;
-  document.getElementById('pdfContent').innerHTML='<iframe src="https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true" style="width:100%;height:85vh;border:none;"></iframe><div class="pdf-fallback"><a href="'+u+'" target="_blank">Open PDF directly</a></div>';
+  document.getElementById('pdfContent').innerHTML=
+    '<div style="text-align:center;padding:1rem 0;"><a href="'+u+'" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;background:var(--g);color:var(--bk);text-decoration:none;font-size:0.8rem;font-weight:700;"><i class="fa-solid fa-download"></i> Open / Download PDF</a></div>'+
+    '<iframe src="'+u+'" style="width:100%;height:80vh;border:none;"></iframe>';
   document.getElementById('pdfModal').classList.add('active');document.body.style.overflow='hidden';
 }
 function closePDF(){
@@ -848,31 +833,8 @@ window.addEventListener('scroll',function(){
 })();
 
 // FILTER + SEE MORE
-var SHOW=8,cf='all',ex=false;
-var items=Array.prototype.slice.call(document.querySelectorAll('#workGrid .work-item'));
-var nr=document.getElementById('noResults');
-var smw=document.getElementById('seeMoreWrap');
-var smb=document.getElementById('seeMoreBtn');
-function render(){
-  var m=items.filter(function(i){return cf==='all'||i.getAttribute('data-cat')===cf;});
-  var s=ex?m:m.slice(0,SHOW);
-  var set=new Set(s);
-  items.forEach(function(i){i.style.display=set.has(i)?'block':'none';});
-  nr.style.display=m.length===0?'block':'none';
-  if(m.length>SHOW){smw.style.display='block';smb.textContent=ex?'See Less':'See More ('+(m.length-SHOW)+' more)';}
-  else smw.style.display='none';
-}
-document.querySelectorAll('.filter-btn').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('.filter-btn').forEach(function(x){x.classList.remove('active');});
-    this.classList.add('active');cf=this.getAttribute('data-filter');ex=false;render();
-  });
-});
-smb.addEventListener('click',function(){
-  ex=!ex;render();
-  if(!ex)document.getElementById('work').scrollIntoView({behavior:'smooth'});
-});
-render();
+// Show all work items - no filter for now
+document.querySelectorAll('#workGrid .work-item').forEach(function(i){i.style.display='block';});
 
 // PROJECT MODAL
 function openProject(){
@@ -898,7 +860,9 @@ document.addEventListener('keydown',function(e){
 // PDF
 function openPDF(t,u){
   document.getElementById('pdfTitle').textContent=t;
-  document.getElementById('pdfContent').innerHTML='<iframe src="https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true" style="width:100%;height:85vh;border:none;"></iframe><div class="pdf-fallback"><a href="'+u+'" target="_blank">Open PDF directly</a></div>';
+  document.getElementById('pdfContent').innerHTML=
+    '<div style="text-align:center;padding:1rem 0;"><a href="'+u+'" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;background:var(--g);color:var(--bk);text-decoration:none;font-size:0.8rem;font-weight:700;"><i class="fa-solid fa-download"></i> Open / Download PDF</a></div>'+
+    '<iframe src="'+u+'" style="width:100%;height:80vh;border:none;"></iframe>';
   document.getElementById('pdfModal').classList.add('active');document.body.style.overflow='hidden';
 }
 function closePDF(){
