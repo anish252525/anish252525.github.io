@@ -463,9 +463,11 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 #loader-bar-wrap{width:220px;height:2px;background:#1a1a1a;border-radius:2px;overflow:hidden;opacity:0;transition:opacity 0.4s ease 0.3s;}
 #loaderBar{height:100%;width:0%;background:linear-gradient(90deg,#a7e92f,#c8f55a);border-radius:2px;transition:width 0.25s ease;}
 #loaderPct{font-family:Inter,sans-serif;font-size:0.65rem;color:#555;letter-spacing:3px;opacity:0;transition:opacity 0.4s ease 0.3s;}
-/* page fades + rises in after loader */
+/* page fades + rises in after loader — but never hide modals */
 #pageContent{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
 #pageContent.visible{opacity:1;transform:translateY(0);}
+/* modals must always be on top and visible when active */
+.pdf-modal.active,.project-modal.active{opacity:1 !important;}
 </style>
 <div id="loader">
   <div id="loader-logo">Anish Designs.</div>
@@ -870,50 +872,62 @@ document.addEventListener('keydown',function(e){
 });
 
 // PDF
+var _pdfProgressInterval = null;
+
 function loadPDFInModal(title, url){
   document.getElementById('pdfTitle').textContent = title;
   document.getElementById('pdfDownloadBtn').href = url;
+
+  // Clear any previous interval
+  if(_pdfProgressInterval) clearInterval(_pdfProgressInterval);
+
   var gdocs = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
 
-  document.getElementById('pdfContent').innerHTML =
-    '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:0.9rem;">' +
+  var loadingHTML =
+    '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:0.8rem;">' +
       '<div style="width:36px;height:36px;border:2.5px solid #222;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;"></div>' +
-      '<span style="font-family:Inter,sans-serif;font-size:0.62rem;color:#444;letter-spacing:2px;text-transform:uppercase;">Loading PDF</span>' +
+      '<span style="font-family:Inter,sans-serif;font-size:0.62rem;color:#555;letter-spacing:2px;text-transform:uppercase;">Loading PDF</span>' +
       '<div style="width:160px;height:2px;background:#1e1e1e;border-radius:2px;overflow:hidden;">' +
-        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.3s ease;"></div>' +
+        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.35s ease;"></div>' +
       '</div>' +
-      '<span id="pdfPct" style="font-family:Inter,sans-serif;font-size:0.68rem;color:#a7e92f;font-weight:600;letter-spacing:1px;">0%</span>' +
-      '<a href="' + url + '" target="_blank" style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;text-decoration:none;margin-top:0.2rem;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#333\'">Open directly ↗</a>' +
+      '<span id="pdfPct" style="font-family:Inter,sans-serif;font-size:0.72rem;color:#a7e92f;font-weight:600;letter-spacing:1px;">0%</span>' +
+      '<a href="' + url + '" target="_blank" style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;text-decoration:none;margin-top:0.3rem;transition:color 0.2s;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#333\'">Taking too long? Open directly ↗</a>' +
     '</div>' +
-    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.4s;z-index:1;" onload="window._pdfLoaded()"></iframe>';
+    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.4s;z-index:1;"></iframe>';
+
+  document.getElementById('pdfContent').innerHTML = loadingHTML;
 
   // Animate progress bar
   var pct = 0;
-  var iv = setInterval(function(){
-    var b = document.getElementById('pdfBar');
-    var p = document.getElementById('pdfPct');
-    if(!b){ clearInterval(iv); return; }
-    pct += Math.random() * 7 + 2;
+  _pdfProgressInterval = setInterval(function(){
+    var bar = document.getElementById('pdfBar');
+    var lbl = document.getElementById('pdfPct');
+    if(!bar){ clearInterval(_pdfProgressInterval); return; }
+    pct += Math.random() * 6 + 2;
     if(pct > 88) pct = 88;
-    b.style.width = Math.round(pct) + '%';
-    if(p) p.textContent = Math.round(pct) + '%';
-  }, 220);
+    var rounded = Math.round(pct);
+    bar.style.width = rounded + '%';
+    if(lbl) lbl.textContent = rounded + '%';
+  }, 250);
 
-  // Called by iframe onload
-  window._pdfLoaded = function(){
-    clearInterval(iv);
-    var b = document.getElementById('pdfBar');
-    var p = document.getElementById('pdfPct');
-    var l = document.getElementById('pdfLoading');
-    var f = document.getElementById('pdfFrame');
-    if(b) b.style.width = '100%';
-    if(p) p.textContent = '100%';
-    setTimeout(function(){
-      if(l){ l.style.opacity='0'; l.style.transition='opacity 0.35s'; }
-      if(f) f.style.opacity = '1';
-      setTimeout(function(){ if(l) l.remove(); }, 380);
-    }, 250);
-  };
+  // Listen for iframe load via addEventListener
+  var frame = document.getElementById('pdfFrame');
+  if(frame){
+    frame.addEventListener('load', function onFrameLoad(){
+      frame.removeEventListener('load', onFrameLoad);
+      clearInterval(_pdfProgressInterval);
+      var bar = document.getElementById('pdfBar');
+      var lbl = document.getElementById('pdfPct');
+      var overlay = document.getElementById('pdfLoading');
+      if(bar) bar.style.width = '100%';
+      if(lbl) lbl.textContent = '100%';
+      setTimeout(function(){
+        if(overlay){ overlay.style.transition = 'opacity 0.35s'; overlay.style.opacity = '0'; }
+        frame.style.opacity = '1';
+        setTimeout(function(){ if(overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 380);
+      }, 300);
+    });
+  }
 }
 function openPDF(t,u){
   document.getElementById('pdfTabs').innerHTML='';
@@ -943,8 +957,10 @@ function switchPDFTab(i){
   document.getElementById('pdfDownloadBtn').href = docs[i].url;
 }
 function closePDF(){
+  if(_pdfProgressInterval) clearInterval(_pdfProgressInterval);
   document.getElementById('pdfModal').classList.remove('active');
   document.getElementById('pdfContent').innerHTML='';
+  document.getElementById('pdfTabs').innerHTML='';
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closePDF();closeProject();}});
