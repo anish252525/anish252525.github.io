@@ -392,6 +392,23 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 
   /* MISC */
   .scroll-hint{display:none;}
+  /* HERO mobile */
+  .hero{grid-template-columns:1fr;min-height:auto;padding:5rem 1.2rem 2rem;gap:1.5rem;text-align:left;}
+  .hero-image{order:-1;display:flex;justify-content:center;}
+  .hero-image img{max-height:280px;width:auto;}
+  .hero-name{font-size:clamp(3rem,15vw,5rem);}
+  /* ABOUT mobile */
+  .about-top{gap:1.2rem;}
+  .about-stat .stat-num{font-size:1.4rem;}
+  /* EXPERTISE mobile bullets */
+  .expertise-list{padding-left:0;}
+  .expertise-list li{padding:0.4rem 0;font-size:0.85rem;}
+  /* COMING SOON mobile */
+  .coming-soon-grid{grid-template-columns:repeat(2,1fr) !important;}
+  .cs-item{padding:0.7rem 0.5rem;font-size:0.65rem;}
+  /* SECTION padding mobile */
+  .section{padding:2.5rem 1.2rem;}
+  .sec-title{margin-bottom:1.5rem;}
   .pdf-modal-header{padding:0.8rem 1rem;}
   .pdf-modal-title{font-size:0.75rem;}
   .pdf-modal-tab{font-size:0.55rem;padding:0.2rem 0.5rem;}
@@ -411,9 +428,64 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   .marquee-item{width:110px;height:75px;margin:0 0.4rem;}
   .cursor,.cursor-ring{display:none;}
 }
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:1001;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--wh);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  nav{padding:1rem 1.2rem;}
+  nav.scrolled{padding:0.8rem 1.2rem;}
+  #navMenu{
+    display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(10,10,10,0.98);flex-direction:column;
+    align-items:center;justify-content:center;gap:2.5rem;
+    z-index:999;
+  }
+  #navMenu.open{display:flex;}
+  #navMenu li a{font-size:1.1rem;letter-spacing:2px;}
+  #navMenu li .nav-hire{padding:0.8rem 2rem;font-size:0.85rem;}
+}
 </style>
 </head>
 <body>
+
+<!-- LOADING SCREEN -->
+<div id="loader" style="position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;">
+  <div style="font-family:'AwesomeSerif',serif;font-style:italic;font-size:2.2rem;color:#a7e92f;letter-spacing:-0.02em;">Anish Designs.</div>
+  <div style="width:200px;height:2px;background:#1e1e1e;border-radius:2px;overflow:hidden;">
+    <div id="loaderBar" style="height:100%;width:0%;background:#a7e92f;transition:width 0.3s ease;border-radius:2px;"></div>
+  </div>
+  <div id="loaderPct" style="font-family:Inter,sans-serif;font-size:0.7rem;color:#444;letter-spacing:2px;">0%</div>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('loaderBar');
+  var pct = document.getElementById('loaderPct');
+  var loader = document.getElementById('loader');
+  var progress = 0;
+  var interval = setInterval(function(){
+    progress += Math.random() * 18 + 5;
+    if(progress > 90) progress = 90;
+    bar.style.width = progress + '%';
+    pct.textContent = Math.round(progress) + '%';
+  }, 120);
+  window.addEventListener('load', function(){
+    clearInterval(interval);
+    bar.style.width = '100%';
+    pct.textContent = '100%';
+    setTimeout(function(){
+      loader.style.opacity = '0';
+      loader.style.transition = 'opacity 0.4s';
+      setTimeout(function(){ loader.style.display = 'none'; }, 400);
+    }, 200);
+  });
+})();
+</script>
 
 <!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
@@ -422,12 +494,15 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <!-- NAV -->
 <nav id="nav">
   <a href="#home" class="nav-logo">Anish Designs.</a>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#brands">Brand Identity</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://wa.me/9779827150889" target="_blank" class="nav-hire">Hire Me</a></li>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#brands" onclick="closeMenu()">Brand Identity</a></li>
+    <li><a href="#work" onclick="closeMenu()">Work</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="https://wa.me/9779827150889" target="_blank" class="nav-hire" onclick="closeMenu()">Hire Me</a></li>
   </ul>
 </nav>
 
@@ -446,7 +521,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     </div>
   </div>
   <div class="hero-image">
-    <img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/anish1.png" alt="Anish">
+    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/anish1.png" alt="Anish">
   </div>
 </section>
 
@@ -508,7 +583,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="brand-grid">
     <!-- #1 Pokhara Visit Year 2025 - 3 PDF buttons -->
     <div class="brand-card brand-card-multi reveal stagger-1">
-      <img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025.jpg" alt="Pokhara Visit Year 2025" onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)" style="cursor:pointer;">
+      <img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Visit%20Year%202025.jpg" alt="Pokhara Visit Year 2025" onclick="openPDFMulti([{label:'Logo Meaning',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf'},{label:'Inauguration',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf'},{label:'Use Cases',url:'https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf'}],0)" style="cursor:pointer;">
       <div class="brand-card-info">
         <h3>Pokhara Visit Year 2025</h3>
         <p>Campaign Identity — 3 Documents</p>
@@ -519,13 +594,13 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
         </div>
       </div>
     </div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('Pokhara Tourism Capital','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Tourism%20Capital.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Tourism%20Capital.jpg" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
-    <div class="brand-card reveal stagger-3" onclick="openPDF('Lumino Technology — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lumino_Tech_Brand_Guide.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lumino%20Technolog%20y.jpg" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-4" onclick="openPDF('Sajilo Care — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sajilo%20Care.jpg" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Akala Tech — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Akala_Tech_Brand_Guide.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Akala%20Tech%20Solutions.jpg" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
-    <div class="brand-card reveal stagger-2" onclick="openPDF('Gandaki Aadarsha Academy','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Gandaki%20Aadarsha%20Academy.jpg" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
-    <div class="brand-card reveal stagger-4" onclick="openPDF('RU Fest — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU%20Fest%2C%20Brand%20Identity%20.jpg" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
-    <div class="brand-card reveal stagger-1" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf')"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Shhan%20Skin.jpg" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Pokhara Tourism Capital','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Tourism%20Capital.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Tourism%20Capital.jpg" alt="Pokhara Tourism Capital"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Pokhara Tourism Capital</h3><p>Full Branding Campaign</p></div></div>
+    <div class="brand-card reveal stagger-3" onclick="openPDF('Lumino Technology — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lumino_Tech_Brand_Guide.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lumino%20Technolog%20y.jpg" alt="Lumino Technology"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Lumino Technology</h3><p>Logo Design + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('Sajilo Care — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sajilo_Care_Brand_Guide_V1.00.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sajilo%20Care.jpg" alt="Sajilo Care"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Sajilo Care</h3><p>Complete Identity + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Akala Tech — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Akala_Tech_Brand_Guide.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Akala%20Tech%20Solutions.jpg" alt="Akala Tech"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Akala Tech</h3><p>Logo Design + Visual System</p></div></div>
+    <div class="brand-card reveal stagger-2" onclick="openPDF('Gandaki Aadarsha Academy','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Logo_Presentation_Gandaki_Aadarsha_Academy.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Gandaki%20Aadarsha%20Academy.jpg" alt="Gandaki Aadarsha Academy"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Gandaki Aadarsha Academy</h3><p>Logo Design + Presentation</p></div></div>
+    <div class="brand-card reveal stagger-4" onclick="openPDF('RU Fest — Brand Guidelines','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Secondary_Guidelines_V2.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU%20Fest%2C%20Brand%20Identity%20.jpg" alt="RU Fest"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>RU Fest</h3><p>Event Logo + Brand Guidelines</p></div></div>
+    <div class="brand-card reveal stagger-1" onclick="openPDF('Shhan Skin Drugs Pvt. Ltd.','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Shhan%20Skin%20Drugs%20Pvt.%20Ltd.pdf')"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Shhan%20Skin.jpg" alt="Shhan Skin Drugs"><span class="pdf-tag">PDF</span><div class="brand-card-info"><h3>Shhan Skin Drugs Pvt. Ltd.</h3><p>Brand Identity</p></div></div>
   </div>
 </section>
 
@@ -536,18 +611,18 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <h2 class="sec-title reveal">Selected <em>Works</em></h2>
 
   <div class="work-grid" id="workGrid">
-    <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Street%20Festival.jpg" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Annapurna Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Annapurna%20Day.jpg" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20International%20Airport.jpg" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
-    <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Job%20Fair%2C%20Pokhara%20Metropolitancity.jpg" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
-    <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Report.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU%20Fest%20UNDP%20Program.jpg" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
-    <div class="work-item" onclick="openPDF('Dragon Boat Race','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/National%20Dragon%20Boat%20Race.jpg" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
-    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Lions%20Convention.jpg" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
-    <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Rotary%20Convention.jpg" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/kiwanis_presentation%20final.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Kiwanis%20International.jpg" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('World Egg Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Egg%20day.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/World%20Egg%20Day.jpg" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
-    <div class="work-item" onclick="openPDF('Sarangkot Dham','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.jpg" alt=""><div class="work-overlay"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
-    <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna%20Janmastami.jpg" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Street Festival','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Street_Festival_2023.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20Street%20Festival.jpg" alt=""><div class="work-overlay"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Street Festival</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Annapurna Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Annapurna_Day_Final.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Annapurna%20Day.jpg" alt=""><div class="work-overlay"><h3>Annapurna Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Annapurna Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Pokhara Airport Inauguration','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_International_Airport.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Pokhara%20International%20Airport.jpg" alt=""><div class="work-overlay"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Pokhara Airport Inauguration</h3><p>Event Identity</p></div></div>
+    <div class="work-item" onclick="openPDF('Job Fair – Pokhara Metro City','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Job_Fair_Pokhara_Metropolitan_City_V1.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Job%20Fair%2C%20Pokhara%20Metropolitancity.jpg" alt=""><div class="work-overlay"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Job Fair – Pokhara Metro City</h3><p>Government Event</p></div></div>
+    <div class="work-item" onclick="openPDF('RU Fest (UNDP Program)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/RU_Fest_Report.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/RU%20Fest%20UNDP%20Program.jpg" alt=""><div class="work-overlay"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>RU Fest (UNDP Program)</h3><p>International Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Dragon Boat Race','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/National_Dragon_Race_V1.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/National%20Dragon%20Boat%20Race.jpg" alt=""><div class="work-overlay"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Dragon Boat Race</h3><p>Sports Event</p></div></div>
+    <div class="work-item" onclick="openPDF('Lions Club Conventions','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/4th%20Lions%20J%20Convention%20Designs.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Lions%20Convention.jpg" alt=""><div class="work-overlay"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Lions Club Conventions</h3><p>Convention Design</p></div></div>
+    <div class="work-item" onclick="openPDF('18th Rotary District Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/18th_Rotary_Conference_Designs.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Rotary%20Convention.jpg" alt=""><div class="work-overlay"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>18th Rotary District Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('4th Kiwanis Nepal Convention','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/kiwanis_presentation%20final.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Kiwanis%20International.jpg" alt=""><div class="work-overlay"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>4th Kiwanis Nepal Convention</h3><p>Convention Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('World Egg Day','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Egg%20day.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/World%20Egg%20Day.jpg" alt=""><div class="work-overlay"><h3>World Egg Day</h3><p>Event Design</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>World Egg Day</h3><p>Event Design</p></div></div>
+    <div class="work-item" onclick="openPDF('Sarangkot Dham','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.jpg" alt=""><div class="work-overlay"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
+    <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna%20Janmastami.jpg" alt=""><div class="work-overlay"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
   </div>
 
   <div class="coming-soon-block">
@@ -832,6 +907,17 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
   });
 });
+// HAMBURGER
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('navMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('navMenu').classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('navMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
 </script>
 </body>
 </html>
