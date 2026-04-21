@@ -455,39 +455,76 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <body>
 
 <!-- LOADING SCREEN -->
-<div id="loader" style="position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;">
-  <div style="font-family:'AwesomeSerif',serif;font-style:italic;font-size:2.2rem;color:#a7e92f;letter-spacing:-0.02em;">Anish Designs.</div>
-  <div style="width:200px;height:2px;background:#1e1e1e;border-radius:2px;overflow:hidden;">
-    <div id="loaderBar" style="height:100%;width:0%;background:#a7e92f;transition:width 0.3s ease;border-radius:2px;"></div>
-  </div>
-  <div id="loaderPct" style="font-family:Inter,sans-serif;font-size:0.7rem;color:#444;letter-spacing:2px;">0%</div>
+<!-- LOADER -->
+<style>
+#loader{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;}
+#loader-logo{font-family:'AwesomeSerif',serif;font-style:italic;font-size:2.4rem;color:#a7e92f;letter-spacing:-0.02em;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+#loader-bar-wrap{width:220px;height:2px;background:#1a1a1a;border-radius:2px;overflow:hidden;opacity:0;transition:opacity 0.4s ease 0.3s;}
+#loaderBar{height:100%;width:0%;background:linear-gradient(90deg,#a7e92f,#c8f55a);border-radius:2px;transition:width 0.25s ease;}
+#loaderPct{font-family:Inter,sans-serif;font-size:0.65rem;color:#444;letter-spacing:3px;opacity:0;transition:opacity 0.4s ease 0.3s;}
+/* curtain panels for reveal */
+#curtain-left,#curtain-right{position:fixed;top:0;bottom:0;width:50%;background:#0a0a0a;z-index:99998;transition:transform 0.7s cubic-bezier(0.76,0,0.24,1);}
+#curtain-left{left:0;transform:translateX(0);}
+#curtain-right{right:0;transform:translateX(0);}
+body.revealed #curtain-left{transform:translateX(-100%);}
+body.revealed #curtain-right{transform:translateX(100%);}
+/* page content starts invisible, slides up on reveal */
+#pageContent{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease 0.3s,transform 0.6s ease 0.3s;}
+body.revealed #pageContent{opacity:1;transform:translateY(0);}
+</style>
+<div id="loader">
+  <div id="loader-logo">Anish Designs.</div>
+  <div id="loader-bar-wrap"><div id="loaderBar"></div></div>
+  <div id="loaderPct">0%</div>
 </div>
+<div id="curtain-left"></div>
+<div id="curtain-right"></div>
 <script>
 (function(){
   var bar = document.getElementById('loaderBar');
-  var pct = document.getElementById('loaderPct');
+  var pctEl = document.getElementById('loaderPct');
   var loader = document.getElementById('loader');
+  var logo = document.getElementById('loader-logo');
+  var barWrap = document.getElementById('loader-bar-wrap');
   var progress = 0;
+
+  // Animate logo in
+  setTimeout(function(){ logo.style.opacity='1'; logo.style.transform='translateY(0)'; }, 80);
+  setTimeout(function(){ barWrap.style.opacity='1'; pctEl.style.opacity='1'; }, 380);
+
   var interval = setInterval(function(){
-    progress += Math.random() * 18 + 5;
+    progress += Math.random() * 15 + 4;
     if(progress > 90) progress = 90;
     bar.style.width = progress + '%';
-    pct.textContent = Math.round(progress) + '%';
-  }, 120);
-  window.addEventListener('load', function(){
+    pctEl.textContent = Math.round(progress) + '%';
+  }, 130);
+
+  function reveal(){
     clearInterval(interval);
     bar.style.width = '100%';
-    pct.textContent = '100%';
+    pctEl.textContent = '100%';
     setTimeout(function(){
-      loader.style.opacity = '0';
-      loader.style.transition = 'opacity 0.4s';
-      setTimeout(function(){ loader.style.display = 'none'; }, 400);
-    }, 200);
-  });
+      // Fade + shrink loader logo out
+      logo.style.opacity = '0';
+      logo.style.transform = 'scale(0.9)';
+      pctEl.style.opacity = '0';
+      barWrap.style.opacity = '0';
+      setTimeout(function(){
+        loader.style.display = 'none';
+        // Open curtains
+        document.body.classList.add('revealed');
+      }, 300);
+    }, 350);
+  }
+
+  window.addEventListener('load', reveal);
+  // Safety: force reveal after 4s max
+  setTimeout(reveal, 4000);
 })();
 </script>
 
 <!-- Custom cursor -->
+<div id="pageContent">
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -847,16 +884,37 @@ document.addEventListener('keydown',function(e){
 
 // PDF
 function loadPDFInModal(title, url){
-  document.getElementById('pdfTitle').textContent=title;
-  document.getElementById('pdfDownloadBtn').href=url;
-  var gdocs='https://docs.google.com/viewer?url='+encodeURIComponent(url)+'&embedded=true';
-  document.getElementById('pdfContent').innerHTML=
-    '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#111;flex-direction:column;gap:0.8rem;z-index:2;" id="pdfLoading">'+
-    '<div style="width:36px;height:36px;border:3px solid #222;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.7s linear infinite;"></div>'+
-    '<span style="font-size:0.7rem;color:#555;font-family:Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;">Loading PDF...</span>'+
-    '<a href="'+url+'" target="_blank" style="font-size:0.65rem;color:#a7e92f;font-family:Inter,sans-serif;text-decoration:none;margin-top:0.3rem;">Taking too long? Open directly ↗</a></div>'+
-    '<iframe src="'+gdocs+'" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.3s;z-index:1;" '+
-    'onload="this.style.opacity=1;var l=document.getElementById(\'pdfLoading\');if(l)l.remove();"></iframe>';
+  document.getElementById('pdfTitle').textContent = title;
+  document.getElementById('pdfDownloadBtn').href = url;
+  var gdocs = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
+
+  document.getElementById('pdfContent').innerHTML =
+    '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:1rem;">' +
+      '<div style="width:38px;height:38px;border:2.5px solid #222;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.8s linear infinite;"></div>' +
+      '<span id="pdfPctLabel" style="font-family:Inter,sans-serif;font-size:0.68rem;color:#a7e92f;letter-spacing:2px;font-weight:600;">0%</span>' +
+      '<div style="width:180px;height:2px;background:#1e1e1e;border-radius:2px;overflow:hidden;">' +
+        '<div id="pdfProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,#a7e92f,#c8f55a);border-radius:2px;transition:width 0.3s ease;"></div>' +
+      '</div>' +
+      '<span style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;letter-spacing:1px;text-transform:uppercase;">Loading PDF</span>' +
+      '<a href="' + url + '" target="_blank" style="font-size:0.6rem;color:#555;font-family:Inter,sans-serif;text-decoration:none;margin-top:0.2rem;transition:color 0.2s;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#555\'">Open directly ↗</a>' +
+    '</div>' +
+    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.4s;z-index:1;" ' +
+    'onload="(function(){var l=document.getElementById(\'pdfLoading\');var f=document.getElementById(\'pdfFrame\');if(l){var b=document.getElementById(\'pdfProgressBar\');var p=document.getElementById(\'pdfPctLabel\');if(b){b.style.width=\'100%\';}if(p){p.textContent=\'100%\';}setTimeout(function(){l.style.opacity=\'0\';l.style.transition=\'opacity 0.3s\';f.style.opacity=\'1\';setTimeout(function(){if(l)l.remove();},300);},200);}})();">' +
+    '</iframe>';
+
+  // Animate fake progress while PDF loads
+  var pct = 0;
+  var pdfInterval = setInterval(function(){
+    var bar = document.getElementById('pdfProgressBar');
+    var label = document.getElementById('pdfPctLabel');
+    if(!bar){ clearInterval(pdfInterval); return; }
+    pct += Math.random() * 8 + 2;
+    if(pct > 88) pct = 88;
+    bar.style.width = Math.round(pct) + '%';
+    if(label) label.textContent = Math.round(pct) + '%';
+  }, 200);
+  // Stop if iframe loads (handled inline above), also safety clear
+  setTimeout(function(){ clearInterval(pdfInterval); }, 30000);
 }
 function openPDF(t,u){
   document.getElementById('pdfTabs').innerHTML='';
@@ -919,5 +977,6 @@ function closeMenu(){
   document.body.style.overflow = '';
 }
 </script>
+</div><!-- end #pageContent -->
 </body>
 </html>
