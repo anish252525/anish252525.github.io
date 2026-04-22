@@ -265,7 +265,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 .wa-btn:hover{transform:scale(1.1) rotate(-5deg);box-shadow:0 8px 32px rgba(167,233,47,0.3);}
 
 /* ── PDF ── */
-.pdf-modal{display:none;position:fixed;inset:0;background:var(--bk);z-index:2000;flex-direction:column;}
+.pdf-modal{display:none;position:fixed;inset:0;background:var(--bk);z-index:99990;flex-direction:column;}
 .pdf-modal.active{display:flex;}
 .pdf-modal-header{
   display:flex;justify-content:space-between;align-items:center;
@@ -463,11 +463,9 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 #loader-bar-wrap{width:220px;height:2px;background:#1a1a1a;border-radius:2px;overflow:hidden;opacity:0;transition:opacity 0.4s ease 0.3s;}
 #loaderBar{height:100%;width:0%;background:linear-gradient(90deg,#a7e92f,#c8f55a);border-radius:2px;transition:width 0.25s ease;}
 #loaderPct{font-family:Inter,sans-serif;font-size:0.65rem;color:#555;letter-spacing:3px;opacity:0;transition:opacity 0.4s ease 0.3s;}
-/* page fades + rises in after loader — but never hide modals */
-#pageContent{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+/* page fades + rises in after loader — modals are outside this div */
+#pageContent{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;position:relative;z-index:1;}
 #pageContent.visible{opacity:1;transform:translateY(0);}
-/* modals must always be on top and visible when active */
-.pdf-modal.active,.project-modal.active{opacity:1 !important;}
 </style>
 <div id="loader">
   <div id="loader-logo">Anish Studio.</div>
@@ -730,54 +728,6 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="footer-links"><a href="mailto:anishdesigns3@gmail.com">Email</a><a href="https://wa.me/9779827150889" target="_blank">WhatsApp</a></div>
 </footer>
 
-<!-- PROJECT MODAL: Pokhara Visit Year 2025 -->
-<div class="project-modal" id="projectModal">
-  <div class="project-modal-header">
-    <div class="project-modal-title">Pokhara Visit Year 2025</div>
-    <button onclick="closeProject()" class="close-modal">&#x2715;</button>
-  </div>
-  <div class="project-modal-body">
-    <div class="project-tabs">
-      <button class="project-tab active" onclick="switchTab(0)">Inauguration</button>
-      <button class="project-tab" onclick="switchTab(1)">Logo Meaning</button>
-      <button class="project-tab" onclick="switchTab(2)">Use Cases</button>
-    </div>
-    <div class="project-tab-content active" id="ptab0">
-      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
-    </div>
-    <div class="project-tab-content" id="ptab1">
-      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
-    </div>
-    <div class="project-tab-content" id="ptab2">
-      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
-      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
-    </div>
-  </div>
-</div>
-
-<a href="https://wa.me/9779827150889?text=Hi%20Anish" class="wa-btn" target="_blank" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp" style="font-size:1.5rem;"></i>
-</a>
-
-<div class="pdf-modal" id="pdfModal">
-  <div class="pdf-modal-header">
-    <div class="pdf-modal-left">
-      <div class="pdf-modal-title" id="pdfTitle"></div>
-      <div class="pdf-modal-tabs" id="pdfTabs"></div>
-    </div>
-    <div class="pdf-modal-actions">
-      <a id="pdfDownloadBtn" href="#" target="_blank" class="pdf-download-btn">
-        <i class="fa-solid fa-download"></i> Download
-      </a>
-      <button onclick="closePDF()" class="close-modal" title="Back to site"><i class="fa-solid fa-house" style="font-size:0.75rem;"></i></button>
-      <button onclick="closePDF()" class="close-modal">&#x2715;</button>
-    </div>
-  </div>
-  <div class="pdf-body" id="pdfContent"></div>
-</div>
-
 <script>
 // CURSOR
 var cur = document.getElementById('cursor');
@@ -998,5 +948,54 @@ function closeMenu(){
 }
 </script>
 </div><!-- end #pageContent -->
+
+<!-- PROJECT MODAL: Pokhara Visit Year 2025 -->
+<div class="project-modal" id="projectModal">
+  <div class="project-modal-header">
+    <div class="project-modal-title">Pokhara Visit Year 2025</div>
+    <button onclick="closeProject()" class="close-modal">&#x2715;</button>
+  </div>
+  <div class="project-modal-body">
+    <div class="project-tabs">
+      <button class="project-tab active" onclick="switchTab(0)">Inauguration</button>
+      <button class="project-tab" onclick="switchTab(1)">Logo Meaning</button>
+      <button class="project-tab" onclick="switchTab(2)">Use Cases</button>
+    </div>
+    <div class="project-tab-content active" id="ptab0">
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Inauguration.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+    </div>
+    <div class="project-tab-content" id="ptab1">
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara%20Visit%20Year%202025_Logo_Meaning.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+    </div>
+    <div class="project-tab-content" id="ptab2">
+      <iframe src="https://docs.google.com/viewer?url=https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf&embedded=true"></iframe>
+      <div class="project-fallback"><a href="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Pokhara_Visit_Year_2025_Use_Cases.pdf" target="_blank"><i class="fa-solid fa-download"></i> Open PDF directly</a></div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/9779827150889?text=Hi%20Anish" class="wa-btn" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="font-size:1.5rem;"></i>
+</a>
+
+<div class="pdf-modal" id="pdfModal">
+  <div class="pdf-modal-header">
+    <div class="pdf-modal-left">
+      <div class="pdf-modal-title" id="pdfTitle"></div>
+      <div class="pdf-modal-tabs" id="pdfTabs"></div>
+    </div>
+    <div class="pdf-modal-actions">
+      <a id="pdfDownloadBtn" href="#" target="_blank" class="pdf-download-btn">
+        <i class="fa-solid fa-download"></i> Download
+      </a>
+      <button onclick="closePDF()" class="close-modal" title="Back to site"><i class="fa-solid fa-house" style="font-size:0.75rem;"></i></button>
+      <button onclick="closePDF()" class="close-modal">&#x2715;</button>
+    </div>
+  </div>
+  <div class="pdf-body" id="pdfContent"></div>
+</div>
+
 </body>
 </html>
