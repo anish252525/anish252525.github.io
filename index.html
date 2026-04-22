@@ -873,77 +873,65 @@ document.addEventListener('keydown',function(e){
 
 // PDF
 var _pdfProgressInterval = null;
+var _pdfFinishTimer = null;
 
 function loadPDFInModal(title, url){
+  // Clear any running timers from previous PDF
+  if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
+  if(_pdfFinishTimer){ clearTimeout(_pdfFinishTimer); _pdfFinishTimer = null; }
+
   document.getElementById('pdfTitle').textContent = title;
   document.getElementById('pdfDownloadBtn').href = url;
 
-  if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
-
   var gdocs = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
 
-  // Build HTML
+  // Render loading overlay + hidden iframe
   document.getElementById('pdfContent').innerHTML =
     '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:0.85rem;">' +
       '<div style="width:36px;height:36px;border:2.5px solid #1e1e1e;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;"></div>' +
       '<span style="font-family:Inter,sans-serif;font-size:0.62rem;color:#555;letter-spacing:2px;text-transform:uppercase;">Loading PDF</span>' +
       '<div style="width:160px;height:2px;background:#1a1a1a;border-radius:2px;overflow:hidden;">' +
-        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.4s ease;"></div>' +
+        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.5s ease;"></div>' +
       '</div>' +
       '<span id="pdfPct" style="font-family:Inter,sans-serif;font-size:0.72rem;color:#a7e92f;font-weight:700;letter-spacing:1px;">0%</span>' +
       '<a href="' + url + '" target="_blank" style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;text-decoration:none;margin-top:0.2rem;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#333\'">Open directly ↗</a>' +
     '</div>' +
-    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.45s;z-index:1;"></iframe>';
+    '<iframe src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;z-index:1;"></iframe>';
 
-  // Start progress animation
+  // Animate bar from 0 → 85% over ~6s, then jump to 100% and reveal
   var pct = 0;
+  var totalMs = 6000; // assume PDF loads in ~6s
+  var stepMs  = 200;
+  var steps   = totalMs / stepMs;
+  var increment = 85 / steps;
+
   _pdfProgressInterval = setInterval(function(){
     var bar = document.getElementById('pdfBar');
     var lbl = document.getElementById('pdfPct');
     if(!bar){ clearInterval(_pdfProgressInterval); return; }
-    pct += Math.random() * 5 + 2;
-    if(pct > 88) pct = 88;
-    bar.style.width = Math.round(pct) + '%';
+    pct = Math.min(pct + increment + (Math.random() * 1.5 - 0.5), 85);
+    bar.style.width  = Math.round(pct) + '%';
     if(lbl) lbl.textContent = Math.round(pct) + '%';
-  }, 280);
+  }, stepMs);
 
-  // iframe fires 'load' twice with Google Docs viewer — first on empty, then on content
-  // We use a flag to ignore the first fire
-  var loadCount = 0;
-  var frame = document.getElementById('pdfFrame');
-  if(frame){
-    frame.addEventListener('load', function onLoad(){
-      loadCount++;
-      // Google Docs viewer fires twice — wait for 2nd load (actual content)
-      // But on some browsers only fires once — use a timer fallback
-      if(loadCount < 2){
-        // Reset bar slightly to show activity
-        pct = Math.min(pct + 5, 88);
-        return;
-      }
-      frame.removeEventListener('load', onLoad);
-      _finish();
-    });
-    // Fallback: if only 1 load fires after 2s, treat as done
-    setTimeout(function(){
-      if(loadCount >= 1){ _finish(); }
-    }, 2500);
-  }
+  // After ~6s auto-finish (Google Docs viewer doesn't fire reliable load events)
+  _pdfFinishTimer = setTimeout(function(){
+    _pdfDone();
+  }, totalMs);
+}
 
-  function _finish(){
-    if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
-    var bar = document.getElementById('pdfBar');
-    var lbl = document.getElementById('pdfPct');
-    var overlay = document.getElementById('pdfLoading');
-    var f = document.getElementById('pdfFrame');
-    if(bar) bar.style.width = '100%';
-    if(lbl) lbl.textContent = '100%';
-    setTimeout(function(){
-      if(overlay){ overlay.style.transition = 'opacity 0.4s'; overlay.style.opacity = '0'; }
-      if(f) f.style.opacity = '1';
-      setTimeout(function(){ if(overlay && overlay.parentNode) overlay.remove(); }, 420);
-    }, 320);
-  }
+function _pdfDone(){
+  if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
+  if(_pdfFinishTimer){ clearTimeout(_pdfFinishTimer); _pdfFinishTimer = null; }
+  var bar     = document.getElementById('pdfBar');
+  var lbl     = document.getElementById('pdfPct');
+  var overlay = document.getElementById('pdfLoading');
+  if(bar){ bar.style.width = '100%'; }
+  if(lbl){ lbl.textContent = '100%'; }
+  setTimeout(function(){
+    if(overlay){ overlay.style.transition = 'opacity 0.5s'; overlay.style.opacity = '0'; }
+    setTimeout(function(){ if(overlay && overlay.parentNode) overlay.remove(); }, 520);
+  }, 400);
 }
 function openPDF(t,u){
   document.getElementById('pdfTabs').innerHTML='';
@@ -973,11 +961,12 @@ function switchPDFTab(i){
   document.getElementById('pdfDownloadBtn').href = docs[i].url;
 }
 function closePDF(){
-  if(_pdfProgressInterval) clearInterval(_pdfProgressInterval);
+  if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
+  if(_pdfFinishTimer){ clearTimeout(_pdfFinishTimer); _pdfFinishTimer = null; }
   document.getElementById('pdfModal').classList.remove('active');
-  document.getElementById('pdfContent').innerHTML='';
-  document.getElementById('pdfTabs').innerHTML='';
-  document.body.style.overflow='';
+  document.getElementById('pdfContent').innerHTML = '';
+  document.getElementById('pdfTabs').innerHTML = '';
+  document.body.style.overflow = '';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closePDF();closeProject();}});
 
