@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anish Designs — Graphic Designer</title>
+<title>Anish Studio — Graphic Designer</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -470,7 +470,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 .pdf-modal.active,.project-modal.active{opacity:1 !important;}
 </style>
 <div id="loader">
-  <div id="loader-logo">Anish Designs.</div>
+  <div id="loader-logo">Anish Studio.</div>
   <div id="loader-bar-wrap"><div id="loaderBar"></div></div>
   <div id="loaderPct">0%</div>
 </div>
@@ -519,7 +519,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#home" class="nav-logo">Anish Designs.</a>
+  <a href="#home" class="nav-logo">Anish Studio.</a>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -538,7 +538,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="hero-content">
     <h1 class="hero-name">
       Anish
-      <span>Designs.</span>
+      <span>Studio.</span>
     </h1>
     <div class="hero-role">Graphic Designer &mdash; Pokhara, Nepal</div>
     <div class="hero-btns">
@@ -725,8 +725,8 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 </section>
 
 <footer>
-  <div class="footer-logo">Anish Designs.</div>
-  <div class="footer-copy">&copy; 2026 Anish Designs &mdash; Pokhara, Nepal</div>
+  <div class="footer-logo">Anish Studio.</div>
+  <div class="footer-copy">&copy; 2026 Anish Studio &mdash; Pokhara, Nepal</div>
   <div class="footer-links"><a href="mailto:anishdesigns3@gmail.com">Email</a><a href="https://wa.me/9779827150889" target="_blank">WhatsApp</a></div>
 </footer>
 
@@ -878,55 +878,71 @@ function loadPDFInModal(title, url){
   document.getElementById('pdfTitle').textContent = title;
   document.getElementById('pdfDownloadBtn').href = url;
 
-  // Clear any previous interval
-  if(_pdfProgressInterval) clearInterval(_pdfProgressInterval);
+  if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
 
   var gdocs = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
 
-  var loadingHTML =
-    '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:0.8rem;">' +
-      '<div style="width:36px;height:36px;border:2.5px solid #222;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;"></div>' +
+  // Build HTML
+  document.getElementById('pdfContent').innerHTML =
+    '<div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;z-index:2;gap:0.85rem;">' +
+      '<div style="width:36px;height:36px;border:2.5px solid #1e1e1e;border-top-color:#a7e92f;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;"></div>' +
       '<span style="font-family:Inter,sans-serif;font-size:0.62rem;color:#555;letter-spacing:2px;text-transform:uppercase;">Loading PDF</span>' +
-      '<div style="width:160px;height:2px;background:#1e1e1e;border-radius:2px;overflow:hidden;">' +
-        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.35s ease;"></div>' +
+      '<div style="width:160px;height:2px;background:#1a1a1a;border-radius:2px;overflow:hidden;">' +
+        '<div id="pdfBar" style="height:100%;width:0%;background:#a7e92f;border-radius:2px;transition:width 0.4s ease;"></div>' +
       '</div>' +
-      '<span id="pdfPct" style="font-family:Inter,sans-serif;font-size:0.72rem;color:#a7e92f;font-weight:600;letter-spacing:1px;">0%</span>' +
-      '<a href="' + url + '" target="_blank" style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;text-decoration:none;margin-top:0.3rem;transition:color 0.2s;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#333\'">Taking too long? Open directly ↗</a>' +
+      '<span id="pdfPct" style="font-family:Inter,sans-serif;font-size:0.72rem;color:#a7e92f;font-weight:700;letter-spacing:1px;">0%</span>' +
+      '<a href="' + url + '" target="_blank" style="font-family:Inter,sans-serif;font-size:0.6rem;color:#333;text-decoration:none;margin-top:0.2rem;" onmouseover="this.style.color=\'#a7e92f\'" onmouseout="this.style.color=\'#333\'">Open directly ↗</a>' +
     '</div>' +
-    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.4s;z-index:1;"></iframe>';
+    '<iframe id="pdfFrame" src="' + gdocs + '" style="width:100%;height:100%;border:none;position:absolute;inset:0;opacity:0;transition:opacity 0.45s;z-index:1;"></iframe>';
 
-  document.getElementById('pdfContent').innerHTML = loadingHTML;
-
-  // Animate progress bar
+  // Start progress animation
   var pct = 0;
   _pdfProgressInterval = setInterval(function(){
     var bar = document.getElementById('pdfBar');
     var lbl = document.getElementById('pdfPct');
     if(!bar){ clearInterval(_pdfProgressInterval); return; }
-    pct += Math.random() * 6 + 2;
+    pct += Math.random() * 5 + 2;
     if(pct > 88) pct = 88;
-    var rounded = Math.round(pct);
-    bar.style.width = rounded + '%';
-    if(lbl) lbl.textContent = rounded + '%';
-  }, 250);
+    bar.style.width = Math.round(pct) + '%';
+    if(lbl) lbl.textContent = Math.round(pct) + '%';
+  }, 280);
 
-  // Listen for iframe load via addEventListener
+  // iframe fires 'load' twice with Google Docs viewer — first on empty, then on content
+  // We use a flag to ignore the first fire
+  var loadCount = 0;
   var frame = document.getElementById('pdfFrame');
   if(frame){
-    frame.addEventListener('load', function onFrameLoad(){
-      frame.removeEventListener('load', onFrameLoad);
-      clearInterval(_pdfProgressInterval);
-      var bar = document.getElementById('pdfBar');
-      var lbl = document.getElementById('pdfPct');
-      var overlay = document.getElementById('pdfLoading');
-      if(bar) bar.style.width = '100%';
-      if(lbl) lbl.textContent = '100%';
-      setTimeout(function(){
-        if(overlay){ overlay.style.transition = 'opacity 0.35s'; overlay.style.opacity = '0'; }
-        frame.style.opacity = '1';
-        setTimeout(function(){ if(overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 380);
-      }, 300);
+    frame.addEventListener('load', function onLoad(){
+      loadCount++;
+      // Google Docs viewer fires twice — wait for 2nd load (actual content)
+      // But on some browsers only fires once — use a timer fallback
+      if(loadCount < 2){
+        // Reset bar slightly to show activity
+        pct = Math.min(pct + 5, 88);
+        return;
+      }
+      frame.removeEventListener('load', onLoad);
+      _finish();
     });
+    // Fallback: if only 1 load fires after 2s, treat as done
+    setTimeout(function(){
+      if(loadCount >= 1){ _finish(); }
+    }, 2500);
+  }
+
+  function _finish(){
+    if(_pdfProgressInterval){ clearInterval(_pdfProgressInterval); _pdfProgressInterval = null; }
+    var bar = document.getElementById('pdfBar');
+    var lbl = document.getElementById('pdfPct');
+    var overlay = document.getElementById('pdfLoading');
+    var f = document.getElementById('pdfFrame');
+    if(bar) bar.style.width = '100%';
+    if(lbl) lbl.textContent = '100%';
+    setTimeout(function(){
+      if(overlay){ overlay.style.transition = 'opacity 0.4s'; overlay.style.opacity = '0'; }
+      if(f) f.style.opacity = '1';
+      setTimeout(function(){ if(overlay && overlay.parentNode) overlay.remove(); }, 420);
+    }, 320);
   }
 }
 function openPDF(t,u){
