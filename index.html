@@ -124,7 +124,7 @@ nav ul li a:hover::after{width:100%;}
 /* EXPERTISE */
 /* VIDEO SECTION */
 .video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.video-item{position:relative;background:#000;cursor:pointer;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--br);transition:border-color .3s,transform .3s,box-shadow .3s;}
+.video-item{position:relative;background:#000;cursor:pointer;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--br);transition:border-color .3s,transform .3s,box-shadow .3s;}
 .video-item:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.5);}
 .video-item video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
 .video-item .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);transition:background .3s;}
@@ -449,81 +449,160 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="sec-label reveal">Motion &amp; Video</div>
   <h2 class="sec-title reveal">Motion &amp; <em>Videos</em></h2>
   <div class="video-grid" id="videoGrid">
-
-    <!-- VISIBLE: 8 items -->
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video1.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video1.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    <a class="video-item" href="https://youtu.be/Vk6I0UeEIUI" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/Vk6I0UeEIUI/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video2.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video2.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/I5_HM-8Fr9A" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/I5_HM-8Fr9A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video3.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video3.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/nXveDGyqd3E" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/nXveDGyqd3E/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video4.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video4.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/ttJPjcWZG3A" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/ttJPjcWZG3A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video5.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video5.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/5w68-TWfu8w" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/5w68-TWfu8w/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video6.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video6.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/Ta9I4gbJrfo" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/Ta9I4gbJrfo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video7.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video7.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/DLCN8jC5Exo" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/DLCN8jC5Exo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video8.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video8.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item" href="https://youtu.be/hTc8nGUDzzs" target="_blank" rel="noopener" style="display:block;">
+      <img src="https://img.youtube.com/vi/hTc8nGUDzzs/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
+    </a>
 
-    <!-- HIDDEN: add as many more as needed, just change video9.mp4, video10.mp4 etc. -->
-    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video9.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video9.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    <!-- hidden -->
+    <a class="video-item video-hidden" href="https://youtu.be/QJ2nrthaWQM" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/QJ2nrthaWQM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video10.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video10.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/zQpRJvt4bhw" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/zQpRJvt4bhw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video11.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video11.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/AYSHR1KH87k" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/AYSHR1KH87k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
-    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video12.mp4')">
-      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video12.mp4" muted loop playsinline preload="none"
-        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/i6l1EmP-ofY" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/i6l1EmP-ofY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </div>
-
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/B9123OrDhsY" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/B9123OrDhsY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/wBW0EBwm2xE" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/wBW0EBwm2xE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/cadqqf8Frl8" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/cadqqf8Frl8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/sydcKNy-4T4" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/sydcKNy-4T4/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/Px0UHPxjQzE" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/Px0UHPxjQzE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/PE69ayAidVA" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/PE69ayAidVA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/RYM7CksdcqU" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/RYM7CksdcqU/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/L3zj4C_Q17A" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/L3zj4C_Q17A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/E5rYBEmngNk" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/E5rYBEmngNk/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/0_2_4JenZhM" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/0_2_4JenZhM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/Cx61PuZBcJY" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/Cx61PuZBcJY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/9HR9MDO9yVw" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/9HR9MDO9yVw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/59UksmL364Y" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/59UksmL364Y/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/2TVg2OLJGUw" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/2TVg2OLJGUw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/Q-MeC1e3IAQ" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/Q-MeC1e3IAQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/D_NcMtUFzv8" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/D_NcMtUFzv8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/ZOklAruBFG0" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/ZOklAruBFG0/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/wMAlYgrLK7k" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/wMAlYgrLK7k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/rM0esuX2-_o" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/rM0esuX2-_o/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/1PGXVkFLH78" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/1PGXVkFLH78/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/U4dnO8FvHTo" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/U4dnO8FvHTo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/p4WnGcOlIbQ" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/p4WnGcOlIbQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/pqL-irgmN14" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/pqL-irgmN14/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/OBC3FwfRsew" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/OBC3FwfRsew/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/z7hCQVXN6RA" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/z7hCQVXN6RA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
+    <a class="video-item video-hidden" href="https://youtu.be/L_6W7icaMys" target="_blank" rel="noopener" style="display:none;">
+      <img src="https://img.youtube.com/vi/L_6W7icaMys/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </a>
   </div>
 
   <div class="see-more-wrap">
@@ -676,6 +755,7 @@ function toggleVideos(){
   const showing=btn.textContent==='See More';
   hidden.forEach(el=>{el.style.display=showing?'block':'none';});
   btn.textContent=showing?'See Less':'See More';
+  if(showing) btn.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function openVideo(src){
   const lb=document.getElementById('videoLightbox');
@@ -714,8 +794,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo({target:
   <div class="pdf-body" id="pdfContent"></div>
 </div>
 
-
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.02 2 11c0 2.76 1.28 5.23 3.31 6.94L4 22l4.5-1.5C9.6 20.83 10.78 21 12 21c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-2h6v2zm4-4H7V9h10v2z"/></svg>
 </div>
 
 </body>
