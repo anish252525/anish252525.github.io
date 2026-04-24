@@ -24,8 +24,8 @@ html{scroll-behavior:smooth;}
 body{background:var(--bk);color:var(--wh);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .cursor{position:fixed;width:6px;height:6px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
 .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(167,233,47,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .1s,width .3s,height .3s,border-color .3s;}
-nav{position:fixed;top:0;left:0;right:0;padding:1.4rem 4rem;background:rgba(10,10,10,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:padding .3s;}
-nav.scrolled{padding:1rem 4rem;background:rgba(10,10,10,.97);}
+nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);z-index:1000;transition:padding .3s;}.nav-inner{max-width:1400px;margin:0 auto;padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+nav.scrolled .nav-inner{padding:.8rem 4rem;}nav.scrolled{background:rgba(10,10,10,.97);}
 .nav-logo{font-family:'AwesomeSerif',serif;font-weight:700;font-size:1.45rem;color:var(--g);text-decoration:none;font-style:italic;}
 nav ul{list-style:none;display:flex;gap:2.5rem;align-items:center;}
 nav ul li a{color:var(--mu);text-decoration:none;font-size:.73rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;position:relative;}
@@ -314,7 +314,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     <li><a href="https://wa.me/9779827150889" target="_blank" class="nav-hire" onclick="closeMenu()">Hire Me</a></li>
   </ul>
-</nav>
+</div></nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
