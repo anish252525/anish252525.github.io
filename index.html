@@ -122,6 +122,24 @@ nav ul li a:hover::after{width:100%;}
 .cs-item:hover{background:#161616;}
 .cs-item span{font-size:.7rem;color:var(--mu);font-weight:400;display:block;line-height:1.4;}
 /* EXPERTISE */
+/* VIDEO SECTION */
+.video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.video-item{position:relative;background:#000;cursor:pointer;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--br);transition:border-color .3s,transform .3s,box-shadow .3s;}
+.video-item:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.5);}
+.video-item video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.video-item .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);transition:background .3s;}
+.video-item:hover .play-overlay{background:rgba(0,0,0,.1);}
+.video-item .play-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:transform .25s,background .25s;}
+.video-item:hover .play-btn{transform:scale(1.15);background:rgba(255,255,255,.25);}
+.play-btn svg{width:16px;height:16px;fill:white;margin-left:3px;}
+.video-hidden{display:none;}
+.see-more-wrap{text-align:center;margin-top:2rem;}
+/* VIDEO LIGHTBOX */
+.vlb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;}
+.vlb.open{display:flex;}
+.vlb-inner{position:relative;max-width:420px;width:90%;}
+.vlb-inner video{width:100%;border-radius:4px;display:block;}
+.vlb-close{position:absolute;top:-2.2rem;right:0;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;line-height:1;}
 .expertise-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--br);margin-bottom:3rem;}
 .expertise-col{padding:2.5rem 2rem;border-right:1px solid var(--br);transition:background .25s;}
 .expertise-col:last-child{border-right:none;}
@@ -219,6 +237,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   .section{padding:3rem 1.2rem;}
   .sec-title{font-size:clamp(1.8rem,7vw,2.5rem);margin-bottom:2rem;}
   .about-grid{gap:2rem;}
+  .video-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}
   .work-grid,.brand-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}
   .expertise-row{grid-template-columns:1fr;}
   .expertise-col{border-right:none;border-bottom:1px solid var(--br);}
@@ -286,7 +305,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   <div class="hero-glow"></div>
   <div class="hero-content">
     <h1 class="hero-name">Anish<span>Studio.</span></h1>
-    <div class="hero-role">Graphic Designer &mdash; Pokhara, Nepal</div>
+    <div class="hero-role">Graphic Designer &mdash; Pokhara, Nepal <em style="font-style:italic;color:var(--mu);font-size:.85em;">(currently at Kathmandu)</em></div>
     <!-- ══ 3 BUTTONS ══ -->
     <div class="hero-btns">
       <a href="#brands" class="btn btn-primary">Brand Identity</a>
@@ -422,6 +441,102 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   </div>
 </section>
 
+<!-- VIDEO & MOTION GRAPHICS -->
+<hr class="section-divider">
+<section class="section reveal" id="video">
+  <div class="sec-label reveal">Motion &amp; Video</div>
+  <h2 class="sec-title reveal">Motion &amp; <em>Videos</em></h2>
+  <div class="video-grid" id="videoGrid">
+
+    <!-- VISIBLE: 8 items -->
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video1.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video1.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video2.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video2.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video3.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video3.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video4.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video4.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video5.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video5.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video6.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video6.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video7.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video7.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video8.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video8.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <!-- HIDDEN: add as many more as needed, just change video9.mp4, video10.mp4 etc. -->
+    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video9.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video9.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video10.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video10.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video11.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video11.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+    <div class="video-item video-hidden" onclick="openVideo('https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video12.mp4')">
+      <video src="https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/video12.mp4" muted loop playsinline preload="none"
+        onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+      <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
+    </div>
+
+  </div>
+
+  <div class="see-more-wrap">
+    <button class="btn btn-outline" id="videoToggleBtn" onclick="toggleVideos()">See More</button>
+  </div>
+</section>
+
+<!-- VIDEO LIGHTBOX -->
+<div class="vlb" id="videoLightbox" onclick="closeVideo(event)">
+  <div class="vlb-inner">
+    <button class="vlb-close" onclick="closeVideo()">&#x2715;</button>
+    <video id="vlbVideo" controls playsinline></video>
+  </div>
+</div>
+
 <!-- EXPERTISE -->
 <hr class="section-divider">
 <section class="section reveal">
@@ -553,6 +668,30 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 // HAMBURGER
 function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('navMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('navMenu').classList.contains('open')?'hidden':'';}
 function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('navMenu').classList.remove('open');document.body.style.overflow='';}
+function toggleVideos(){
+  const hidden=document.querySelectorAll('.video-hidden');
+  const btn=document.getElementById('videoToggleBtn');
+  const showing=btn.textContent==='See More';
+  hidden.forEach(el=>{el.style.display=showing?'block':'none';});
+  btn.textContent=showing?'See Less':'See More';
+}
+function openVideo(src){
+  const lb=document.getElementById('videoLightbox');
+  const vid=document.getElementById('vlbVideo');
+  vid.src=src; vid.play();
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeVideo(e){
+  if(e&&e.target!==document.getElementById('videoLightbox')&&!e.target.classList.contains('vlb-close'))return;
+  const lb=document.getElementById('videoLightbox');
+  const vid=document.getElementById('vlbVideo');
+  vid.pause();vid.src='';
+  lb.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo({target:document.getElementById('videoLightbox')});}});
+
 </script>
 </div>
 
