@@ -117,12 +117,12 @@ nav ul li a:hover::after{width:100%;}
 .brand-multi-btns button{display:flex;align-items:center;gap:.5rem;padding:.45rem .7rem;background:#161616;border:1px solid var(--br);color:var(--mu);font-size:.63rem;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;text-align:left;width:100%;}
 .brand-multi-btns button:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
 /* COMING SOON */
-.coming-soon-block{margin-top:3rem;border:1px solid var(--br);background:var(--bk2);}
-.coming-soon-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:1.5rem;}
-.coming-soon-label{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:.5rem;}
-.coming-soon-label i{color:var(--g);}
-.coming-soon-header p{font-size:.72rem;color:var(--mu);font-weight:300;}
-.coming-soon-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--br);}
+
+
+
+
+
+
 .cs-item{background:var(--bk2);padding:.8rem 1rem;transition:background .2s;}
 .cs-item:hover{background:#161616;}
 .cs-item span{font-size:.7rem;color:var(--mu);font-weight:400;display:block;line-height:1.4;}
@@ -261,7 +261,7 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
   .contact-box{border-right:none;border-bottom:1px solid var(--br);padding:1.8rem 1.2rem;}
   .contact-box:last-child{border-bottom:none;}
   footer{flex-direction:column;gap:1rem;text-align:center;padding:1.8rem 1.2rem;}
-  .coming-soon-grid{grid-template-columns:repeat(2,1fr)!important;}
+  
   .cursor,.cursor-ring{display:none;}
   .marquee-item{width:110px;height:75px;}
 }
@@ -416,44 +416,6 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
     <div class="work-item" onclick="openPDF('Sarangkot Dham','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Sarangkot%20Dham.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Sarangkot%20Dham.jpg" alt=""></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Sarangkot Dham</h3><p>Place Branding</p></div></div>
     <div class="work-item" onclick="openPDF('Krishna Janmashtami (ISKCON)','https://cdn.jsdelivr.net/gh/anish252525/portfolio-assets@main/Krishna_Janmastami_Designs.pdf')"><div class="work-item-img"><img loading="lazy" src="https://raw.githubusercontent.com/anish252525/portfolio-assets/main/Krishna%20Janmastami.jpg" alt=""></div><span class="pdf-tag">PDF</span><div class="work-item-label"><h3>Krishna Janmashtami (ISKCON)</h3><p>Religious Event</p></div></div>
   </div>
-
-  <div class="coming-soon-block">
-    <div class="coming-soon-header">
-      <span class="coming-soon-label"><i class="fa-solid fa-clock"></i> More Work — Coming Soon</span>
-      <p>PDFs being added for these projects</p>
-    </div>
-    <div class="coming-soon-grid">
-      <div class="cs-item"><span>Pokhara Metropolitan City Day</span></div>
-      <div class="cs-item"><span>Street Festival Musical Eve</span></div>
-      <div class="cs-item"><span>Pokhara Fair / Mahotsav</span></div>
-      <div class="cs-item"><span>Lekhnath Fair / Mahotsav</span></div>
-      <div class="cs-item"><span>Fewa New Year Fair</span></div>
-      <div class="cs-item"><span>Asare Ropai Mahotsav</span></div>
-      <div class="cs-item"><span>PATA Annual Summit</span></div>
-      <div class="cs-item"><span>Nepal Rastra Bank Events</span></div>
-      <div class="cs-item"><span>Nepal Land &amp; Housing Dept AGM</span></div>
-      <div class="cs-item"><span>Car Insurance &amp; Hydropower Risks</span></div>
-      <div class="cs-item"><span>5th Nagar Sabha</span></div>
-      <div class="cs-item"><span>Rabindra Adhikari Smriti</span></div>
-      <div class="cs-item"><span>Aaha Rara Pokhara Gold Cup</span></div>
-      <div class="cs-item"><span>Prachanda Cup Volleyball</span></div>
-      <div class="cs-item"><span>Tiger Cup Volleyball</span></div>
-      <div class="cs-item"><span>NVA Cup Volleyball</span></div>
-      <div class="cs-item"><span>Pokhara Sports Awards</span></div>
-      <div class="cs-item"><span>Mountain Cross Country Race</span></div>
-      <div class="cs-item"><span>NYFN 10th Convention</span></div>
-      <div class="cs-item"><span>Sachchai Intl Dynamic Award</span></div>
-      <div class="cs-item"><span>NISA Hydropower Conference</span></div>
-      <div class="cs-item"><span>WADA Auto Show</span></div>
-      <div class="cs-item"><span>PCCI Trade Fair</span></div>
-      <div class="cs-item"><span>ECAN Fair</span></div>
-      <div class="cs-item"><span>Miss Pokhara</span></div>
-      <div class="cs-item"><span>Miss Tamang</span></div>
-      <div class="cs-item"><span>Miss SEE</span></div>
-      <div class="cs-item"><span>Teej Festival</span></div>
-      <div class="cs-item"><span>Bajhapatan Musical Fest</span></div>
-      <div class="cs-item"><span>Krishi Paryatan Mela</span></div>
-    </div>
   </div>
 </section>
 
@@ -462,121 +424,159 @@ footer{border-top:1px solid var(--br);padding:2rem 4rem;display:flex;justify-con
 <section class="section reveal" id="video">
   <div class="sec-label reveal">Motion &amp; Video</div>
   <h2 class="sec-title reveal">Motion &amp; <em>Videos</em></h2>
-  <div class="video-grid" id="videoGrid">
-    <div class="video-item" onclick="openYT(\'Vk6I0UeEIUI\')" style="display:block;"><img src="https://img.youtube.com/vi/Vk6I0UeEIUI/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="video-grid" id="videoGrid">
+    <div class="video-item" onclick="openYT('Vk6I0UeEIUI')" style="display:block;">
+      <img src="https://img.youtube.com/vi/Vk6I0UeEIUI/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'I5_HM-8Fr9A\')" style="display:block;"><img src="https://img.youtube.com/vi/I5_HM-8Fr9A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('I5_HM-8Fr9A')" style="display:block;">
+      <img src="https://img.youtube.com/vi/I5_HM-8Fr9A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'nXveDGyqd3E\')" style="display:block;"><img src="https://img.youtube.com/vi/nXveDGyqd3E/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('nXveDGyqd3E')" style="display:block;">
+      <img src="https://img.youtube.com/vi/nXveDGyqd3E/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'ttJPjcWZG3A\')" style="display:block;"><img src="https://img.youtube.com/vi/ttJPjcWZG3A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('ttJPjcWZG3A')" style="display:block;">
+      <img src="https://img.youtube.com/vi/ttJPjcWZG3A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'5w68-TWfu8w\')" style="display:block;"><img src="https://img.youtube.com/vi/5w68-TWfu8w/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('5w68-TWfu8w')" style="display:block;">
+      <img src="https://img.youtube.com/vi/5w68-TWfu8w/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'Ta9I4gbJrfo\')" style="display:block;"><img src="https://img.youtube.com/vi/Ta9I4gbJrfo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('Ta9I4gbJrfo')" style="display:block;">
+      <img src="https://img.youtube.com/vi/Ta9I4gbJrfo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'DLCN8jC5Exo\')" style="display:block;"><img src="https://img.youtube.com/vi/DLCN8jC5Exo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('DLCN8jC5Exo')" style="display:block;">
+      <img src="https://img.youtube.com/vi/DLCN8jC5Exo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item" onclick="openYT(\'hTc8nGUDzzs\')" style="display:block;"><img src="https://img.youtube.com/vi/hTc8nGUDzzs/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item" onclick="openYT('hTc8nGUDzzs')" style="display:block;">
+      <img src="https://img.youtube.com/vi/hTc8nGUDzzs/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
     </div>
 
     <!-- hidden -->
-    <div class="video-item video-hidden" onclick="openYT(\'QJ2nrthaWQM\')" style="display:none;"><img src="https://img.youtube.com/vi/QJ2nrthaWQM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="video-item video-hidden" onclick="openYT('QJ2nrthaWQM')" style="display:none;">
+      <img src="https://img.youtube.com/vi/QJ2nrthaWQM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'zQpRJvt4bhw\')" style="display:none;"><img src="https://img.youtube.com/vi/zQpRJvt4bhw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('zQpRJvt4bhw')" style="display:none;">
+      <img src="https://img.youtube.com/vi/zQpRJvt4bhw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'AYSHR1KH87k\')" style="display:none;"><img src="https://img.youtube.com/vi/AYSHR1KH87k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('AYSHR1KH87k')" style="display:none;">
+      <img src="https://img.youtube.com/vi/AYSHR1KH87k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'i6l1EmP-ofY\')" style="display:none;"><img src="https://img.youtube.com/vi/i6l1EmP-ofY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('i6l1EmP-ofY')" style="display:none;">
+      <img src="https://img.youtube.com/vi/i6l1EmP-ofY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'B9123OrDhsY\')" style="display:none;"><img src="https://img.youtube.com/vi/B9123OrDhsY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('B9123OrDhsY')" style="display:none;">
+      <img src="https://img.youtube.com/vi/B9123OrDhsY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'wBW0EBwm2xE\')" style="display:none;"><img src="https://img.youtube.com/vi/wBW0EBwm2xE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('wBW0EBwm2xE')" style="display:none;">
+      <img src="https://img.youtube.com/vi/wBW0EBwm2xE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'cadqqf8Frl8\')" style="display:none;"><img src="https://img.youtube.com/vi/cadqqf8Frl8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('cadqqf8Frl8')" style="display:none;">
+      <img src="https://img.youtube.com/vi/cadqqf8Frl8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'sydcKNy-4T4\')" style="display:none;"><img src="https://img.youtube.com/vi/sydcKNy-4T4/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('sydcKNy-4T4')" style="display:none;">
+      <img src="https://img.youtube.com/vi/sydcKNy-4T4/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'Px0UHPxjQzE\')" style="display:none;"><img src="https://img.youtube.com/vi/Px0UHPxjQzE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('Px0UHPxjQzE')" style="display:none;">
+      <img src="https://img.youtube.com/vi/Px0UHPxjQzE/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'PE69ayAidVA\')" style="display:none;"><img src="https://img.youtube.com/vi/PE69ayAidVA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('PE69ayAidVA')" style="display:none;">
+      <img src="https://img.youtube.com/vi/PE69ayAidVA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'RYM7CksdcqU\')" style="display:none;"><img src="https://img.youtube.com/vi/RYM7CksdcqU/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('RYM7CksdcqU')" style="display:none;">
+      <img src="https://img.youtube.com/vi/RYM7CksdcqU/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'L3zj4C_Q17A\')" style="display:none;"><img src="https://img.youtube.com/vi/L3zj4C_Q17A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('L3zj4C_Q17A')" style="display:none;">
+      <img src="https://img.youtube.com/vi/L3zj4C_Q17A/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'E5rYBEmngNk\')" style="display:none;"><img src="https://img.youtube.com/vi/E5rYBEmngNk/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('E5rYBEmngNk')" style="display:none;">
+      <img src="https://img.youtube.com/vi/E5rYBEmngNk/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'0_2_4JenZhM\')" style="display:none;"><img src="https://img.youtube.com/vi/0_2_4JenZhM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('0_2_4JenZhM')" style="display:none;">
+      <img src="https://img.youtube.com/vi/0_2_4JenZhM/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'Cx61PuZBcJY\')" style="display:none;"><img src="https://img.youtube.com/vi/Cx61PuZBcJY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('Cx61PuZBcJY')" style="display:none;">
+      <img src="https://img.youtube.com/vi/Cx61PuZBcJY/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'9HR9MDO9yVw\')" style="display:none;"><img src="https://img.youtube.com/vi/9HR9MDO9yVw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('9HR9MDO9yVw')" style="display:none;">
+      <img src="https://img.youtube.com/vi/9HR9MDO9yVw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'59UksmL364Y\')" style="display:none;"><img src="https://img.youtube.com/vi/59UksmL364Y/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('59UksmL364Y')" style="display:none;">
+      <img src="https://img.youtube.com/vi/59UksmL364Y/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'2TVg2OLJGUw\')" style="display:none;"><img src="https://img.youtube.com/vi/2TVg2OLJGUw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('2TVg2OLJGUw')" style="display:none;">
+      <img src="https://img.youtube.com/vi/2TVg2OLJGUw/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'Q-MeC1e3IAQ\')" style="display:none;"><img src="https://img.youtube.com/vi/Q-MeC1e3IAQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('Q-MeC1e3IAQ')" style="display:none;">
+      <img src="https://img.youtube.com/vi/Q-MeC1e3IAQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'D_NcMtUFzv8\')" style="display:none;"><img src="https://img.youtube.com/vi/D_NcMtUFzv8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('D_NcMtUFzv8')" style="display:none;">
+      <img src="https://img.youtube.com/vi/D_NcMtUFzv8/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'ZOklAruBFG0\')" style="display:none;"><img src="https://img.youtube.com/vi/ZOklAruBFG0/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('ZOklAruBFG0')" style="display:none;">
+      <img src="https://img.youtube.com/vi/ZOklAruBFG0/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'wMAlYgrLK7k\')" style="display:none;"><img src="https://img.youtube.com/vi/wMAlYgrLK7k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('wMAlYgrLK7k')" style="display:none;">
+      <img src="https://img.youtube.com/vi/wMAlYgrLK7k/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'rM0esuX2-_o\')" style="display:none;"><img src="https://img.youtube.com/vi/rM0esuX2-_o/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('rM0esuX2-_o')" style="display:none;">
+      <img src="https://img.youtube.com/vi/rM0esuX2-_o/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'1PGXVkFLH78\')" style="display:none;"><img src="https://img.youtube.com/vi/1PGXVkFLH78/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('1PGXVkFLH78')" style="display:none;">
+      <img src="https://img.youtube.com/vi/1PGXVkFLH78/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'U4dnO8FvHTo\')" style="display:none;"><img src="https://img.youtube.com/vi/U4dnO8FvHTo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('U4dnO8FvHTo')" style="display:none;">
+      <img src="https://img.youtube.com/vi/U4dnO8FvHTo/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'p4WnGcOlIbQ\')" style="display:none;"><img src="https://img.youtube.com/vi/p4WnGcOlIbQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('p4WnGcOlIbQ')" style="display:none;">
+      <img src="https://img.youtube.com/vi/p4WnGcOlIbQ/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'pqL-irgmN14\')" style="display:none;"><img src="https://img.youtube.com/vi/pqL-irgmN14/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('pqL-irgmN14')" style="display:none;">
+      <img src="https://img.youtube.com/vi/pqL-irgmN14/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'OBC3FwfRsew\')" style="display:none;"><img src="https://img.youtube.com/vi/OBC3FwfRsew/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('OBC3FwfRsew')" style="display:none;">
+      <img src="https://img.youtube.com/vi/OBC3FwfRsew/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'z7hCQVXN6RA\')" style="display:none;"><img src="https://img.youtube.com/vi/z7hCQVXN6RA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('z7hCQVXN6RA')" style="display:none;">
+      <img src="https://img.youtube.com/vi/z7hCQVXN6RA/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
-    </a>
-    <div class="video-item video-hidden" onclick="openYT(\'L_6W7icaMys\')" style="display:none;"><img src="https://img.youtube.com/vi/L_6W7icaMys/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="video-item video-hidden" onclick="openYT('L_6W7icaMys')" style="display:none;">
+      <img src="https://img.youtube.com/vi/L_6W7icaMys/mqdefault.jpg" alt="Motion work" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 12 14"><polygon points="0,0 12,7 0,14"/></svg></div></div>
     </div>
   </div>
