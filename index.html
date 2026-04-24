@@ -141,6 +141,28 @@ nav ul li a:hover::after{width:100%;}
 .vlb-inner video{width:100%;border-radius:4px;display:block;}
 .vlb-close{position:absolute;top:-2.2rem;right:0;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;line-height:1;}
 .expertise-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--br);margin-bottom:3rem;}
+/* AI CHAT WIDGET */
+.ai-chat-bubble{position:fixed;bottom:5.5rem;right:1.5rem;width:48px;height:48px;background:var(--bk);border:1.5px solid var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9998;transition:transform .25s,box-shadow .25s;}
+.ai-chat-bubble:hover{transform:scale(1.08);box-shadow:0 0 18px rgba(176,213,0,.35);}
+.ai-chat-bubble svg{width:22px;height:22px;fill:var(--g);}
+.ai-chat-box{position:fixed;bottom:9rem;right:1.5rem;width:340px;max-height:480px;background:#0d0d0d;border:1px solid var(--br);border-top:2px solid var(--g);display:flex;flex-direction:column;z-index:9997;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .25s,transform .25s;}
+.ai-chat-box.open{opacity:1;pointer-events:all;transform:translateY(0);}
+.ai-chat-header{padding:.75rem 1rem;border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;}
+.ai-chat-header span{font-family:'AwesomeSerif',serif;font-style:italic;font-size:1rem;color:var(--wh);}
+.ai-chat-header small{font-size:.65rem;color:var(--g);font-family:sans-serif;letter-spacing:.5px;}
+.ai-chat-close{background:none;border:none;color:var(--mu);cursor:pointer;font-size:1.1rem;line-height:1;padding:0;}
+.ai-chat-messages{flex:1;overflow-y:auto;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.75rem;scrollbar-width:thin;scrollbar-color:var(--br) transparent;}
+.ai-msg{max-width:88%;font-size:.82rem;line-height:1.5;padding:.55rem .8rem;font-family:sans-serif;}
+.ai-msg.bot{background:#1a1a1a;color:var(--wh);border-left:2px solid var(--g);align-self:flex-start;}
+.ai-msg.user{background:var(--g);color:var(--bk);align-self:flex-end;font-weight:600;}
+.ai-msg.typing{color:var(--mu);font-style:italic;}
+.ai-chat-input{display:flex;border-top:1px solid var(--br);padding:.6rem;}
+.ai-chat-input input{flex:1;background:transparent;border:none;outline:none;color:var(--wh);font-size:.82rem;font-family:sans-serif;padding:.3rem .5rem;}
+.ai-chat-input input::placeholder{color:var(--mu);}
+.ai-chat-input button{background:var(--g);border:none;color:var(--bk);padding:.3rem .7rem;cursor:pointer;font-weight:700;font-size:.85rem;transition:opacity .2s;}
+.ai-chat-input button:hover{opacity:.85;}
+@media(max-width:600px){.ai-chat-box{width:calc(100vw - 2rem);right:1rem;}}
+
 .expertise-col{padding:2.5rem 2rem;border-right:1px solid var(--br);transition:background .25s;}
 .expertise-col:last-child{border-right:none;}
 .expertise-col:hover{background:var(--bk2);}
@@ -691,7 +713,71 @@ function closeVideo(e){
   lb.classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo({target:document.getElementById('videoLightbox')});}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo({target:document.getElementById('videoLightbox')});}}); 
+// AI CHAT
+const WORKER_URL = 'https://anish-ai-proxy.anishdesigns3.workers.dev';
+const ANISH_SYSTEM = `You are the AI assistant for Anish Studio, the portfolio website of Anish — a graphic designer based in Pokhara, Nepal (currently at Kathmandu). Keep answers short, friendly and helpful. Here is what you know about Anish:
+
+- 6+ years of experience in graphic design
+- Services: Brand Identity & Logo Design, Event Branding, Print & Publication Design, Social Media Design, Motion Graphics & Video (foundational)
+- Has worked with 20+ brands, 75+ projects, 25+ events
+- Clients include local businesses, government bodies, international organisations across Nepal
+- Works with Adobe's full suite and uses AI in his workflow
+- Contact: available via the contact section on the website
+- To hire Anish: click the "Hire Me" button on the website
+- Website: anishstudio.com
+
+Only answer questions related to Anish Studio, his services, work, or how to get in touch. If asked something unrelated, politely redirect.`;
+
+let chatHistory = [];
+
+function toggleChat(){
+  const box = document.getElementById('aiChatBox');
+  box.classList.toggle('open');
+  if(box.classList.contains('open')) document.getElementById('aiInput').focus();
+}
+
+async function sendAIMessage(){
+  const input = document.getElementById('aiInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = '';
+
+  appendMsg(msg, 'user');
+  chatHistory.push({role:'user', parts:[{text: msg}]});
+
+  const typing = appendMsg('typing...', 'bot typing');
+
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        system_instruction: {parts:[{text: ANISH_SYSTEM}]},
+        contents: chatHistory
+      })
+    });
+    const data = await res.json();
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
+    typing.remove();
+    appendMsg(reply, 'bot');
+    chatHistory.push({role:'model', parts:[{text: reply}]});
+  } catch(e) {
+    typing.remove();
+    appendMsg('Something went wrong. Please try again.', 'bot');
+  }
+}
+
+function appendMsg(text, type){
+  const msgs = document.getElementById('aiMessages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + type;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
 
 </script>
 </div>
@@ -711,6 +797,30 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo({target:
     </div>
   </div>
   <div class="pdf-body" id="pdfContent"></div>
+</div>
+
+
+<!-- AI CHAT BUBBLE -->
+<div class="ai-chat-bubble" onclick="toggleChat()" title="Chat with Anish's AI">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.02 2 11c0 2.76 1.28 5.23 3.31 6.94L4 22l4.5-1.5C9.6 20.83 10.78 21 12 21c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-2h6v2zm4-4H7V9h10v2z"/></svg>
+</div>
+
+<!-- AI CHAT BOX -->
+<div class="ai-chat-box" id="aiChatBox">
+  <div class="ai-chat-header">
+    <div>
+      <span>Anish's Assistant</span><br>
+      <small>&#9679; powered by Gemini</small>
+    </div>
+    <button class="ai-chat-close" onclick="toggleChat()">&#x2715;</button>
+  </div>
+  <div class="ai-chat-messages" id="aiMessages">
+    <div class="ai-msg bot">Hey! I'm Anish's AI assistant. Ask me anything about his work, services, or how to hire him. 👋</div>
+  </div>
+  <div class="ai-chat-input">
+    <input type="text" id="aiInput" placeholder="Ask something..." onkeydown="if(event.key==='Enter')sendAIMessage()"/>
+    <button onclick="sendAIMessage()">Send</button>
+  </div>
 </div>
 
 </body>
